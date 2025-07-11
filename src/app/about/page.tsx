@@ -38,7 +38,7 @@ const values = [
   {
     icon: Heart,
     title: "Client-Centric",
-    description: "Your success is our success. We're partners in your transformation journey."
+    description: "Your success is our success. We&apos;re partners in your transformation journey."
   },
   {
     icon: Users,
@@ -82,7 +82,7 @@ export default function About() {
                   </span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  We're on a mission to democratize AI and make it accessible to businesses of all sizes. Our team of AI experts and business strategists work together to create solutions that don't just impress—they deliver real, measurable results.
+                  We&apos;re on a mission to democratize AI and make it accessible to businesses of all sizes. Our team of AI experts and business strategists work together to create solutions that don&apos;t just impress—they deliver real, measurable results.
                 </p>
               </motion.div>
               

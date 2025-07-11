@@ -6,13 +6,24 @@ import { Container } from "@/components/ui/container"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Clock, MessageSquare, Calendar } from "lucide-react"
+import { Mail, MapPin, Calendar } from "lucide-react"
 import { useEffect } from "react"
 
 // Declare HubSpot global
 declare global {
   interface Window {
-    hbspt: any;
+    hbspt: {
+      forms: {
+        create: (config: {
+          region: string;
+          portalId: string;
+          formId: string;
+          target: string;
+          onFormReady?: () => void;
+          onFormSubmit?: () => void;
+        }) => void;
+      };
+    };
   }
 }
 
@@ -33,50 +44,113 @@ const contactInfo = [
 
 export default function Contact() {
   useEffect(() => {
-    // Create and inject the HubSpot form script directly
-    const script = document.createElement('script')
-    script.innerHTML = `
-      (function() {
-        var script = document.createElement('script');
-        script.src = 'https://js-na2.hsforms.net/forms/embed/243268505.js';
-        script.onload = function() {
-          if (window.hbspt) {
-            window.hbspt.forms.create({
-              region: "na2",
-              portalId: "243268505",
-              formId: "ffaff69a-77d4-4f1a-974d-39a6d83f2672",
-              target: "#hubspot-form-container"
-            });
+    // Simple HubSpot form loading
+    const loadHubSpotForm = () => {
+      // Check if HubSpot script already exists
+      if (window.hbspt) {
+        createForm()
+        return
+      }
 
-            // Hide loading message
-            var loadingDiv = document.getElementById('form-loading');
-            if (loadingDiv) {
-              loadingDiv.style.display = 'none';
-            }
+      // Load HubSpot script
+      const script = document.createElement('script')
+      script.src = 'https://js-na2.hsforms.net/forms/embed/243268505.js'
+      script.onload = () => {
+        console.log('HubSpot script loaded')
+        // Wait for HubSpot to be available
+        const checkHubSpot = setInterval(() => {
+          if (window.hbspt && window.hbspt.forms) {
+            clearInterval(checkHubSpot)
+            createForm()
           }
-        };
-        document.head.appendChild(script);
-      })();
-    `
-    document.head.appendChild(script)
+        }, 100)
 
-    // Fallback: If form doesn't load after 5 seconds, show backup form
-    const fallbackTimer = setTimeout(() => {
+        // Stop checking after 10 seconds
+        setTimeout(() => {
+          clearInterval(checkHubSpot)
+          if (!window.hbspt) {
+            console.error('HubSpot failed to load')
+            showBackupForm()
+          }
+        }, 10000)
+      }
+
+      script.onerror = () => {
+        console.error('Failed to load HubSpot script')
+        showBackupForm()
+      }
+
+      document.head.appendChild(script)
+    }
+
+    const createForm = () => {
+      try {
+        console.log('Creating HubSpot form with:', {
+          region: "na2",
+          portalId: "243268505",
+          formId: "ffaff69a-77d4-4f1a-974d-39a6d83f2672",
+          target: "#hubspot-form-container"
+        })
+
+        window.hbspt.forms.create({
+          region: "na2",
+          portalId: "243268505",
+          formId: "ffaff69a-77d4-4f1a-974d-39a6d83f2672",
+          target: "#hubspot-form-container",
+          onFormReady: function() {
+            console.log('HubSpot form is ready')
+            // Hide loading message
+            const loadingDiv = document.getElementById('form-loading')
+            if (loadingDiv) {
+              loadingDiv.style.display = 'none'
+            }
+          },
+          onFormSubmit: function() {
+            console.log('HubSpot form submitted')
+          }
+        })
+
+        console.log('HubSpot form creation initiated')
+      } catch (error) {
+        console.error('Error creating HubSpot form:', error)
+        showBackupForm()
+      }
+    }
+
+    const showBackupForm = () => {
       const container = document.getElementById('hubspot-form-container')
       const loading = document.getElementById('form-loading')
       const backup = document.getElementById('backup-form')
 
-      if (container && container.children.length === 0) {
-        // Hide loading and HubSpot container
-        if (loading) loading.style.display = 'none'
-        container.style.display = 'none'
+      console.log(&apos;Showing backup form&apos;)
 
-        // Show backup form
-        if (backup) {
-          backup.classList.remove('hidden')
-        }
+      // Hide loading and HubSpot container
+      if (loading) loading.style.display = 'none'
+      if (container) container.style.display = 'none'
+
+      // Show backup form
+      if (backup) {
+        backup.classList.remove('hidden')
       }
-    }, 5000)
+    }
+
+    // Start loading
+    loadHubSpotForm()
+
+    // Fallback timer - if form doesn't load after 8 seconds, show backup
+    const fallbackTimer = setTimeout(() => {
+      const container = document.getElementById('hubspot-form-container')
+      const loading = document.getElementById('form-loading')
+
+      console.log('Checking form status after 8 seconds...')
+      console.log('Container children count:', container?.children.length)
+      console.log('Loading display:', loading?.style.display)
+
+      if (container && container.children.length === 0) {
+        console.log('HubSpot form timeout, showing backup form')
+        showBackupForm()
+      }
+    }, 8000)
 
     return () => {
       clearTimeout(fallbackTimer)
@@ -142,12 +216,15 @@ export default function Contact() {
                       className="min-h-[400px]"
                     ></div>
 
+
+
                     {/* Loading message */}
                     <div id="form-loading" className="text-center py-8">
                       <p className="text-gray-600">Loading form...</p>
                       <div className="mt-4">
                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
                       </div>
+                      <p className="text-xs text-gray-500 mt-2">If this takes too long, we'll show an alternative form</p>
                     </div>
 
                     {/* Backup Contact Form */}

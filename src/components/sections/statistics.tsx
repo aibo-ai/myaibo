@@ -51,7 +51,7 @@ export function Statistics() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
           >
-            Numbers Don't Lie
+            Numbers Don&apos;t Lie
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}

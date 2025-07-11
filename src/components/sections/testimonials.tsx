@@ -48,7 +48,7 @@ export function Testimonials() {
             viewport={{ once: true }}
             className="text-lg text-gray-600 max-w-4xl mx-auto text-justify leading-relaxed"
           >
-            Don't just take our word for it. Hear directly from the leaders who have experienced transformational results.
+            Don&apos;t just take our word for it. Hear directly from the leaders who have experienced transformational results.
             These authentic testimonials showcase the real impact of our AI solutions on business operations,
             growth metrics, and competitive positioning across various industries.
           </motion.p>
@@ -85,7 +85,7 @@ export function Testimonials() {
 
                   {/* Enhanced Quote */}
                   <blockquote className="text-lg text-gray-700 leading-relaxed mb-10 italic text-justify">
-                    "{testimonial.quote}"
+                    "                    &ldquo;{testimonial.quote}&rdquo;"
                   </blockquote>
 
                   {/* Author */}

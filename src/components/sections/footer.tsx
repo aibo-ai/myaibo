@@ -3,6 +3,7 @@
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { Mail, MapPin, Twitter, Linkedin, Youtube, Instagram } from "lucide-react"
 
 const footerLinks = {
@@ -64,7 +65,7 @@ export function Footer() {
             {/* Enhanced Company Info */}
             <div className="lg:col-span-2">
               <Link href="/" className="flex items-center space-x-2 mb-8">
-                <img src="/logo.svg" alt="MyAibo" className="h-10 w-auto" />
+                <Image src="/logo.svg" alt="MyAibo" width={40} height={40} className="h-10 w-auto" />
               </Link>
               <p className="text-gray-400 mb-8 leading-relaxed text-justify">
                 Transforming businesses with elegant AI-powered solutions that deliver measurable results and sustainable growth.

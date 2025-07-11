@@ -2,9 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 
 export function Hero() {
   return (
@@ -75,9 +76,11 @@ export function Hero() {
             className="relative lg:order-last order-first"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                 alt="AI and Efficiency - Robot hand and human hand reaching towards each other representing collaboration between AI and humans"
+                width={1000}
+                height={500}
                 className="w-full h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />

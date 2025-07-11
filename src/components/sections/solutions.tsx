@@ -138,7 +138,7 @@ export function Solutions() {
               Ready to revolutionize your business?
             </h3>
             <p className="text-lg text-purple-100 mb-8 max-w-2xl mx-auto">
-              Let's discuss which solution will drive the biggest impact for your organization
+              Let&apos;s discuss which solution will drive the biggest impact for your organization
             </p>
             <a
               href="https://outlook.office365.com/owa/calendar/MyAiboConsultation@myaibo.in/bookings/"
