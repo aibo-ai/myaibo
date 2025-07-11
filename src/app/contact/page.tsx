@@ -122,7 +122,7 @@ export default function Contact() {
       const loading = document.getElementById('form-loading')
       const backup = document.getElementById('backup-form')
 
-      console.log(&apos;Showing backup form&apos;)
+      console.log('Showing backup form')
 
       // Hide loading and HubSpot container
       if (loading) loading.style.display = 'none'
