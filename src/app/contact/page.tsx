@@ -184,10 +184,7 @@ export default function Contact() {
       const iframe = document.getElementById('hubspot-iframe-fallback')
       const backup = document.getElementById('backup-form')
 
-      console.log('🔧 Showing backup form - Debug info:')
-      console.log('- Backup form element:', backup)
-      console.log('- Backup form classes before:', backup?.className)
-      console.log('- Backup form hidden?', backup?.classList.contains('hidden'))
+      console.log('✅ Showing contact form')
 
       // Hide all other elements
       if (loading) loading.style.display = 'none'
@@ -200,56 +197,17 @@ export default function Contact() {
         backup.style.display = 'block'
         backup.style.visibility = 'visible'
         backup.style.opacity = '1'
-        backup.style.backgroundColor = 'yellow'
-        backup.style.border = '3px solid red'
-        backup.style.padding = '20px'
-        backup.style.margin = '20px 0'
-        backup.style.zIndex = '9999'
-        backup.style.position = 'relative'
-        console.log('✅ Backup form classes after:', backup.className)
-        console.log('✅ Backup form display style:', backup.style.display)
-        console.log('✅ Backup form visibility:', backup.style.visibility)
-        console.log('✅ Backup form opacity:', backup.style.opacity)
-
-        // Check dimensions and position
-        const rect = backup.getBoundingClientRect()
-        console.log('📐 Form dimensions:', {
-          width: rect.width,
-          height: rect.height,
-          top: rect.top,
-          left: rect.left,
-          bottom: rect.bottom,
-          right: rect.right
-        })
-        console.log('📍 Form scroll position:', {
-          scrollTop: window.scrollY,
-          scrollLeft: window.scrollX
-        })
-
-        // Check if form has content
-        console.log('📝 Form content length:', backup.innerHTML.length)
-        console.log('📝 Form children count:', backup.children.length)
-
-        // Force scroll to form
-        backup.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        console.log('✅ Contact form displayed successfully')
       } else {
         console.error('❌ Backup form element not found!')
       }
     }
 
-    // Log form details for debugging
-    console.log('Attempting to load HubSpot form with CORRECTED IDs:')
-    console.log('Portal ID: 23064856 (corrected from 243268505)')
-    console.log('Form ID: ffaaff69-9dd4-4469-974d-d39a5d83f672 (corrected from ffaff69a-77d4-4f1a-974d-39a6d83f2672)')
-    console.log('Region: na2')
-    console.log('Script URL: https://js-na2.hsforms.net/forms/embed/23064856.js')
-
-    // For now, skip HubSpot and show the working backup form directly
-    console.log('🚀 Using backup form as primary contact method')
+    // Use our custom contact form as the primary method
+    console.log('🚀 Loading MyAibo contact form')
 
     // Use setTimeout to ensure DOM is ready
     setTimeout(() => {
-      console.log('🔧 Attempting to show backup form...')
       showBackupForm()
     }, 100)
 
