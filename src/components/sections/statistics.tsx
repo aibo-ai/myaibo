@@ -8,7 +8,7 @@ const stats = [
   {
     icon: TrendingUp,
     value: "+47%",
-    label: "Uplift Conversions",
+    label: "Uptick in conversions",
     gradient: "from-purple-500 to-purple-600"
   },
   {
@@ -60,9 +60,7 @@ export function Statistics() {
             viewport={{ once: true }}
             className="text-lg text-purple-100 max-w-4xl mx-auto text-justify leading-relaxed"
           >
-            Real results from real clients. See the measurable impact our AI solutions deliver across
-            diverse industries and business models. These statistics represent verified outcomes from
-            our comprehensive AI implementation programs.
+            Real results from real clients. See the measurable impact our AI solutions have delivered across diverse industries and business models.
           </motion.p>
         </div>
 

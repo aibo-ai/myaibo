@@ -39,7 +39,7 @@ const solutions = [
     title: "Intelligent Operations",
     description: "AI-powered workflow automation that scales your business operations seamlessly",
     gradient: "from-purple-600 to-purple-700",
-    features: ["Process automation", "Resource optimization", "Predictive maintenance", "Smart task delegation"]
+    features: ["Process automation", "Resource optimization", "Predictive maintenance"]
   },
   {
     icon: Bot,
@@ -52,7 +52,7 @@ const solutions = [
 
 export function Solutions() {
   return (
-    <section className="py-24 bg-gradient-to-b from-purple-50/30 to-white">
+    <section id="solutions" className="py-24 bg-gradient-to-b from-purple-50/30 to-white">
       <Container>
         <div className="text-center mb-20">
           <motion.h2
@@ -74,9 +74,7 @@ export function Solutions() {
             viewport={{ once: true }}
             className="text-lg text-gray-600 max-w-4xl mx-auto text-justify leading-relaxed"
           >
-            Powerful AI solutions designed to accelerate your business growth and competitive advantage.
-            Each solution is carefully crafted to address specific business challenges while providing
-            scalable, measurable results that drive long-term success.
+            Powerful AI solutions designed to accelerate your business. Each solution is carefully crafted to address specific business challenges while providing scalable, measurable results that drive long-term success.
           </motion.p>
         </div>
 
@@ -107,7 +105,7 @@ export function Solutions() {
                     {solution.title}
                   </h3>
 
-                  <p className="text-purple-600 leading-relaxed mb-8 text-justify">
+                  <p className="text-gray-900 leading-relaxed mb-8 text-justify">
                     {solution.description}
                   </p>
 
@@ -125,31 +123,7 @@ export function Solutions() {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-purple-600 to-purple-700 rounded-2xl p-8 md:p-12 text-white">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Ready to revolutionize your business?
-            </h3>
-            <p className="text-lg text-purple-100 mb-8 max-w-2xl mx-auto">
-              Let&apos;s discuss which solution will drive the biggest impact for your organization
-            </p>
-            <a
-              href="https://outlook.office365.com/owa/calendar/MyAiboConsultation@myaibo.in/bookings/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-purple-700 bg-white hover:bg-purple-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Explore Solutions
-            </a>
-          </div>
-        </motion.div>
+
       </Container>
     </section>
   )

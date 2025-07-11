@@ -1,12 +1,33 @@
 "use client"
 
 import { Container } from "@/components/ui/container"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
 import { Mail, MapPin, Twitter, Linkedin, Youtube, Instagram } from "lucide-react"
+import { useEffect } from "react"
+
+// TypeScript declaration for HubSpot
+declare global {
+  interface Window {
+    hbspt?: {
+      forms: {
+        create: (options: {
+          region: string
+          portalId: string
+          formId: string
+          target: string
+          onFormReady?: () => void
+          onFormSubmit?: () => void
+        }) => void
+      }
+    }
+  }
+}
 
 const footerLinks = {
+  solutions: [
+    { name: "Solutions", href: "/#solutions" }
+  ],
   successStories: [
     { name: "Success Stories", href: "/#case-studies" }
   ],
@@ -26,6 +47,82 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  useEffect(() => {
+    // Load HubSpot script for subscriber form
+    const loadHubSpotSubscriberForm = () => {
+      console.log('🚀 Loading subscriber form')
+
+      // Remove any existing scripts first
+      const existingScripts = document.querySelectorAll('script[src*="243268505.js"]')
+      if (existingScripts.length === 0) {
+        // Create and load the HubSpot script only if it doesn't exist
+        const script = document.createElement('script')
+        script.src = 'https://js-na2.hsforms.net/forms/embed/243268505.js'
+        script.defer = true
+
+        script.onload = () => {
+          console.log('✅ HubSpot subscriber form script loaded successfully')
+          // Wait for form to render
+          setTimeout(() => {
+            const formContainer = document.querySelector('.hubspot-subscriber-form')
+            if (formContainer && formContainer.children.length > 0) {
+              const loadingDiv = document.getElementById('subscriber-form-loading')
+              if (loadingDiv) {
+                loadingDiv.style.display = 'none'
+              }
+            } else {
+              // Show fallback
+              const loadingDiv = document.getElementById('subscriber-form-loading')
+              if (loadingDiv) {
+                loadingDiv.innerHTML = `
+                  <div class="text-center">
+                    <a href="mailto:info@myaibo.in?subject=Newsletter Subscription"
+                       class="inline-block bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+                      Subscribe via Email
+                    </a>
+                  </div>
+                `
+              }
+            }
+          }, 3000)
+        }
+
+        script.onerror = (error) => {
+          console.error('❌ Failed to load HubSpot subscriber form script:', error)
+          // Show fallback
+          const loadingDiv = document.getElementById('subscriber-form-loading')
+          if (loadingDiv) {
+            loadingDiv.innerHTML = `
+              <div class="text-center">
+                <a href="mailto:info@myaibo.in?subject=Newsletter Subscription"
+                   class="inline-block bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+                  Subscribe via Email
+                </a>
+              </div>
+            `
+          }
+        }
+
+        document.head.appendChild(script)
+      } else {
+        console.log('HubSpot script already loaded for subscriber form')
+        // Check if form is already rendered
+        setTimeout(() => {
+          const formContainer = document.querySelector('.hubspot-subscriber-form')
+          if (formContainer && formContainer.children.length > 0) {
+            const loadingDiv = document.getElementById('subscriber-form-loading')
+            if (loadingDiv) {
+              loadingDiv.style.display = 'none'
+            }
+          }
+        }, 1000)
+      }
+    }
+
+    // Start loading HubSpot form
+    loadHubSpotSubscriberForm()
+  }, [])
+
   return (
     <footer className="bg-gray-900 text-white">
       {/* Enhanced Newsletter Section */}
@@ -44,15 +141,20 @@ export function Footer() {
               Join thousands of business leaders who rely on our expert analysis to stay competitive
               in the rapidly evolving AI landscape.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-1 px-6 py-4 rounded-xl bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-white focus:outline-none shadow-lg"
-              />
-              <Button className="bg-white text-purple-700 hover:bg-purple-50 px-10 py-4 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                Subscribe
-              </Button>
+            {/* HubSpot Subscriber Form */}
+            <div className="max-w-lg mx-auto">
+              <div
+                className="hs-form-frame hubspot-subscriber-form"
+                data-region="na2"
+                data-form-id="5f90120f-9356-4939-aca2-96063b0e09ed"
+                data-portal-id="243268505"
+              >
+              </div>
+
+              {/* Loading message */}
+              <div id="subscriber-form-loading" className="text-center py-4">
+                <p className="text-purple-100 text-sm">Loading subscription form...</p>
+              </div>
             </div>
           </div>
         </Container>
@@ -61,69 +163,64 @@ export function Footer() {
       {/* Enhanced Main Footer */}
       <Container>
         <div className="py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-            {/* Enhanced Company Info */}
-            <div className="lg:col-span-2">
-              <Link href="/" className="flex items-center space-x-2 mb-8">
-                <Image src="/logo.svg" alt="MyAibo" width={40} height={40} className="h-10 w-auto" />
+          {/* Logo and Navigation in same line */}
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-16 mb-12">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Link href="/" className="flex items-center space-x-2">
+                <Image src="/MyAibo-logo-white.png" alt="MyAibo" width={600} height={200} className="h-20 lg:h-24 w-auto" />
               </Link>
-              <p className="text-gray-400 mb-8 leading-relaxed text-justify">
-                Transforming businesses with elegant AI-powered solutions that deliver measurable results and sustainable growth.
-                We combine cutting-edge technology with strategic business insight to create competitive advantages that last.
-              </p>
+            </div>
 
-              {/* Enhanced Contact Info */}
-              <div className="space-y-4">
-                <div className="flex items-center text-gray-400 hover:text-purple-400 transition-colors duration-300">
-                  <div className="w-10 h-10 rounded-lg bg-purple-900/30 flex items-center justify-center mr-4">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <span>info@myaibo.in</span>
-                </div>
-                <div className="flex items-center text-gray-400 hover:text-purple-400 transition-colors duration-300">
-                  <div className="w-10 h-10 rounded-lg bg-purple-900/30 flex items-center justify-center mr-4">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <span>Bengaluru, KA</span>
-                </div>
+            {/* Navigation Links - Horizontal layout */}
+            <div className="flex flex-wrap items-center gap-8 lg:gap-12">
+              <div>
+                {footerLinks.solutions.map((link) => (
+                  <Link key={link.name} href={link.href} className="text-gray-400 hover:text-white transition-colors font-semibold text-lg">
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div>
+                {footerLinks.successStories.map((link) => (
+                  <Link key={link.name} href={link.href} className="text-gray-400 hover:text-white transition-colors font-semibold text-lg">
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div>
+                {footerLinks.aboutUs.map((link) => (
+                  <Link key={link.name} href={link.href} className="text-gray-400 hover:text-white transition-colors font-semibold text-lg">
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div>
+                {footerLinks.contactUs.map((link) => (
+                  <Link key={link.name} href={link.href} className="text-gray-400 hover:text-white transition-colors font-semibold text-lg">
+                    {link.name}
+                  </Link>
+                ))}
               </div>
             </div>
+          </div>
 
-            {/* Navigation Links */}
-            <div>
-              <ul className="space-y-3">
-                {footerLinks.successStories.map((link) => (
-                  <li key={link.name}>
-                    <Link href={link.href} className="text-gray-400 hover:text-white transition-colors font-semibold">
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+          {/* Contact Information - Separate section below */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12">
+            <div className="flex items-center text-gray-400 hover:text-purple-400 transition-colors duration-300">
+              <div className="w-10 h-10 rounded-lg bg-purple-900/30 flex items-center justify-center mr-4">
+                <Mail className="w-5 h-5" />
+              </div>
+              <span>info@myaibo.in</span>
             </div>
-
-            <div>
-              <ul className="space-y-3">
-                {footerLinks.aboutUs.map((link) => (
-                  <li key={link.name}>
-                    <Link href={link.href} className="text-gray-400 hover:text-white transition-colors font-semibold">
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <ul className="space-y-3">
-                {footerLinks.contactUs.map((link) => (
-                  <li key={link.name}>
-                    <Link href={link.href} className="text-gray-400 hover:text-white transition-colors font-semibold">
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <div className="flex items-center text-gray-400 hover:text-purple-400 transition-colors duration-300">
+              <div className="w-10 h-10 rounded-lg bg-purple-900/30 flex items-center justify-center mr-4">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <span>Bengaluru, KA</span>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 
@@ -9,6 +10,7 @@ import { Container } from "@/components/ui/container"
 import { cn } from "@/lib/utils"
 
 const navigation = [
+  { name: "Solutions", href: "#solutions" },
   { name: "Success Stories", href: "#case-studies" },
   { name: "About Us", href: "/about" },
   { name: "Contact Us", href: "/contact" },
@@ -53,16 +55,21 @@ export function Header() {
       )}
     >
       <Container>
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-32 lg:h-40 py-6">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
-              MyAibo
-            </div>
+            <Image
+              src="/MyAibo-logo.png"
+              alt="MyAibo"
+              width={1200}
+              height={360}
+              className="h-60 lg:h-72 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-12">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -73,55 +80,52 @@ export function Header() {
                     handleNavClick(item.href)
                   }
                 }}
-                className="text-sm font-medium transition-colors text-black/80 hover:text-black"
+                className="text-xl lg:text-2xl font-bold transition-colors text-purple-600 hover:text-purple-700"
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-
-
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 transition-colors text-black"
+            className="md:hidden p-3 transition-colors text-purple-600"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-8 w-8" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-8 w-8" />
             )}
           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => {
-                    if (item.href.startsWith("#")) {
-                      e.preventDefault()
-                      handleNavClick(item.href)
-                    } else {
-                      setIsMobileMenuOpen(false)
-                    }
-                  }}
-                  className="block px-3 py-2 text-base font-medium text-foreground/80 hover:text-foreground hover:bg-accent rounded-md transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
-
-            </div>
-          </div>
-        )}
       </Container>
+
+      {/* Mobile Navigation */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
+          <div className="px-4 pt-4 pb-6 space-y-2">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={(e) => {
+                  if (item.href.startsWith("#")) {
+                    e.preventDefault()
+                    handleNavClick(item.href)
+                  } else {
+                    setIsMobileMenuOpen(false)
+                  }
+                }}
+                className="block px-4 py-3 text-xl font-bold text-purple-600 hover:text-purple-700 hover:bg-purple-50 rounded-md transition-colors"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </header>
   )
 }

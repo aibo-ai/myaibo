@@ -6,10 +6,26 @@ import { Container } from "@/components/ui/container"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { Mail, MapPin, Calendar } from "lucide-react"
+import { Mail, Calendar } from "lucide-react"
 import { useEffect } from "react"
 
-// Declare HubSpot global
+// TypeScript declaration for HubSpot
+declare global {
+  interface Window {
+    hbspt?: {
+      forms: {
+        create: (options: {
+          region: string
+          portalId: string
+          formId: string
+          target: string
+          onFormReady?: () => void
+          onFormSubmit?: () => void
+        }) => void
+      }
+    }
+  }
+}
 
 
 const contactInfo = [
@@ -18,12 +34,6 @@ const contactInfo = [
     title: "Email Us",
     details: "info@myaibo.in",
     description: "Send us an email and we'll respond within 24 hours"
-  },
-  {
-    icon: MapPin,
-    title: "Visit Us",
-    details: "Bengaluru, Karnataka",
-    description: "Schedule an in-person meeting at our office"
   }
 ]
 
@@ -33,10 +43,14 @@ export default function Contact() {
     const loadHubSpotForm = () => {
       console.log('🚀 Loading HubSpot form with official embed code')
 
-      // Check if script already exists
-      if (document.querySelector('script[src*="243268505.js"]')) {
-        console.log('HubSpot script already loaded')
-        return
+      // Remove any existing scripts first to ensure clean loading
+      const existingScripts = document.querySelectorAll('script[src*="243268505.js"]')
+      existingScripts.forEach(script => script.remove())
+
+      // Clear any existing form content
+      const formContainer = document.querySelector('.hs-form-frame')
+      if (formContainer) {
+        formContainer.innerHTML = ''
       }
 
       // Create and load the HubSpot script
@@ -46,11 +60,21 @@ export default function Contact() {
 
       script.onload = () => {
         console.log('✅ HubSpot script loaded successfully')
-        // Hide loading message
-        const loadingDiv = document.getElementById('form-loading')
-        if (loadingDiv) {
-          loadingDiv.style.display = 'none'
-        }
+
+        // Wait a bit for HubSpot to initialize and check for form
+        setTimeout(() => {
+          const formContainer = document.querySelector('.hs-form-frame')
+          if (formContainer && formContainer.children.length > 0) {
+            console.log('✅ HubSpot form rendered successfully')
+            const loadingDiv = document.getElementById('form-loading')
+            if (loadingDiv) {
+              loadingDiv.style.display = 'none'
+            }
+          } else {
+            console.log('⚠️ HubSpot form not rendered, showing backup')
+            showBackupForm()
+          }
+        }, 3000)
       }
 
       script.onerror = (error) => {
@@ -82,14 +106,22 @@ export default function Contact() {
     // Start loading HubSpot form
     loadHubSpotForm()
 
-    // Fallback timer - if form doesn't appear after 10 seconds, show backup
+    // Fallback timer - if form doesn't appear after 15 seconds, show backup
     const fallbackTimer = setTimeout(() => {
       const hubspotForm = document.querySelector('.hs-form-frame')
-      if (!hubspotForm || hubspotForm.children.length === 0) {
-        console.log('⏰ HubSpot form timeout, showing backup form')
+      const hasForm = hubspotForm && (hubspotForm.children.length > 0 || hubspotForm.innerHTML.trim() !== '')
+
+      if (!hasForm) {
+        console.log('⏰ HubSpot form timeout after 15 seconds, showing backup form')
         showBackupForm()
+      } else {
+        console.log('✅ HubSpot form detected, hiding loading message')
+        const loadingDiv = document.getElementById('form-loading')
+        if (loadingDiv) {
+          loadingDiv.style.display = 'none'
+        }
       }
-    }, 10000)
+    }, 15000)
 
     return () => {
       clearTimeout(fallbackTimer)
@@ -167,11 +199,7 @@ export default function Contact() {
 
                     {/* Primary Contact Form */}
                     <div id="backup-form" className="hidden" style={{display: 'none'}}>
-                      <div className="mb-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg">
-                        <p className="text-purple-800 text-sm">
-                          🚀 <strong>Get Started with AI Solutions</strong> - We&apos;ll respond within 24 hours!
-                        </p>
-                      </div>
+
                       <form
                         className="space-y-6"
                         onSubmit={(e) => {
@@ -299,7 +327,7 @@ export default function Contact() {
                 className="space-y-8"
               >
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h2>
                   <p className="text-lg text-gray-600 leading-relaxed mb-8">
                     Have questions? We&apos;re here to help. Reach out through any of these channels
                     and our team will get back to you promptly.
@@ -330,15 +358,31 @@ export default function Contact() {
 
 
 
-                {/* FAQ Link */}
+                {/* FAQ Section */}
                 <div className="bg-white border border-gray-200 rounded-2xl p-6">
-                  <h3 className="font-bold text-gray-900 mb-2">Frequently Asked Questions</h3>
-                  <p className="text-gray-600 text-sm mb-4">
-                    Find answers to common questions about our AI solutions and implementation process.
-                  </p>
-                  <Button variant="outline" className="border-purple-200 text-purple-600 hover:bg-purple-50">
-                    View FAQ
-                  </Button>
+                  <h3 className="font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                  <div className="space-y-4">
+                    <div className="border-b border-gray-100 pb-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">Does a strategy session have to be in-person?</h4>
+                      <p className="text-gray-600 text-sm">No, our strategy sessions can be conducted virtually via video call for your convenience. We accommodate your preferred meeting format.</p>
+                    </div>
+                    <div className="border-b border-gray-100 pb-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">Is there any obligation after a free strategy session?</h4>
+                      <p className="text-gray-600 text-sm">Absolutely not. Our free strategy session is genuinely free with no strings attached. You&apos;re under no obligation to proceed with our services.</p>
+                    </div>
+                    <div className="border-b border-gray-100 pb-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">Any preparations that we need to do for a strategy session?</h4>
+                      <p className="text-gray-600 text-sm">Just come prepared to discuss your business challenges and goals. Having basic information about your current processes and pain points will help us provide more targeted insights.</p>
+                    </div>
+                    <div className="border-b border-gray-100 pb-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">What is the mode of engagement?</h4>
+                      <p className="text-gray-600 text-sm">We offer flexible engagement models including project-based work, retainer arrangements, and ongoing partnerships based on your specific needs and preferences.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Can we choose not to work after the solution architecture is presented?</h4>
+                      <p className="text-gray-600 text-sm">Yes, absolutely. After we present the solution architecture, you have complete freedom to decide whether to proceed. There&apos;s no pressure or obligation to continue.</p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </div>

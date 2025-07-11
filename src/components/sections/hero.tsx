@@ -9,33 +9,33 @@ import Image from "next/image"
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-purple-50/30 to-white">
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/5 via-transparent to-purple-800/10" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(/Hero-bg.png)'
+        }}
+      />
 
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-500/15 to-purple-700/15 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-300/10 to-purple-500/10 rounded-full blur-3xl animate-pulse delay-500" />
-      </div>
+      {/* Background overlay for better text readability */}
+      <div className="absolute inset-0 bg-white/80" />
 
       <Container className="relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-          {/* Left Column - Content */}
-          <div className="space-y-12">
+        <div className="flex items-center justify-center min-h-screen py-20">
+          {/* Full Width Content */}
+          <div className="w-full max-w-6xl mx-auto text-center space-y-8">
             {/* Main headline */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight"
             >
+              <span className="text-black">Elegant</span>{" "}
               <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-700 bg-clip-text text-transparent">
-                Elegant AI-Powered
+                AI-Powered Solutions
               </span>
-              <br />
-              <span className="text-foreground">Solutions</span>
             </motion.h1>
 
             {/* Description */}
@@ -43,17 +43,17 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl"
+              className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed max-w-4xl mx-auto font-bold"
             >
               We harness the power of AI to create innovative solutions that deliver impactful and measurable improvements
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex justify-center"
             >
               <Button
                 size="lg"
@@ -61,46 +61,12 @@ export function Hero() {
                 className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-4 text-lg font-semibold group shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Link href="https://outlook.office365.com/owa/calendar/MyAiboConsultation@myaibo.in/bookings/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  📅 Schedule A Call
+                  📅 Book Free Strategy Session
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </motion.div>
           </div>
-
-          {/* Right Column - Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative lg:order-last order-first"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                alt="AI and Efficiency - Robot hand and human hand reaching towards each other representing collaboration between AI and humans"
-                width={1000}
-                height={500}
-                className="w-full h-[500px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />
-            </div>
-
-            {/* Floating elements */}
-            <div className="absolute -top-6 -right-6 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-purple-100">
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-gray-700">AI Processing</span>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-purple-100">
-              <div className="flex items-center gap-3">
-                <div className="text-2xl font-bold text-purple-600">98%</div>
-                <span className="text-sm font-medium text-gray-700">Efficiency</span>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </Container>
 

@@ -5,22 +5,24 @@ import { Footer } from "@/components/sections/footer"
 import { Container } from "@/components/ui/container"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
-import { Target, Eye, Heart, Users, Lightbulb, TrendingUp } from "lucide-react"
+import { Target, Eye, Heart, Users, Lightbulb, TrendingUp, Linkedin } from "lucide-react"
 
 const founders = [
   {
     name: "Tathagat Bagchi",
     role: "Co-Founder",
-    bio: "Sales leader with 15+ years at Flipkart and InMobi, now building scalable AI-driven solutions.",
+    bio: "Sales leader with 15+ years at Flipkart and InMobi. Now making AI-driven solutions accessible.",
     avatar: "TB",
-    gradient: "from-purple-500 to-purple-600"
+    gradient: "from-purple-500 to-purple-600",
+    linkedinUrl: "https://www.linkedin.com/in/tathagatbagchi/"
   },
   {
     name: "Vamsi Krishna Kaki",
     role: "Co-Founder",
-    bio: "Ex-Zomato and Leena.ai, combining product thinking with AI to power intelligent marketing transformation.",
+    bio: "Marketing leader with 15+ years at Zomato and Leena.ai. Now combining product thinking with AI to create transformative solutions.",
     avatar: "VK",
-    gradient: "from-purple-600 to-purple-700"
+    gradient: "from-purple-600 to-purple-700",
+    linkedinUrl: "https://www.linkedin.com/in/vamsi-krishna-kaki-3a502229/"
   }
 ]
 
@@ -82,7 +84,7 @@ export default function About() {
                   </span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  We&apos;re on a mission to democratize AI and make it accessible to businesses of all sizes. Our team of AI experts and business strategists work together to create solutions that don&apos;t just impress—they deliver real, measurable results.
+                  To democratize AI automation and making sophisticated solutions accessible.
                 </p>
               </motion.div>
               
@@ -91,9 +93,9 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-8"
+                className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-6"
               >
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-3 gap-6">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
                     <div className="text-sm text-gray-600">Projects Delivered</div>
@@ -101,10 +103,6 @@ export default function About() {
                   <div className="text-center">
                     <div className="text-3xl font-bold text-purple-600 mb-2">98%</div>
                     <div className="text-sm text-gray-600">Client Satisfaction</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-purple-600 mb-2">3.8x</div>
-                    <div className="text-sm text-gray-600">Average ROI</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
@@ -127,7 +125,6 @@ export default function About() {
                 viewport={{ once: true }}
                 className="text-3xl md:text-4xl font-bold mb-6"
               >
-                Meet Our{" "}
                 <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
                   Founders
                 </span>
@@ -139,7 +136,7 @@ export default function About() {
                 viewport={{ once: true }}
                 className="text-lg text-gray-600 max-w-3xl mx-auto"
               >
-                Led by industry veterans with decades of combined experience in AI, machine learning, and business transformation.
+                Industry veterans with 30+ years of combined experience. They bring a unique perspective on building scalable technology, informed by experience spanning early-stage startups to billion-dollar enterprises.
               </motion.p>
             </div>
 
@@ -159,7 +156,18 @@ export default function About() {
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">{founder.name}</h3>
                       <p className="text-purple-600 font-medium mb-4">{founder.role}</p>
-                      <p className="text-gray-600 leading-relaxed">{founder.bio}</p>
+                      <p className="text-gray-600 leading-relaxed mb-6">{founder.bio}</p>
+
+                      {/* LinkedIn Link */}
+                      <a
+                        href={founder.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-10 h-10 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl"
+                        aria-label={`Connect with ${founder.name} on LinkedIn`}
+                      >
+                        <Linkedin className="w-5 h-5" />
+                      </a>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -168,60 +176,7 @@ export default function About() {
           </Container>
         </section>
 
-        {/* Values Section */}
-        <section className="py-20 bg-white">
-          <Container>
-            <div className="text-center mb-16">
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold mb-6"
-              >
-                Our{" "}
-                <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
-                  Values
-                </span>
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-lg text-gray-600 max-w-3xl mx-auto"
-              >
-                The principles that guide everything we do and shape how we work with our clients.
-              </motion.p>
-            </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {values.map((value, index) => (
-                <motion.div
-                  key={value.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
-                    <CardContent className="p-8 text-center">
-                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 mb-6">
-                        <value.icon className="w-8 h-8 text-white" />
-                      </div>
-                      <h3 className="text-xl font-bold mb-4 text-gray-900">
-                        {value.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {value.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </Container>
-        </section>
 
 
       </main>

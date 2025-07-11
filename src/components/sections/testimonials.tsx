@@ -8,19 +8,27 @@ import { Quote, Star } from "lucide-react"
 const testimonials = [
   {
     quote: "From struggling to scaling. MyAibo's AI platform transformed our customer acquisition from a cost center into a profit engine. 52% conversion increase in three months? That's not just growth—that's exponential success.",
-    author: "CEO, vPersonalize",
+    author: "CEO",
     company: "vPersonalize",
     logo: "vP",
     rating: 5,
     gradient: "from-purple-500 to-purple-600"
   },
   {
-    quote: "The precision we've been searching for. After trying countless solutions, MyAibo finally cracked the code. Their AI doesn't just target customers—it finds the exact people who will love our brand and buy repeatedly. Our ROI has never been higher.",
-    author: "CEO, Iluvia",
+    quote: "The precision we've been searching for. After trying countless solutions, MyAibo finally cracked the code. Their AI doesn't just target customers—it finds the exact people who will love our brand and buy repeatedly.",
+    author: "CEO",
     company: "Iluvia",
     logo: "IL",
     rating: 5,
     gradient: "from-purple-600 to-purple-700"
+  },
+  {
+    quote: "MyAibo allowed us to communicate our unique value proposition with clarity while personalizing customer experiences at scale. Higher conversions, lower acquisition costs, and customers who truly understand what makes Trudiance different.",
+    author: "Founder",
+    company: "Trudiance",
+    logo: "TB",
+    rating: 5,
+    gradient: "from-purple-700 to-purple-800"
   }
 ]
 
@@ -36,18 +44,14 @@ export function Testimonials() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Success Stories That{" "}
+            <span className="text-black">Client</span>{" "}
             <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
-              Speak Volumes
+              Testimonials
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Real businesses, real results. See how our AI solutions have transformed 
-            companies across industries, driving unprecedented growth and efficiency.
-          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -72,7 +76,7 @@ export function Testimonials() {
                   </div>
 
                   {/* Enhanced Quote */}
-                  <blockquote className="text-lg text-gray-700 leading-relaxed mb-10 italic text-justify">
+                  <blockquote className="text-base text-gray-700 leading-relaxed mb-10 italic text-justify">
                     &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
 
@@ -96,26 +100,7 @@ export function Testimonials() {
           ))}
         </div>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <p className="text-lg text-gray-600 mb-6">
-            Ready to write your own success story?
-          </p>
-          <motion.a
-            href="/contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-full hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
-            Start Your Transformation
-          </motion.a>
-        </motion.div>
+
       </Container>
     </section>
   )

@@ -49,7 +49,7 @@ export function TrustedBrands() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
           >
-            Trusted by{" "}
+            Trusted By{" "}
             <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
               Leading Brands
             </span>
@@ -61,7 +61,7 @@ export function TrustedBrands() {
             viewport={{ once: true }}
             className="text-lg text-gray-600 max-w-3xl mx-auto"
           >
-            Join the growing list of innovative companies that have transformed their business with our AI solutions
+            List of companies that have transformed their business with our AI solutions
           </motion.p>
         </div>
 

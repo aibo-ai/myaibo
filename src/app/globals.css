@@ -8,7 +8,7 @@
   --card-foreground: 224 71% 4%;
   --popover: 0 0% 100%;
   --popover-foreground: 224 71% 4%;
-  --primary: 262 83% 58%;
+  --primary: 274 100% 44%;
   --primary-foreground: 210 20% 98%;
   --secondary: 270 3% 96%;
   --secondary-foreground: 224 71% 4%;
@@ -20,7 +20,7 @@
   --destructive-foreground: 210 20% 98%;
   --border: 270 3% 91%;
   --input: 270 3% 91%;
-  --ring: 262 83% 58%;
+  --ring: 274 100% 44%;
   --chart-1: 12 76% 61%;
   --chart-2: 173 58% 39%;
   --chart-3: 197 37% 24%;
@@ -36,7 +36,7 @@
   --card-foreground: 210 40% 98%;
   --popover: 222.2 84% 4.9%;
   --popover-foreground: 210 40% 98%;
-  --primary: 262 83% 58%;
+  --primary: 274 100% 44%;
   --primary-foreground: 222.2 84% 4.9%;
   --secondary: 217.2 32.6% 17.5%;
   --secondary-foreground: 210 40% 98%;
@@ -48,7 +48,7 @@
   --destructive-foreground: 210 40% 98%;
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
-  --ring: 262 83% 58%;
+  --ring: 274 100% 44%;
   --chart-1: 220 70% 50%;
   --chart-2: 160 60% 45%;
   --chart-3: 30 80% 55%;
@@ -109,4 +109,85 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.8);
+}
+
+/* HubSpot Subscriber Form Styling */
+.hubspot-subscriber-form .hs-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  align-items: center !important;
+}
+
+@media (min-width: 640px) {
+  .hubspot-subscriber-form .hs-form {
+    flex-direction: row !important;
+    gap: 1rem !important;
+  }
+}
+
+.hubspot-subscriber-form .hs-form-field {
+  margin-bottom: 0 !important;
+  flex: 1 !important;
+}
+
+.hubspot-subscriber-form .hs-form-field input[type="email"] {
+  width: 100% !important;
+  padding: 1rem 1.5rem !important;
+  border-radius: 0.75rem !important;
+  background-color: white !important;
+  color: #1f2937 !important;
+  border: none !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.hubspot-subscriber-form .hs-form-field input[type="email"]:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px white !important;
+  transform: translateY(-1px) !important;
+}
+
+.hubspot-subscriber-form .hs-form-field input[type="email"]::placeholder {
+  color: #6b7280 !important;
+}
+
+.hubspot-subscriber-form .hs-submit {
+  margin-bottom: 0 !important;
+}
+
+.hubspot-subscriber-form .hs-submit .hs-button {
+  background: white !important;
+  color: #8600e1 !important;
+  border: none !important;
+  padding: 1rem 2.5rem !important;
+  font-weight: 600 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  font-size: 1rem !important;
+  white-space: nowrap !important;
+}
+
+.hubspot-subscriber-form .hs-submit .hs-button:hover {
+  background: #faf5ff !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+}
+
+.hubspot-subscriber-form .hs-error-msgs {
+  color: #ef4444 !important;
+  font-size: 0.875rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.hubspot-subscriber-form .submitted-message {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  padding: 1rem !important;
+  border-radius: 0.75rem !important;
+  text-align: center !important;
+  font-weight: 500 !important;
 }

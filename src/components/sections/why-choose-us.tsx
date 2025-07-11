@@ -14,7 +14,7 @@ const features = [
   },
   {
     icon: Lightbulb,
-    title: "Inventive Resolutions",
+    title: "Inventive",
     description: "Our solutioning architecture is complex, robust and modular. Best amongst the competition",
     gradient: "from-purple-600 to-purple-700"
   },
@@ -49,17 +49,7 @@ export function WhyChooseUs() {
               MyAibo
             </span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-lg text-gray-600 max-w-4xl mx-auto text-justify leading-relaxed"
-          >
-            We deliver AI solutions that transform your business with precision, innovation, and complete transparency.
-            Our approach combines technical excellence with deep business understanding, ensuring every solution we create
-            drives measurable value and sustainable growth for your organization.
-          </motion.p>
+
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
@@ -87,7 +77,7 @@ export function WhyChooseUs() {
                     {feature.title}
                   </h3>
 
-                  <p className="text-gray-600 leading-relaxed text-justify">
+                  <p className="text-gray-600 leading-relaxed text-left">
                     {feature.description}
                   </p>
                 </CardContent>

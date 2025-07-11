@@ -9,29 +9,25 @@ const steps = [
     number: "01",
     icon: Search,
     title: "Discovery: Free Strategy Session",
-    description: "We deep-dive into your challenges and identify game-changing opportunities for AI integration",
-    color: "purple-500"
+    description: "We deep-dive into your challenges and identify game-changing opportunities for AI"
   },
   {
     number: "02",
     icon: FileText,
     title: "Blueprint: Smart Architecture",
-    description: "Our engineers design a bulletproof technical framework that scales with your growth",
-    color: "purple-600"
+    description: "Our engineers design a bulletproof technical framework that scales with your growth"
   },
   {
     number: "03",
     icon: Code,
     title: "Build: Agile Development",
-    description: "Development sprints with constant feedback loops ensure we're building what you need",
-    color: "purple-700"
+    description: "Development sprints with constant feedback loops ensure we're building what you need"
   },
   {
     number: "04",
     icon: Rocket,
     title: "Launch: Seamless Integration",
-    description: "Rigorous testing followed by smooth deployment gets your team up and running immediately",
-    color: "purple-800"
+    description: "Rigorous testing followed by smooth deployment gets your team up and running immediately"
   }
 ]
 
@@ -47,11 +43,11 @@ export function TransformationProcess() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
           >
-            How we{" "}
+            How We{" "}
             <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
-              transform
+              Transform
             </span>{" "}
-            your business
+            Your Business
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -91,23 +87,23 @@ export function TransformationProcess() {
                 <div className="bg-gradient-to-br from-white to-purple-50/30 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100/50 h-full">
                   {/* Step number with enhanced design */}
                   <div className="relative mb-8 flex justify-center">
-                    <div className={`relative inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-${step.color} to-purple-600 text-white text-2xl font-bold shadow-xl`}>
+                    <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-purple-600 to-purple-700 text-white text-2xl font-bold shadow-xl">
                       {step.number}
                       {/* Glow effect */}
-                      <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-${step.color} to-purple-600 opacity-20 blur-lg scale-110`} />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-purple-700 opacity-20 blur-lg scale-110" />
                     </div>
                     {/* Enhanced icon overlay */}
                     <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-purple-100">
-                      <step.icon className={`w-6 h-6 text-${step.color}`} />
+                      <step.icon className="w-6 h-6 text-purple-600" />
                     </div>
                   </div>
 
                   {/* Enhanced content */}
-                  <div className="space-y-6 text-center">
+                  <div className="space-y-6 text-left">
                     <h3 className="text-xl font-bold text-gray-900 leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-justify">
+                    <p className="text-gray-600 leading-relaxed">
                       {step.description}
                     </p>
                   </div>
