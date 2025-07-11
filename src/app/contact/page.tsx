@@ -200,10 +200,38 @@ export default function Contact() {
         backup.style.display = 'block'
         backup.style.visibility = 'visible'
         backup.style.opacity = '1'
+        backup.style.backgroundColor = 'yellow'
+        backup.style.border = '3px solid red'
+        backup.style.padding = '20px'
+        backup.style.margin = '20px 0'
+        backup.style.zIndex = '9999'
+        backup.style.position = 'relative'
         console.log('✅ Backup form classes after:', backup.className)
         console.log('✅ Backup form display style:', backup.style.display)
         console.log('✅ Backup form visibility:', backup.style.visibility)
         console.log('✅ Backup form opacity:', backup.style.opacity)
+
+        // Check dimensions and position
+        const rect = backup.getBoundingClientRect()
+        console.log('📐 Form dimensions:', {
+          width: rect.width,
+          height: rect.height,
+          top: rect.top,
+          left: rect.left,
+          bottom: rect.bottom,
+          right: rect.right
+        })
+        console.log('📍 Form scroll position:', {
+          scrollTop: window.scrollY,
+          scrollLeft: window.scrollX
+        })
+
+        // Check if form has content
+        console.log('📝 Form content length:', backup.innerHTML.length)
+        console.log('📝 Form children count:', backup.children.length)
+
+        // Force scroll to form
+        backup.scrollIntoView({ behavior: 'smooth', block: 'center' })
       } else {
         console.error('❌ Backup form element not found!')
       }
