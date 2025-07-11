@@ -47,7 +47,7 @@ export default function Contact() {
     // Test script accessibility first
     const testScriptAccess = async () => {
       try {
-        const response = await fetch('https://js-na2.hsforms.net/forms/embed/243268505.js', {
+        const response = await fetch('https://js-na2.hsforms.net/forms/embed/23064856.js', {
           method: 'HEAD',
           mode: 'no-cors'
         })
@@ -77,7 +77,7 @@ export default function Contact() {
 
       // Load HubSpot script
       const script = document.createElement('script')
-      script.src = 'https://js-na2.hsforms.net/forms/embed/243268505.js'
+      script.src = 'https://js-na2.hsforms.net/forms/embed/23064856.js'
       script.async = true
       script.crossOrigin = 'anonymous'
 
@@ -118,17 +118,17 @@ export default function Contact() {
 
     const createForm = () => {
       try {
-        console.log('Creating HubSpot form with:', {
+        console.log('Creating HubSpot form with CORRECTED IDs:', {
           region: "na2",
-          portalId: "243268505",
-          formId: "ffaff69a-77d4-4f1a-974d-39a6d83f2672",
+          portalId: "23064856",
+          formId: "ffaaff69-9dd4-4469-974d-d39a5d83f672",
           target: "#hubspot-form-container"
         })
 
         window.hbspt.forms.create({
           region: "na2",
-          portalId: "243268505",
-          formId: "ffaff69a-77d4-4f1a-974d-39a6d83f2672",
+          portalId: "23064856",
+          formId: "ffaaff69-9dd4-4469-974d-d39a5d83f672",
           target: "#hubspot-form-container",
           onFormReady: function() {
             console.log('HubSpot form is ready')
@@ -195,11 +195,11 @@ export default function Contact() {
     }
 
     // Log form details for debugging
-    console.log('Attempting to load HubSpot form with:')
-    console.log('Portal ID: 243268505')
-    console.log('Form ID: ffaff69a-77d4-4f1a-974d-39a6d83f2672')
+    console.log('Attempting to load HubSpot form with CORRECTED IDs:')
+    console.log('Portal ID: 23064856 (corrected from 243268505)')
+    console.log('Form ID: ffaaff69-9dd4-4469-974d-d39a5d83f672 (corrected from ffaff69a-77d4-4f1a-974d-39a6d83f2672)')
     console.log('Region: na2')
-    console.log('Script URL: https://js-na2.hsforms.net/forms/embed/243268505.js')
+    console.log('Script URL: https://js-na2.hsforms.net/forms/embed/23064856.js')
 
     // Start loading
     loadHubSpotForm()
@@ -285,18 +285,10 @@ export default function Contact() {
 
                     {/* Alternative HubSpot Iframe (hidden by default) */}
                     <div id="hubspot-iframe-fallback" className="hidden">
-                      <iframe
-                        src="https://share.hsforms.com/1_6r_aZ3URGmXTdOaXYP2cgdqcyg"
-                        width="100%"
-                        height="500"
-                        frameBorder="0"
-                        title="Contact Form"
-                        className="rounded-lg border border-gray-200"
-                        onLoad={() => console.log('HubSpot iframe loaded')}
-                        onError={() => console.error('HubSpot iframe failed to load')}
-                      >
-                        Loading contact form...
-                      </iframe>
+                      <div className="text-center py-8">
+                        <p className="text-gray-600 mb-4">Loading alternative contact form...</p>
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
+                      </div>
                     </div>
 
 
