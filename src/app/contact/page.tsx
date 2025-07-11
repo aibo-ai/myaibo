@@ -111,7 +111,7 @@ export default function Contact() {
                 transition={{ duration: 0.8 }}
                 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
               >
-                Let's{" "}
+                Let&apos;s{" "}
                 <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
                   Transform
                 </span>{" "}
@@ -301,7 +301,7 @@ export default function Contact() {
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
                   <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                    Have questions? We're here to help. Reach out through any of these channels 
+                    Have questions? We&apos;re here to help. Reach out through any of these channels
                     and our team will get back to you promptly.
                   </p>
                 </div>

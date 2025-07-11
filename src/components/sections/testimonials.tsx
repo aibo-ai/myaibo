@@ -28,56 +28,44 @@ export function Testimonials() {
   return (
     <section className="py-24 bg-white">
       <Container>
-        <div className="text-center mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
-          >
-            What Our{" "}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Success Stories That{" "}
             <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
-              Clients Say
+              Speak Volumes
             </span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-lg text-gray-600 max-w-4xl mx-auto text-justify leading-relaxed"
-          >
-            Don&apos;t just take our word for it. Hear directly from the leaders who have experienced transformational results.
-            These authentic testimonials showcase the real impact of our AI solutions on business operations,
-            growth metrics, and competitive positioning across various industries.
-          </motion.p>
-        </div>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Real businesses, real results. See how our AI solutions have transformed 
+            companies across industries, driving unprecedented growth and efficiency.
+          </p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-10 mb-20">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={testimonial.company}
-              initial={{ opacity: 0, y: 50 }}
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
               className="group"
             >
-              <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-white to-purple-50/30 hover:shadow-2xl transition-all duration-500 group-hover:scale-105 overflow-hidden">
-                <CardContent className="p-10 lg:p-12 relative">
-                  {/* Background decoration */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-purple-100/30 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Enhanced Quote icon */}
-                  <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-r ${testimonial.gradient} flex items-center justify-center mb-8 shadow-lg group-hover:shadow-xl transition-all duration-300`}>
-                    <Quote className="w-8 h-8 text-white" />
-                    {/* Glow effect */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${testimonial.gradient} opacity-0 group-hover:opacity-30 blur-lg scale-110 transition-all duration-300`} />
+              <Card className="h-full border-0 shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-white to-purple-50/30 group-hover:from-purple-50/50 group-hover:to-purple-100/50">
+                <CardContent className="p-8 lg:p-10 h-full flex flex-col">
+                  {/* Quote Icon */}
+                  <div className="mb-6">
+                    <Quote className="w-12 h-12 text-purple-600 group-hover:text-purple-700 transition-colors duration-300" />
                   </div>
 
-                  {/* Enhanced Rating */}
-                  <div className="flex items-center mb-8">
+                  {/* Star Rating */}
+                  <div className="flex mb-6">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-6 h-6 text-yellow-400 fill-current mr-1 group-hover:scale-110 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }} />
                     ))}
@@ -85,7 +73,7 @@ export function Testimonials() {
 
                   {/* Enhanced Quote */}
                   <blockquote className="text-lg text-gray-700 leading-relaxed mb-10 italic text-justify">
-                    "                    &ldquo;{testimonial.quote}&rdquo;"
+                    &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
 
                   {/* Author */}
@@ -94,8 +82,12 @@ export function Testimonials() {
                       {testimonial.logo}
                     </div>
                     <div>
-                      <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                      <div className="text-purple-600 text-sm">{testimonial.company}</div>
+                      <div className="font-semibold text-gray-900 group-hover:text-purple-700 transition-colors duration-300">
+                        {testimonial.author}
+                      </div>
+                      <div className="text-purple-600 font-medium">
+                        {testimonial.company}
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -104,7 +96,26 @@ export function Testimonials() {
           ))}
         </div>
 
-
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <p className="text-lg text-gray-600 mb-6">
+            Ready to write your own success story?
+          </p>
+          <motion.a
+            href="/contact"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-full hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Start Your Transformation
+          </motion.a>
+        </motion.div>
       </Container>
     </section>
   )
