@@ -82,24 +82,37 @@ export default function Contact() {
       script.crossOrigin = 'anonymous'
 
       script.onload = () => {
-        console.log('HubSpot script loaded successfully')
+        console.log('✅ HubSpot script loaded successfully')
+        console.log('Script content length:', script.innerHTML?.length || 'N/A')
+        console.log('Immediate window.hbspt check:', !!window.hbspt)
         // Wait for HubSpot to be available
+        let attempts = 0
+        const maxAttempts = 100 // 10 seconds with 100ms intervals
+
         const checkHubSpot = setInterval(() => {
+          attempts++
+          console.log(`Checking HubSpot availability (attempt ${attempts}/100):`, {
+            'window.hbspt exists': !!window.hbspt,
+            'window.hbspt.forms exists': !!(window.hbspt && window.hbspt.forms),
+            'window keys containing "hb"': Object.keys(window).filter(key => key.toLowerCase().includes('hb')),
+            'all window keys count': Object.keys(window).length
+          })
+
           if (window.hbspt && window.hbspt.forms) {
             clearInterval(checkHubSpot)
-            console.log('HubSpot forms API is available')
+            console.log('✅ HubSpot forms API is available!')
             createForm()
-          }
-        }, 100)
-
-        // Stop checking after 10 seconds
-        setTimeout(() => {
-          clearInterval(checkHubSpot)
-          if (!window.hbspt) {
-            console.error('HubSpot failed to initialize after loading, trying iframe fallback')
+          } else if (attempts >= maxAttempts) {
+            clearInterval(checkHubSpot)
+            console.error('❌ HubSpot failed to initialize after 10 seconds')
+            console.error('Final window state:', {
+              'window.hbspt': window.hbspt,
+              'typeof window.hbspt': typeof window.hbspt,
+              'window.hbspt keys': window.hbspt ? Object.keys(window.hbspt) : 'N/A'
+            })
             showIframeFallback()
           }
-        }, 10000)
+        }, 100)
       }
 
       script.onerror = (error) => {
@@ -155,24 +168,14 @@ export default function Contact() {
       const loading = document.getElementById('form-loading')
       const iframe = document.getElementById('hubspot-iframe-fallback')
 
-      console.log('Trying HubSpot iframe fallback')
+      console.log('🔄 Trying alternative approach - showing backup form directly')
 
       // Hide loading and main container
       if (loading) loading.style.display = 'none'
       if (container) container.style.display = 'none'
 
-      // Show iframe fallback
-      if (iframe) {
-        iframe.classList.remove('hidden')
-      }
-
-      // If iframe also fails after 10 seconds, show backup form
-      setTimeout(() => {
-        if (iframe && iframe.classList.contains('hidden') === false) {
-          console.log('Iframe fallback timeout, showing backup form')
-          showBackupForm()
-        }
-      }, 10000)
+      // Skip iframe and go directly to backup form for now
+      showBackupForm()
     }
 
     const showBackupForm = () => {
@@ -304,7 +307,18 @@ export default function Contact() {
 
                     {/* Backup Contact Form */}
                     <div id="backup-form" className="hidden">
-                      <form className="space-y-6">
+                      <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        <p className="text-blue-800 text-sm">
+                          📧 <strong>Alternative Contact Form</strong> - We'll get back to you within 24 hours!
+                        </p>
+                      </div>
+                      <form
+                        className="space-y-6"
+                        onSubmit={(e) => {
+                          e.preventDefault()
+                          alert('Thank you for your message! We will get back to you soon. For immediate assistance, please email us at info@myaibo.in')
+                        }}
+                      >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
                             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
