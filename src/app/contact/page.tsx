@@ -198,8 +198,12 @@ export default function Contact() {
       if (backup) {
         backup.classList.remove('hidden')
         backup.style.display = 'block'
+        backup.style.visibility = 'visible'
+        backup.style.opacity = '1'
         console.log('✅ Backup form classes after:', backup.className)
         console.log('✅ Backup form display style:', backup.style.display)
+        console.log('✅ Backup form visibility:', backup.style.visibility)
+        console.log('✅ Backup form opacity:', backup.style.opacity)
       } else {
         console.error('❌ Backup form element not found!')
       }
@@ -323,7 +327,7 @@ export default function Contact() {
                     </div>
 
                     {/* Primary Contact Form */}
-                    <div id="backup-form" className="hidden">
+                    <div id="backup-form" className="hidden" style={{display: 'none'}}>
                       <div className="mb-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg">
                         <p className="text-purple-800 text-sm">
                           🚀 <strong>Get Started with AI Solutions</strong> - We&apos;ll respond within 24 hours!
