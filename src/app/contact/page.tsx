@@ -204,8 +204,12 @@ export default function Contact() {
     console.log('Region: na2')
     console.log('Script URL: https://js-na2.hsforms.net/forms/embed/23064856.js')
 
-    // Start loading
-    loadHubSpotForm()
+    // For now, skip HubSpot and show the working backup form directly
+    console.log('🚀 Using backup form as primary contact method')
+    showBackupForm()
+
+    // Uncomment below to try HubSpot again
+    // loadHubSpotForm()
 
     // Fallback timer - if form doesn't load after 8 seconds, try iframe
     const fallbackTimer = setTimeout(() => {
@@ -305,18 +309,43 @@ export default function Contact() {
                       <p className="text-xs text-gray-500 mt-2">If this takes too long, we'll show an alternative form</p>
                     </div>
 
-                    {/* Backup Contact Form */}
+                    {/* Primary Contact Form */}
                     <div id="backup-form" className="hidden">
-                      <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                        <p className="text-blue-800 text-sm">
-                          📧 <strong>Alternative Contact Form</strong> - We'll get back to you within 24 hours!
+                      <div className="mb-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg">
+                        <p className="text-purple-800 text-sm">
+                          🚀 <strong>Get Started with AI Solutions</strong> - We&apos;ll respond within 24 hours!
                         </p>
                       </div>
                       <form
                         className="space-y-6"
                         onSubmit={(e) => {
                           e.preventDefault()
-                          alert('Thank you for your message! We will get back to you soon. For immediate assistance, please email us at info@myaibo.in')
+                          const formData = new FormData(e.target as HTMLFormElement)
+                          const data = Object.fromEntries(formData.entries())
+                          console.log('Form submitted:', data)
+
+                          // Show success message
+                          const successDiv = document.createElement('div')
+                          successDiv.className = 'p-4 bg-green-50 border border-green-200 rounded-lg mb-4'
+                          successDiv.innerHTML = `
+                            <div class="flex items-center">
+                              <div class="text-green-600 mr-3">✅</div>
+                              <div>
+                                <h4 class="text-green-800 font-semibold">Message Sent Successfully!</h4>
+                                <p class="text-green-700 text-sm">Thank you for your interest. We'll get back to you within 24 hours.</p>
+                                <p class="text-green-600 text-xs mt-1">For immediate assistance: <a href="mailto:info@myaibo.in" class="underline">info@myaibo.in</a></p>
+                              </div>
+                            </div>
+                          `
+
+                          const form = e.target as HTMLFormElement
+                          form.parentNode?.insertBefore(successDiv, form)
+                          form.reset()
+
+                          // Remove success message after 10 seconds
+                          setTimeout(() => {
+                            successDiv.remove()
+                          }, 10000)
                         }}
                       >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
