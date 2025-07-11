@@ -5,7 +5,7 @@ import { Footer } from "@/components/sections/footer"
 import { Container } from "@/components/ui/container"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
-import { Target, Eye, Heart, Users, Lightbulb, TrendingUp, Linkedin } from "lucide-react"
+import { Linkedin } from "lucide-react"
 
 const founders = [
   {
@@ -26,38 +26,7 @@ const founders = [
   }
 ]
 
-const values = [
-  {
-    icon: Target,
-    title: "Results-Driven",
-    description: "Every solution we build is designed to deliver measurable business impact and ROI."
-  },
-  {
-    icon: Eye,
-    title: "Transparency",
-    description: "Complete clarity in our processes, pricing, and progress. No hidden costs or surprises."
-  },
-  {
-    icon: Heart,
-    title: "Client-Centric",
-    description: "Your success is our success. We&apos;re partners in your transformation journey."
-  },
-  {
-    icon: Users,
-    title: "Collaborative",
-    description: "We work as an extension of your team, not just an external vendor."
-  },
-  {
-    icon: Lightbulb,
-    title: "Innovation",
-    description: "Cutting-edge AI solutions that give you a competitive advantage."
-  },
-  {
-    icon: TrendingUp,
-    title: "Growth-Focused",
-    description: "Building scalable solutions that grow with your business needs."
-  }
-]
+// Removed unused values array
 
 export default function About() {
   return (
