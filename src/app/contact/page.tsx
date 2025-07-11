@@ -184,7 +184,10 @@ export default function Contact() {
       const iframe = document.getElementById('hubspot-iframe-fallback')
       const backup = document.getElementById('backup-form')
 
-      console.log('Showing backup form')
+      console.log('🔧 Showing backup form - Debug info:')
+      console.log('- Backup form element:', backup)
+      console.log('- Backup form classes before:', backup?.className)
+      console.log('- Backup form hidden?', backup?.classList.contains('hidden'))
 
       // Hide all other elements
       if (loading) loading.style.display = 'none'
@@ -194,6 +197,11 @@ export default function Contact() {
       // Show backup form
       if (backup) {
         backup.classList.remove('hidden')
+        backup.style.display = 'block'
+        console.log('✅ Backup form classes after:', backup.className)
+        console.log('✅ Backup form display style:', backup.style.display)
+      } else {
+        console.error('❌ Backup form element not found!')
       }
     }
 
@@ -206,7 +214,12 @@ export default function Contact() {
 
     // For now, skip HubSpot and show the working backup form directly
     console.log('🚀 Using backup form as primary contact method')
-    showBackupForm()
+
+    // Use setTimeout to ensure DOM is ready
+    setTimeout(() => {
+      console.log('🔧 Attempting to show backup form...')
+      showBackupForm()
+    }, 100)
 
     // Uncomment below to try HubSpot again
     // loadHubSpotForm()
