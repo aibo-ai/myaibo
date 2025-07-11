@@ -10,22 +10,7 @@ import { Mail, MapPin, Calendar } from "lucide-react"
 import { useEffect } from "react"
 
 // Declare HubSpot global
-declare global {
-  interface Window {
-    hbspt: {
-      forms: {
-        create: (config: {
-          region: string;
-          portalId: string;
-          formId: string;
-          target: string;
-          onFormReady?: () => void;
-          onFormSubmit?: () => void;
-        }) => void;
-      };
-    };
-  }
-}
+
 
 const contactInfo = [
   {
@@ -44,190 +29,67 @@ const contactInfo = [
 
 export default function Contact() {
   useEffect(() => {
-    // Test script accessibility first
-    const testScriptAccess = async () => {
-      try {
-        const response = await fetch('https://js-na2.hsforms.net/forms/embed/23064856.js', {
-          method: 'HEAD',
-          mode: 'no-cors'
-        })
-        console.log('HubSpot script is accessible')
-        return true
-      } catch (error) {
-        console.error('HubSpot script accessibility test failed:', error)
-        return false
-      }
-    }
+    // Load HubSpot script using the official embed method
+    const loadHubSpotForm = () => {
+      console.log('🚀 Loading HubSpot form with official embed code')
 
-    // Simple HubSpot form loading
-    const loadHubSpotForm = async () => {
-      // Test if script is accessible
-      const isAccessible = await testScriptAccess()
-      if (!isAccessible) {
-        console.error('HubSpot script not accessible, trying iframe fallback')
-        showIframeFallback()
+      // Check if script already exists
+      if (document.querySelector('script[src*="243268505.js"]')) {
+        console.log('HubSpot script already loaded')
         return
       }
 
-      // Check if HubSpot script already exists
-      if (window.hbspt) {
-        createForm()
-        return
-      }
-
-      // Load HubSpot script
+      // Create and load the HubSpot script
       const script = document.createElement('script')
-      script.src = 'https://js-na2.hsforms.net/forms/embed/23064856.js'
-      script.async = true
-      script.crossOrigin = 'anonymous'
+      script.src = 'https://js-na2.hsforms.net/forms/embed/243268505.js'
+      script.defer = true
 
       script.onload = () => {
         console.log('✅ HubSpot script loaded successfully')
-        console.log('Script content length:', script.innerHTML?.length || 'N/A')
-        console.log('Immediate window.hbspt check:', !!window.hbspt)
-        // Wait for HubSpot to be available
-        let attempts = 0
-        const maxAttempts = 100 // 10 seconds with 100ms intervals
-
-        const checkHubSpot = setInterval(() => {
-          attempts++
-          console.log(`Checking HubSpot availability (attempt ${attempts}/100):`, {
-            'window.hbspt exists': !!window.hbspt,
-            'window.hbspt.forms exists': !!(window.hbspt && window.hbspt.forms),
-            'window keys containing "hb"': Object.keys(window).filter(key => key.toLowerCase().includes('hb')),
-            'all window keys count': Object.keys(window).length
-          })
-
-          if (window.hbspt && window.hbspt.forms) {
-            clearInterval(checkHubSpot)
-            console.log('✅ HubSpot forms API is available!')
-            createForm()
-          } else if (attempts >= maxAttempts) {
-            clearInterval(checkHubSpot)
-            console.error('❌ HubSpot failed to initialize after 10 seconds')
-            console.error('Final window state:', {
-              'window.hbspt': window.hbspt,
-              'typeof window.hbspt': typeof window.hbspt,
-              'window.hbspt keys': window.hbspt ? Object.keys(window.hbspt) : 'N/A'
-            })
-            showIframeFallback()
-          }
-        }, 100)
+        // Hide loading message
+        const loadingDiv = document.getElementById('form-loading')
+        if (loadingDiv) {
+          loadingDiv.style.display = 'none'
+        }
       }
 
       script.onerror = (error) => {
-        console.error('Failed to load HubSpot script:', error)
-        console.error('Script URL:', script.src)
-        console.error('This could be due to:')
-        console.error('1. Network connectivity issues')
-        console.error('2. Ad blockers blocking HubSpot')
-        console.error('3. CORS policy restrictions')
-        console.error('4. Invalid portal ID or form ID')
-        showIframeFallback()
+        console.error('❌ Failed to load HubSpot script:', error)
+        showBackupForm()
       }
 
       document.head.appendChild(script)
     }
 
-    const createForm = () => {
-      try {
-        console.log('Creating HubSpot form with CORRECTED IDs:', {
-          region: "na2",
-          portalId: "23064856",
-          formId: "ffaaff69-9dd4-4469-974d-d39a5d83f672",
-          target: "#hubspot-form-container"
-        })
-
-        window.hbspt.forms.create({
-          region: "na2",
-          portalId: "23064856",
-          formId: "ffaaff69-9dd4-4469-974d-d39a5d83f672",
-          target: "#hubspot-form-container",
-          onFormReady: function() {
-            console.log('HubSpot form is ready')
-            // Hide loading message
-            const loadingDiv = document.getElementById('form-loading')
-            if (loadingDiv) {
-              loadingDiv.style.display = 'none'
-            }
-          },
-          onFormSubmit: function() {
-            console.log('HubSpot form submitted')
-          }
-        })
-
-        console.log('HubSpot form creation initiated')
-      } catch (error) {
-        console.error('Error creating HubSpot form:', error)
-        showIframeFallback()
-      }
-    }
-
-    const showIframeFallback = () => {
-      const container = document.getElementById('hubspot-form-container')
-      const loading = document.getElementById('form-loading')
-      const iframe = document.getElementById('hubspot-iframe-fallback')
-
-      console.log('🔄 Trying alternative approach - showing backup form directly')
-
-      // Hide loading and main container
-      if (loading) loading.style.display = 'none'
-      if (container) container.style.display = 'none'
-
-      // Skip iframe and go directly to backup form for now
-      showBackupForm()
-    }
-
     const showBackupForm = () => {
       const container = document.getElementById('hubspot-form-container')
       const loading = document.getElementById('form-loading')
-      const iframe = document.getElementById('hubspot-iframe-fallback')
       const backup = document.getElementById('backup-form')
 
-      console.log('✅ Showing contact form')
+      console.log('📋 Showing backup contact form')
 
-      // Hide all other elements
+      // Hide HubSpot elements
       if (loading) loading.style.display = 'none'
       if (container) container.style.display = 'none'
-      if (iframe) iframe.style.display = 'none'
 
       // Show backup form
       if (backup) {
         backup.classList.remove('hidden')
         backup.style.display = 'block'
-        backup.style.visibility = 'visible'
-        backup.style.opacity = '1'
-        console.log('✅ Contact form displayed successfully')
-      } else {
-        console.error('❌ Backup form element not found!')
       }
     }
 
-    // Use our custom contact form as the primary method
-    console.log('🚀 Loading MyAibo contact form')
+    // Start loading HubSpot form
+    loadHubSpotForm()
 
-    // Use setTimeout to ensure DOM is ready
-    setTimeout(() => {
-      showBackupForm()
-    }, 100)
-
-    // Uncomment below to try HubSpot again
-    // loadHubSpotForm()
-
-    // Fallback timer - if form doesn't load after 8 seconds, try iframe
+    // Fallback timer - if form doesn't appear after 10 seconds, show backup
     const fallbackTimer = setTimeout(() => {
-      const container = document.getElementById('hubspot-form-container')
-      const loading = document.getElementById('form-loading')
-
-      console.log('Checking form status after 8 seconds...')
-      console.log('Container children count:', container?.children.length)
-      console.log('Loading display:', loading?.style.display)
-
-      if (container && container.children.length === 0) {
-        console.log('HubSpot form timeout, trying iframe fallback')
-        showIframeFallback()
+      const hubspotForm = document.querySelector('.hs-form-frame')
+      if (!hubspotForm || hubspotForm.children.length === 0) {
+        console.log('⏰ HubSpot form timeout, showing backup form')
+        showBackupForm()
       }
-    }, 8000)
+    }, 10000)
 
     return () => {
       clearTimeout(fallbackTimer)
@@ -287,29 +149,20 @@ export default function Contact() {
                       <h2 className="text-2xl font-bold text-gray-900">Book Your Free Strategy Session</h2>
                     </div>
 
-                    {/* HubSpot Form Container */}
-                    <div
-                      id="hubspot-form-container"
-                      className="min-h-[400px]"
-                    ></div>
-
-                    {/* Alternative HubSpot Iframe (hidden by default) */}
-                    <div id="hubspot-iframe-fallback" className="hidden">
-                      <div className="text-center py-8">
-                        <p className="text-gray-600 mb-4">Loading alternative contact form...</p>
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
-                      </div>
+                    {/* HubSpot Form - Official Embed */}
+                    <div className="hs-form-frame"
+                         data-region="na2"
+                         data-form-id="ffaff69a-77d4-4f1a-974d-39a6d83f2672"
+                         data-portal-id="243268505">
                     </div>
-
-
 
                     {/* Loading message */}
                     <div id="form-loading" className="text-center py-8">
-                      <p className="text-gray-600">Loading form...</p>
+                      <p className="text-gray-600">Loading HubSpot form...</p>
                       <div className="mt-4">
                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
                       </div>
-                      <p className="text-xs text-gray-500 mt-2">If this takes too long, we'll show an alternative form</p>
+                      <p className="text-xs text-gray-500 mt-2">Please wait while we load the contact form</p>
                     </div>
 
                     {/* Primary Contact Form */}
