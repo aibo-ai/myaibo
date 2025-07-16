@@ -127,12 +127,12 @@ export function CaseStudies() {
                       {/* Header */}
                       <div className="flex items-center mb-10">
                         <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-50 to-white flex items-center justify-center mr-6 shadow-xl border border-purple-100">
-                          <div className="relative w-14 h-14">
+                          <div className="relative w-12 h-12">
                             <Image
                               src={study.logoImage}
                               alt={`${study.company} logo`}
                               fill
-                              className="object-contain"
+                              className="object-contain rounded-lg"
                             />
                           </div>
                         </div>

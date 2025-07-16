@@ -9,14 +9,14 @@ const solutions = [
   {
     icon: FileText,
     title: "Content That Sells",
-    description: "Curated AI-generated content that captures your voice and converts prospects into customers",
+    description: "Curated AI-optimized content that captures your voice and converts prospects into customers",
     gradient: "from-purple-500 to-purple-600",
     features: ["Brand voice optimization", "Conversion-focused copy", "Multi-channel content"]
   },
   {
     icon: BarChart3,
     title: "Market Dashboard",
-    description: "Real-time competitive intelligence that reveals your next winning move",
+    description: "Real-time competitive intelligence that prevents your next winning move",
     gradient: "from-purple-600 to-purple-700",
     features: ["Competitor analysis", "Market insights", "Strategic recommendations"]
   },

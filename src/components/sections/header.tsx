@@ -59,7 +59,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/MyAibo-logo.png"
+              src="/MyAibo_Logo.png"
               alt="MyAibo"
               width={1200}
               height={360}

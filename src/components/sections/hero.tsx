@@ -8,51 +8,57 @@ import Link from "next/link"
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url(/Hero-bg.png)'
-        }}
-      />
+    <section className="relative min-h-screen flex flex-col overflow-hidden">
+      {/* White background for navigation area */}
+      <div className="absolute top-0 left-0 right-0 h-32 lg:h-40 bg-white z-10" />
 
-      {/* Background overlay for better text readability */}
-      <div className="absolute inset-0 bg-white/80" />
+      {/* Video background for content area */}
+      <div className="absolute inset-0 top-32 lg:top-40">
+        <img
+          src="/MyAibo-bg-Video.gif"
+          alt="AI Network Animation"
+          className="w-full h-full object-cover"
+          style={{ minHeight: 'calc(100vh - 8rem)' }}
+        />
+        {/* Overlay for text readability */}
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
 
-      <Container className="relative z-10">
-        <div className="flex items-center justify-center min-h-screen py-20">
-          {/* Full Width Content */}
-          <div className="w-full max-w-6xl mx-auto text-center space-y-8">
+      {/* Content area positioned below navigation */}
+      <div className="relative z-20 flex-1 flex items-center justify-center pt-32 lg:pt-40">
+        <Container className="relative z-10">
+        <div className="flex items-center justify-start min-h-screen py-20">
+          {/* Left-aligned Content */}
+          <div className="w-full max-w-6xl mx-auto text-left space-y-8 px-4 md:px-8">
             {/* Main headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight drop-shadow-lg"
             >
-              <span className="text-black">Elegant</span>{" "}
-              <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-700 bg-clip-text text-transparent">
+              <span className="text-white">Elegant</span>{" "}
+              <span className="text-[#8600e1]">
                 AI-Powered Solutions
               </span>
             </motion.h1>
 
             {/* Description */}
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed max-w-4xl mx-auto font-bold"
+              className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed max-w-3xl font-bold drop-shadow-md"
             >
               We harness the power of AI to create innovative solutions that deliver impactful and measurable improvements
             </motion.p>
 
             {/* CTA Button */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex justify-center"
+              className="flex justify-start"
             >
               <Button
                 size="lg"
@@ -67,7 +73,8 @@ export function Hero() {
             </motion.div>
           </div>
         </div>
-      </Container>
+        </Container>
+      </div>
 
       {/* Get Started floating button */}
       <motion.div
@@ -95,8 +102,8 @@ export function Hero() {
         transition={{ duration: 1, delay: 1.2 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
-        <div className="w-6 h-10 border-2 border-purple-300 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-purple-500 rounded-full mt-2 animate-bounce" />
+        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center bg-black/20 backdrop-blur-sm">
+          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce" />
         </div>
       </motion.div>
     </section>
