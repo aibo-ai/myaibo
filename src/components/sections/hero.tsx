@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 
 export function Hero() {
   return (
@@ -14,10 +15,12 @@ export function Hero() {
 
       {/* Video background starting below white header */}
       <div className="absolute inset-0 top-32 lg:top-40 h-screen">
-        <img
+        <Image
           src="/MyAibo-bg-Video.gif"
           alt="AI Network Animation"
+          fill
           className="w-full h-full object-cover"
+          priority
         />
       </div>
 

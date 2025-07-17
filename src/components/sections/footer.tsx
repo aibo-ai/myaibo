@@ -89,7 +89,7 @@ export function Footer() {
                 <div className="text-center py-8">
                   <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-6 mb-4">
                     <h4 className="text-green-400 font-semibold mb-2">Successfully Subscribed!</h4>
-                    <p className="text-green-300 text-sm">Thank you for subscribing to our newsletter. We'll keep you updated with the latest AI insights.</p>
+                    <p className="text-green-300 text-sm">Thank you for subscribing to our newsletter. We&apos;ll keep you updated with the latest AI insights.</p>
                   </div>
                   <button
                     onClick={() => setSubmitStatus('idle')}

@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Menu, X } from "lucide-react"
 
 import { Container } from "@/components/ui/container"
@@ -17,22 +17,22 @@ const navigation = [
 ]
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
+  // const [isScrolled, setIsScrolled] = useState(false)
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY
-      setIsScrolled(scrollY > 10)
+  // useEffect(() => {
+  //   // const handleScroll = () => {
+  //   //   const scrollY = window.scrollY
+  //   //   // setIsScrolled(scrollY > 10)
 
 
-    }
+  //   // }
 
-    handleScroll() // Call once on mount
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  //   handleScroll() // Call once on mount
+  //   window.addEventListener("scroll", handleScroll)
+  //   return () => window.removeEventListener("scroll", handleScroll)
+  // }, [])
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false)
