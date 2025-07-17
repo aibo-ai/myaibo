@@ -15,7 +15,7 @@ const contactInfo = [
     icon: Mail,
     title: "Email Us",
     details: "info@myaibo.in",
-    description: "Send us an email and we'll respond within 24 hours"
+    description: ""
   }
 ]
 

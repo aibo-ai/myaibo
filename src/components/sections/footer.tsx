@@ -4,25 +4,7 @@ import { Container } from "@/components/ui/container"
 import Link from "next/link"
 import Image from "next/image"
 import { Mail, MapPin, Twitter, Linkedin, Youtube, Instagram } from "lucide-react"
-import { useEffect } from "react"
-
-// TypeScript declaration for HubSpot
-declare global {
-  interface Window {
-    hbspt?: {
-      forms: {
-        create: (options: {
-          region: string
-          portalId: string
-          formId: string
-          target: string
-          onFormReady?: () => void
-          onFormSubmit?: () => void
-        }) => void
-      }
-    }
-  }
-}
+import { useState } from "react"
 
 const footerLinks = {
   solutions: [
@@ -47,81 +29,41 @@ const socialLinks = [
 ]
 
 export function Footer() {
-  useEffect(() => {
-    // Load HubSpot script for subscriber form
-    const loadHubSpotSubscriberForm = () => {
-      console.log('🚀 Loading subscriber form')
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-      // Remove any existing scripts first
-      const existingScripts = document.querySelectorAll('script[src*="243268505.js"]')
-      if (existingScripts.length === 0) {
-        // Create and load the HubSpot script only if it doesn't exist
-        const script = document.createElement('script')
-        script.src = 'https://js-na2.hsforms.net/forms/embed/243268505.js'
-        script.defer = true
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
 
-        script.onload = () => {
-          console.log('✅ HubSpot subscriber form script loaded successfully')
-          // Wait for form to render
-          setTimeout(() => {
-            const formContainer = document.querySelector('.hubspot-subscriber-form')
-            if (formContainer && formContainer.children.length > 0) {
-              const loadingDiv = document.getElementById('subscriber-form-loading')
-              if (loadingDiv) {
-                loadingDiv.style.display = 'none'
-              }
-            } else {
-              // Show fallback
-              const loadingDiv = document.getElementById('subscriber-form-loading')
-              if (loadingDiv) {
-                loadingDiv.innerHTML = `
-                  <div class="text-center">
-                    <a href="mailto:info@myaibo.in?subject=Newsletter Subscription"
-                       class="inline-block bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
-                      Subscribe via Email
-                    </a>
-                  </div>
-                `
-              }
-            }
-          }, 3000)
-        }
+    try {
+      const formData = new FormData()
+      formData.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '')
+      formData.append('email', email)
+      formData.append('subject', 'New Newsletter Subscription - MyAibo')
+      formData.append('from_name', 'MyAibo Newsletter')
+      formData.append('message', `New newsletter subscription from: ${email}`)
 
-        script.onerror = (error) => {
-          console.error('❌ Failed to load HubSpot subscriber form script:', error)
-          // Show fallback
-          const loadingDiv = document.getElementById('subscriber-form-loading')
-          if (loadingDiv) {
-            loadingDiv.innerHTML = `
-              <div class="text-center">
-                <a href="mailto:info@myaibo.in?subject=Newsletter Subscription"
-                   class="inline-block bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
-                  Subscribe via Email
-                </a>
-              </div>
-            `
-          }
-        }
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
 
-        document.head.appendChild(script)
+      if (response.ok) {
+        setSubmitStatus('success')
+        setEmail('')
       } else {
-        console.log('HubSpot script already loaded for subscriber form')
-        // Check if form is already rendered
-        setTimeout(() => {
-          const formContainer = document.querySelector('.hubspot-subscriber-form')
-          if (formContainer && formContainer.children.length > 0) {
-            const loadingDiv = document.getElementById('subscriber-form-loading')
-            if (loadingDiv) {
-              loadingDiv.style.display = 'none'
-            }
-          }
-        }, 1000)
+        setSubmitStatus('error')
       }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
     }
-
-    // Start loading HubSpot form
-    loadHubSpotSubscriberForm()
-  }, [])
+  }
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -141,20 +83,53 @@ export function Footer() {
               Join thousands of business leaders who rely on our expert analysis to stay competitive
               in the rapidly evolving AI landscape.
             </p>
-            {/* HubSpot Subscriber Form */}
+            {/* Newsletter Subscription Form */}
             <div className="max-w-lg mx-auto">
-              <div
-                className="hs-form-frame hubspot-subscriber-form"
-                data-region="na2"
-                data-form-id="5f90120f-9356-4939-aca2-96063b0e09ed"
-                data-portal-id="243268505"
-              >
-              </div>
+              {submitStatus === 'success' ? (
+                <div className="text-center py-8">
+                  <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-6 mb-4">
+                    <h4 className="text-green-400 font-semibold mb-2">Successfully Subscribed!</h4>
+                    <p className="text-green-300 text-sm">Thank you for subscribing to our newsletter. We'll keep you updated with the latest AI insights.</p>
+                  </div>
+                  <button
+                    onClick={() => setSubmitStatus('idle')}
+                    className="text-purple-300 hover:text-white text-sm underline"
+                  >
+                    Subscribe another email
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="space-y-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email address"
+                      required
+                      className="flex-1 px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                    />
+                    <button
+                      type="submit"
+                      disabled={isSubmitting || !email}
+                      className="px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap border border-gray-300"
+                    >
+                      {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                    </button>
+                  </div>
 
-              {/* Loading message */}
-              <div id="subscriber-form-loading" className="text-center py-4">
-                <p className="text-purple-100 text-sm">Loading subscription form...</p>
-              </div>
+                  {submitStatus === 'error' && (
+                    <div className="text-center">
+                      <p className="text-red-300 text-sm">
+                        Something went wrong. Please try again or contact us at{' '}
+                        <a href="mailto:info@myaibo.in" className="underline hover:text-white">
+                          info@myaibo.in
+                        </a>
+                      </p>
+                    </div>
+                  )}
+                </form>
+              )}
             </div>
           </div>
         </Container>

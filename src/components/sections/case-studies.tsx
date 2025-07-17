@@ -36,7 +36,7 @@ const caseStudies = [
     company: "Iluvia",
     industry: "Premium Haircare",
     logo: "IL",
-    logoImage: "/logos/iluvia.jpeg",
+    logoImage: "/logos/iluvia.png",
     challenge: "Illuvia Pro, a premium haircare brand offering hardwater-optimized shampoo, struggled with:",
     challengePoints: [
       "Inconsistent messaging across multiple e-commerce platforms (Amazon, Flipkart, Nykaa)",
@@ -94,7 +94,7 @@ export function CaseStudies() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
           >
-            <span className="text-black">Success</span>{" "}
+            <span className="text-black">AI Success</span>{" "}
             <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
               Stories
             </span>
@@ -126,8 +126,8 @@ export function CaseStudies() {
                     <div className="lg:col-span-3 p-10 lg:p-16">
                       {/* Header */}
                       <div className="flex items-center mb-10">
-                        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-50 to-white flex items-center justify-center mr-6 shadow-xl border border-purple-100">
-                          <div className="relative w-12 h-12">
+                        <div className="w-24 h-16 rounded-2xl bg-gradient-to-br from-purple-50 to-white flex items-center justify-center mr-6 shadow-xl border border-purple-100">
+                          <div className="relative w-20 h-12">
                             <Image
                               src={study.logoImage}
                               alt={`${study.company} logo`}

@@ -47,7 +47,7 @@ export function TransformationProcess() {
             <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
               Transform
             </span>{" "}
-            Your Business
+            Your Business with AI
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}

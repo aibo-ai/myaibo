@@ -3,13 +3,63 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MyAibo - Elegant AI-Powered Solutions",
-  description: "At MyAibo, we harness the power of artificial intelligence to create innovative solutions that deliver impactful and measurable improvements across your organization.",
-  icons: {
-    icon: '/logo.svg',
-    shortcut: '/logo.svg',
-    apple: '/logo.svg',
+  title: "AI Development Services | Custom AI Solutions & Machine Learning - MyAibo",
+  description: "Transform your business with custom AI development services. Expert AI solutions, machine learning, automation, and intelligent systems. Get free strategy session.",
+  keywords: "AI development services, custom AI solutions, machine learning development, AI automation, artificial intelligence consulting, AI integration services",
+  authors: [{ name: "MyAibo" }],
+  robots: "index, follow",
+
+  // Canonical URL
+  alternates: {
+    canonical: "https://www.myaibo.in/"
   },
+
+  // Open Graph
+  openGraph: {
+    type: "website",
+    url: "https://www.myaibo.in/",
+    title: "AI Development Services | Custom AI Solutions - MyAibo",
+    description: "Transform your business with custom AI development services. Expert AI solutions, machine learning, automation, and intelligent systems.",
+    images: [
+      {
+        url: "https://www.myaibo.in/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MyAibo AI Development Services"
+      }
+    ],
+    siteName: "MyAibo"
+  },
+
+  // Twitter
+  twitter: {
+    card: "summary_large_image",
+    site: "@my_aibo2",
+    title: "AI Development Services | Custom AI Solutions - MyAibo",
+    description: "Transform your business with custom AI development services. Expert AI solutions, machine learning, automation, and intelligent systems.",
+    images: ["https://www.myaibo.in/images/twitter-image.jpg"]
+  },
+
+  // Additional metadata
+  other: {
+    "geo.region": "IN",
+    "geo.placename": "India",
+    "language": "en",
+    "distribution": "global",
+    "rating": "general"
+  },
+
+  // Icons and favicons
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180' }
+    ]
+  }
 };
 
 export default function RootLayout({
@@ -33,6 +83,71 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         {/* End Google Tag Manager */}
+
+        {/* Structured Data - Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "MyAibo",
+              "url": "https://www.myaibo.in",
+              "logo": "https://www.myaibo.in/logo.png",
+              "description": "Leading AI development services company providing custom AI solutions, machine learning, and intelligent automation systems for businesses.",
+              "sameAs": [
+                "https://www.linkedin.com/company/myaibo",
+                "https://twitter.com/myaibo"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "areaServed": "IN",
+                "availableLanguage": "en"
+              },
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              },
+              "service": [
+                {
+                  "@type": "Service",
+                  "name": "AI Development Services",
+                  "description": "Custom AI solution development and implementation"
+                },
+                {
+                  "@type": "Service",
+                  "name": "Machine Learning Development",
+                  "description": "Advanced machine learning model development and deployment"
+                },
+                {
+                  "@type": "Service",
+                  "name": "AI Automation Solutions",
+                  "description": "Intelligent workflow automation and process optimization"
+                }
+              ]
+            })
+          }}
+        />
+
+        {/* Structured Data - Website */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "MyAibo",
+              "url": "https://www.myaibo.in",
+              "description": "AI development services and custom AI solutions for business transformation",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://www.myaibo.in/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
       </head>
       <body className="antialiased">
         {/* Google Tag Manager (noscript) */}

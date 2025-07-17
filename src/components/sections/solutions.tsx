@@ -63,9 +63,9 @@ export function Solutions() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
           >
             <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
-              Game-Changing
+              AI Solutions
             </span>{" "}
-            Solutions
+            That Drive Results
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -111,7 +111,7 @@ export function Solutions() {
 
                   <div className="space-y-3">
                     {solution.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-start text-sm text-purple-600">
+                      <div key={featureIndex} className="flex items-start text-sm text-black">
                         <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mr-3 mt-2 flex-shrink-0" />
                         <span className="text-justify">{feature}</span>
                       </div>

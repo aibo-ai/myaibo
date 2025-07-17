@@ -7,7 +7,7 @@ import Image from "next/image"
 const brands = [
   {
     name: "Iluvia",
-    logo: "/logos/iluvia.jpeg",
+    logo: "/logos/iluvia.png",
     description: "Beauty & Wellness"
   },
   {
