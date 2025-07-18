@@ -52,7 +52,7 @@ const solutions = [
 
 export function Solutions() {
   return (
-    <section id="solutions" className="py-24 bg-gradient-to-b from-purple-50/30 to-white">
+    <section id="solutions" className="scroll-mt-40 py-24 bg-gradient-to-b from-purple-50/30 to-white">
       <Container>
         <div className="text-center mb-20">
           <motion.h2

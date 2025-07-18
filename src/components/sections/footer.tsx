@@ -3,23 +3,23 @@
 import { Container } from "@/components/ui/container"
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, MapPin, Twitter, Linkedin, Youtube, Instagram } from "lucide-react"
+import { Twitter, Linkedin, Youtube, Instagram } from "lucide-react"
 import { useState } from "react"
 
-const footerLinks = {
-  solutions: [
-    { name: "Solutions", href: "/#solutions" }
-  ],
-  successStories: [
-    { name: "Success Stories", href: "/#case-studies" }
-  ],
-  aboutUs: [
-    { name: "About Us", href: "/about" }
-  ],
-  contactUs: [
-    { name: "Contact Us", href: "/contact" }
-  ]
-}
+// const footerLinks = {
+//   solutions: [
+//     { name: "Solutions", href: "/#solutions" }
+//   ],
+//   successStories: [
+//     { name: "Success Stories", href: "/#case-studies" }
+//   ],
+//   aboutUs: [
+//     { name: "About Us", href: "/about" }
+//   ],
+//   contactUs: [
+//     { name: "Contact Us", href: "/contact" }
+//   ]
+// }
 
 const socialLinks = [
   { name: "LinkedIn", href: "https://linkedin.com/company/myaibo", icon: Linkedin },
@@ -137,27 +137,55 @@ export function Footer() {
 
       {/* Enhanced Main Footer */}
       <Container>
-        <div className="py-20">
-          {/* Logo and Navigation in same line */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-16 mb-12">
+        <div className="pt-10 pb-8">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-start gap-8 lg:gap-0 mb-4">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-1 flex items-center">
               <Link href="/" className="flex items-center space-x-2">
-                <Image src="/MyAibo-logo-white.png" alt="MyAibo" width={600} height={200} className="h-20 lg:h-24 w-auto" />
+                <Image src="/MyAibo-logo-white.png" alt="MyAibo" width={600} height={200} className="h-20 lg:h-30 w-auto" />
               </Link>
             </div>
 
-            {/* Navigation Links - Horizontal layout */}
-            <div className="flex flex-wrap items-center gap-8 lg:gap-12">
+            {/* Contact Info */}
+            <div className="flex-1 flex flex-col items-center lg:items-start text-left">
+              <span className="font-bold text-lg mb-2">Contact</span>
+              <span className="text-gray-400 mb-2 text-base">info@myaibo.in</span>
+              <hr className="border-t border-gray-400 w-[150px] my-2" />
+              <span className="text-gray-400 pt-4">Bengaluru, KA</span>
+              <span className="text-gray-400">India</span>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="flex-1 flex flex-col items-center lg:items-center text-left">
+              <Link href="/#solutions" className="text-gray-400 hover:text-white transition-colors font-semibold text-lg mb-2">Solutions</Link>
+              <Link href="/#case-studies" className="text-gray-400 hover:text-white transition-colors font-semibold text-lg mb-2">Success Stories</Link>
+            </div>
+            <div className="flex-1 flex flex-col items-center lg:items-center text-left">
+              <Link href="/about" className="text-gray-400 hover:text-white transition-colors font-semibold text-lg mb-2">About Us</Link>
+              <Link href="/contact" className="text-gray-400 hover:text-white transition-colors font-semibold text-lg mb-2">Contact Us</Link>
+            </div>
+          </div>
+          </div>
+          {/* Logo and Navigation in same line */}
+          {/* <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-16 mb-4"> */}
+          {/* Logo */}
+          {/* <div className="flex-shrink-0">
+              <Link href="/" className="flex items-center space-x-2">
+                <Image src="/MyAibo-logo-white.png" alt="MyAibo" width={600} height={200} className="h-20 lg:h-26 w-auto" />
+              </Link>
+            </div> */}
+
+          {/* Navigation Links - Horizontal layout */}
+          {/* <div className="flex flex-wrap items-center gap-8 lg:gap-12">
               <div>
                 {footerLinks.solutions.map((link) => (
                   <Link key={link.name} href={link.href} className="text-gray-400 hover:text-white transition-colors font-semibold text-lg">
                     {link.name}
                   </Link>
                 ))}
-              </div>
+              </div> */}
 
-              <div>
+          {/* <div>
                 {footerLinks.successStories.map((link) => (
                   <Link key={link.name} href={link.href} className="text-gray-400 hover:text-white transition-colors font-semibold text-lg">
                     {link.name}
@@ -181,10 +209,10 @@ export function Footer() {
                 ))}
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Contact Information - Separate section below */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12">
+          {/* <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12">
             <div className="flex items-center text-gray-400 hover:text-purple-400 transition-colors duration-300">
               <div className="w-10 h-10 rounded-lg bg-purple-900/30 flex items-center justify-center mr-4">
                 <Mail className="w-5 h-5" />
@@ -198,31 +226,31 @@ export function Footer() {
               <span>Bengaluru, KA</span>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2025, Hillsa Ventures Pvt Ltd. All rights reserved.
-            </div>
-            
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-600 transition-all duration-300"
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
+          {/* Bottom Bar */}
+          <div className="border-t border-gray-800 py-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="text-gray-400 text-sm mb-4 md:mb-0">
+                © 2025, Hillsa Ventures Pvt Ltd. All rights reserved.
+              </div>
+
+              {/* Social Links */}
+              <div className="flex space-x-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-600 transition-all duration-300"
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
       </Container>
     </footer>
   )

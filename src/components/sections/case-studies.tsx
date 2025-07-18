@@ -84,7 +84,7 @@ const caseStudies = [
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="py-24 bg-gradient-to-b from-white to-purple-50/30">
+    <section id="case-studies" className="scroll-mt-40 py-24 bg-gradient-to-b from-white to-purple-50/30">
       <Container>
         <div className="text-center mb-20">
           <motion.h2

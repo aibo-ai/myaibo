@@ -30,9 +30,9 @@ export function Hero() {
           <div className="flex items-center justify-start h-full py-20">
             {/* White Rounded Rectangle Card - Left Aligned with logo */}
             <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              initial={false}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0 }}
               className="bg-white rounded-3xl p-8 md:p-12 lg:p-16 shadow-2xl max-w-2xl lg:max-w-3xl ml-0"
             >
               {/* Main headline - SEO optimized H1
@@ -72,7 +72,7 @@ export function Hero() {
         </Container>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -82,7 +82,7 @@ export function Hero() {
         <div className="w-6 h-10 border-2 border-white/70 rounded-full flex justify-center bg-black/30 backdrop-blur-sm">
           <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce" />
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   )
 }
