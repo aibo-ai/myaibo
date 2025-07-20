@@ -33,7 +33,7 @@ export function Hero() {
               initial={false}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0 }}
-              className="bg-white rounded-3xl p-8 md:p-12 lg:p-16 shadow-2xl max-w-2xl lg:max-w-3xl ml-0"
+  className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12 lg:p-16 shadow-2xl max-w-[95vw] sm:max-w-2xl lg:max-w-3xl ml-0"
             >
               {/* Main headline - SEO optimized H1
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-6 text-left">
@@ -41,7 +41,7 @@ export function Hero() {
               </h1> */}
 
               {/* Brand tagline */}
-              <div className="text-2xl md:text-3xl lg:text-6xl font-bold tracking-tight leading-tight mb-8 text-left">
+  <div className="text-xl sm:text-2xl md:text-3xl lg:text-6xl font-bold tracking-tight leading-tight mb-6 sm:mb-8 text-left">
                 <span className="text-black font-bold">Elegant</span>{" "}
                 <span className="text-[#8600e1] font-bold">
                   AI-Powered Solutions
@@ -49,7 +49,7 @@ export function Hero() {
               </div>
 
               {/* Description */}
-              <p className="text-base md:text-lg lg:text-2xl text-gray-800 leading-relaxed mb-10 text-left font-bold">
+  <p className="text-base sm:text-lg lg:text-2xl text-gray-800 leading-relaxed mb-6 sm:mb-10 text-left font-bold">
                 We harness the power of AI to create innovative solutions that deliver impactful and measurable improvements
               </p>
 
@@ -59,7 +59,7 @@ export function Hero() {
                 <Button
                   size="lg"
                   asChild
-                  className="bg-[#8600e1] hover:bg-[#7300c4] text-white px-6 py-3 text-lg font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+      className="bg-[#8600e1] hover:bg-[#7300c4] text-white px-4 sm:px-6 py-3 text-base sm:text-lg font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
                 >
                   <Link href="https://outlook.office365.com/owa/calendar/MyAiboConsultation@myaibo.in/bookings/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                     📅 Book Free Strategy Session

@@ -138,29 +138,29 @@ export function Footer() {
       {/* Enhanced Main Footer */}
       <Container>
         <div className="pt-10 pb-8">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-start gap-8 lg:gap-0 mb-4">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-4 items-start">
             {/* Logo */}
-            <div className="flex-1 flex items-center">
+      <div className="flex flex-col items-center lg:items-start">
               <Link href="/" className="flex items-center space-x-2">
-                <Image src="/MyAibo-logo-white.png" alt="MyAibo" width={600} height={200} className="h-20 lg:h-30 w-auto" />
+                <Image src="/MyAibo-logo-white.png" alt="MyAibo" width={600} height={200} className="h-30 w-auto" />
               </Link>
             </div>
 
             {/* Contact Info */}
-            <div className="flex-1 flex flex-col items-center lg:items-start text-left">
+      <div className="flex flex-col items-center lg:items-center">
               <span className="font-bold text-lg mb-2">Contact</span>
               <span className="text-gray-400 mb-2 text-base">info@myaibo.in</span>
-              <hr className="border-t border-gray-400 w-[150px] my-2" />
+              <hr className="border-t border-gray-400 w-[160px] my-2" />
               <span className="text-gray-400 pt-4">Bengaluru, KA</span>
               <span className="text-gray-400">India</span>
             </div>
 
             {/* Navigation Links */}
-            <div className="flex-1 flex flex-col items-center lg:items-center text-left">
+      <div className="flex flex-col items-center lg:items-center">
               <Link href="/#solutions" className="text-gray-400 hover:text-white transition-colors font-semibold text-lg mb-2">Solutions</Link>
               <Link href="/#case-studies" className="text-gray-400 hover:text-white transition-colors font-semibold text-lg mb-2">Success Stories</Link>
             </div>
-            <div className="flex-1 flex flex-col items-center lg:items-center text-left">
+      <div className="flex flex-col items-center lg:items-center">
               <Link href="/about" className="text-gray-400 hover:text-white transition-colors font-semibold text-lg mb-2">About Us</Link>
               <Link href="/contact" className="text-gray-400 hover:text-white transition-colors font-semibold text-lg mb-2">Contact Us</Link>
             </div>

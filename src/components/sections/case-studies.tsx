@@ -121,13 +121,13 @@ export function CaseStudies() {
             >
               <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm overflow-hidden hover:shadow-3xl transition-all duration-500">
                 <CardContent className="p-0">
-                  <div className="grid lg:grid-cols-5 gap-0">
+  <div className="flex flex-col lg:grid lg:grid-cols-5 gap-0">
                     {/* Content Side - Takes 3 columns */}
-                    <div className="lg:col-span-3 p-10 lg:p-16">
+    <div className="lg:col-span-3 p-4 sm:p-10 lg:p-16">
                       {/* Header */}
-                      <div className="flex items-center mb-10">
-                        <div className="w-24 h-16 rounded-2xl bg-gradient-to-br from-purple-50 to-white flex items-center justify-center mr-6 shadow-xl border border-purple-100">
-                          <div className="relative w-20 h-12">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center mb-8 sm:mb-10 gap-4">
+        <div className="w-20 h-14 sm:w-24 sm:h-16 rounded-2xl bg-gradient-to-br from-purple-50 to-white flex items-center justify-center mr-0 sm:mr-6 shadow-xl border border-purple-100">
+          <div className="relative w-16 h-10 sm:w-20 sm:h-12">
                             <Image
                               src={study.logoImage}
                               alt={`${study.company} logo`}
@@ -137,23 +137,23 @@ export function CaseStudies() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-3xl font-bold text-gray-900 mb-2">{study.company}</h3>
-                          <p className="text-purple-600 font-semibold text-lg">{study.industry}</p>
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">{study.company}</h3>
+          <p className="text-purple-600 font-semibold text-base sm:text-lg">{study.industry}</p>
                         </div>
                       </div>
 
                       {/* Challenge */}
-                      <div className="mb-10">
-                        <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                          <div className="w-2 h-8 bg-gradient-to-b from-red-500 to-red-600 rounded-full mr-3"></div>
+      <div className="mb-8 sm:mb-10">
+        <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 flex items-center">
+          <div className="w-2 h-6 sm:h-8 bg-gradient-to-b from-red-500 to-red-600 rounded-full mr-2 sm:mr-3"></div>
                           Challenges
                         </h4>
-                        <p className="text-gray-700 leading-relaxed mb-4 text-justify">{study.challenge}</p>
+        <p className="text-gray-700 leading-relaxed mb-3 sm:mb-4 text-justify">{study.challenge}</p>
                         {study.challengePoints && study.challengePoints.length > 0 && (
-                          <ul className="text-gray-700 leading-relaxed space-y-3">
+          <ul className="text-gray-700 leading-relaxed space-y-2 sm:space-y-3">
                             {study.challengePoints.map((point, index) => (
                               <li key={index} className="flex items-start">
-                                <div className="w-2 h-2 bg-red-400 rounded-full mr-4 mt-2.5 flex-shrink-0"></div>
+                <div className="w-2 h-2 bg-red-400 rounded-full mr-2 sm:mr-4 mt-2 flex-shrink-0"></div>
                                 <span className="text-justify">{point}</span>
                               </li>
                             ))}
@@ -162,17 +162,17 @@ export function CaseStudies() {
                       </div>
 
                       {/* Solution */}
-                      <div className="mb-10">
-                        <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                          <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full mr-3"></div>
+      <div className="mb-8 sm:mb-10">
+        <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 flex items-center">
+          <div className="w-2 h-6 sm:h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full mr-2 sm:mr-3"></div>
                           Solution
                         </h4>
-                        <p className="text-gray-700 leading-relaxed mb-4 text-justify">{study.solution}</p>
+        <p className="text-gray-700 leading-relaxed mb-3 sm:mb-4 text-justify">{study.solution}</p>
                         {study.solutionPoints && study.solutionPoints.length > 0 && (
-                          <ul className="text-gray-700 leading-relaxed space-y-3">
+          <ul className="text-gray-700 leading-relaxed space-y-2 sm:space-y-3">
                             {study.solutionPoints.map((point, index) => (
                               <li key={index} className="flex items-start">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-4 mt-2.5 flex-shrink-0"></div>
+                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 sm:mr-4 mt-2 flex-shrink-0"></div>
                                 <span className="text-justify">{point}</span>
                               </li>
                             ))}
@@ -182,7 +182,7 @@ export function CaseStudies() {
                     </div>
 
                     {/* Results Side - Takes 2 columns */}
-                    <div className={`lg:col-span-2 bg-gradient-to-br ${study.gradient} p-8 lg:p-12 text-white relative overflow-hidden flex flex-col justify-center`}>
+    <div className={`lg:col-span-2 bg-gradient-to-br ${study.gradient} p-4 sm:p-8 lg:p-12 text-white relative overflow-hidden flex flex-col justify-center`}>
                       {/* Enhanced Background decoration */}
                       <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-3xl" />
                       <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
