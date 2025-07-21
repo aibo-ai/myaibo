@@ -137,8 +137,8 @@ export function Footer() {
 
       {/* Enhanced Main Footer */}
       <Container>
-        <div className="pt-10 pb-8">
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-4 items-start">
+        <div className="pt-10 pb-4">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-center">
             {/* Logo */}
       <div className="flex flex-col items-center lg:items-start">
               <Link href="/" className="flex items-center space-x-2">
@@ -150,9 +150,6 @@ export function Footer() {
       <div className="flex flex-col items-center lg:items-center">
               <span className="font-bold text-lg mb-2">Contact</span>
               <span className="text-gray-400 mb-2 text-base">info@myaibo.in</span>
-              <hr className="border-t border-gray-400 w-[160px] my-2" />
-              <span className="text-gray-400 pt-4">Bengaluru, KA</span>
-              <span className="text-gray-400">India</span>
             </div>
 
             {/* Navigation Links */}

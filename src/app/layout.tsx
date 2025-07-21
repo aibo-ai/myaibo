@@ -3,7 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Development Services | Custom AI Solutions & Machine Learning - MyAibo",
+  title: "MyAibo | Custom AI Development Solutions & Machine Learning",
   description: "Transform your business with custom AI development services. Expert AI solutions, machine learning, automation, and intelligent systems. Get free strategy session.",
   keywords: "AI development services, custom AI solutions, machine learning development, AI automation, artificial intelligence consulting, AI integration services",
   authors: [{ name: "MyAibo" }],
@@ -148,6 +148,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             })
           }}
         />
+                <link rel="icon" type="image/png" href="/My_Aibo_window_logo.png" />
+
       </head>
       <body className="antialiased">
         {/* Google Tag Manager (noscript) */}
