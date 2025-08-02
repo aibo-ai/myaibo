@@ -43,7 +43,7 @@ export function Hero() {
               {/* Brand tagline */}
   <div className="text-xl sm:text-2xl md:text-3xl lg:text-6xl font-bold tracking-tight leading-tight mb-6 sm:mb-8 text-left">
                 <span className="text-black font-bold">Elegant</span>{" "}
-                <span className="text-[#8600e1] font-bold">
+                <span className="text-[#7c3bed] font-bold">
                   AI-Powered Solutions
                 </span>
               </div>
@@ -59,7 +59,7 @@ export function Hero() {
                 <Button
                   size="lg"
                   asChild
-      className="bg-[#8600e1] hover:bg-[#7300c4] text-white px-4 sm:px-6 py-3 text-base sm:text-lg font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+      className="bg-[#7c3bed] hover:bg-[#7300c4] text-white px-4 sm:px-6 py-3 text-base sm:text-lg font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
                 >
                   <Link href="https://outlook.office365.com/owa/calendar/MyAiboConsultation@myaibo.in/bookings/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                     📅 Book Free Strategy Session

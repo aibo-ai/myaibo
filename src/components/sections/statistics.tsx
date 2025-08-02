@@ -33,7 +33,7 @@ const stats = [
 
 export function Statistics() {
   return (
-    <section className="py-24 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-600 text-white relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-r from-[#7c3bed] via-[#7c3bed] to-[#7c3bed] text-white relative overflow-hidden">
       {/* Enhanced Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/20 to-transparent" />
@@ -58,7 +58,7 @@ export function Statistics() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-lg text-purple-100 max-w-4xl mx-auto text-justify leading-relaxed"
+            className="text-lg text-[#7c3bed] max-w-4xl mx-auto text-justify leading-relaxed"
           >
             Real results from real clients. See the measurable impact our AI solutions have delivered across diverse industries and business models.
           </motion.p>
@@ -74,24 +74,24 @@ export function Statistics() {
               viewport={{ once: true }}
               className="text-center group"
             >
-              <div className="bg-white rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 group-hover:scale-105 border border-gray-100 hover:border-purple-200 relative overflow-hidden shadow-lg">
+              <div className="bg-white rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 group-hover:scale-105 border border-gray-100 hover:border-[#7c3bed] relative overflow-hidden shadow-lg">
                 {/* Background glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Enhanced Icon */}
-                <div className={`relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-r ${stat.gradient} mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                <div className={`relative inline-flex items-center justify-center w-20 h-20 rounded-2xl`} style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }}>
                   <stat.icon className="w-10 h-10 text-white" />
                   {/* Icon glow */}
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${stat.gradient} opacity-0 group-hover:opacity-30 blur-lg scale-110 transition-all duration-300`} />
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 blur-lg scale-110 transition-all duration-300" style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }} />
                 </div>
 
                 {/* Enhanced Value */}
-                <div className="text-4xl md:text-5xl font-bold mb-4 text-purple-700 group-hover:text-purple-800 transition-colors duration-300">
+                <div className="text-4xl md:text-5xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   {stat.value}
                 </div>
 
                 {/* Enhanced Label */}
-                <h3 className="text-lg font-semibold text-purple-600 transition-colors duration-300">
+                <h3 className="text-lg font-semibold" style={{ color: "#7c3bed" }}>
                   {stat.label}
                 </h3>
               </div>

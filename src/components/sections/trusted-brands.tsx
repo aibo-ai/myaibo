@@ -49,7 +49,7 @@ export function TrustedBrands() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
           >
-            <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+  <span className="bg-clip-text text-transparent" style={{ color: "#7c3bed" }}>
               Trusted By
             </span>{" "}
             Leading Brands
@@ -76,7 +76,7 @@ export function TrustedBrands() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-white rounded-2xl p-6 text-center hover:shadow-xl transition-all duration-300 group-hover:scale-105 border border-purple-100/50 shadow-lg">
+<div className="bg-white rounded-2xl p-6 text-center hover:shadow-xl transition-all duration-300 group-hover:scale-105 border" style={{ borderColor: "#7c3bed20" }}>
                 {/* Logo */}
                 <div className="relative w-16 h-16 mx-auto mb-4">
                   <Image
@@ -88,7 +88,7 @@ export function TrustedBrands() {
                 </div>
 
                 {/* Brand name */}
-                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-purple-700 transition-colors text-sm">
+  <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-[#7c3bed] transition-colors text-sm">
                   {brand.name}
                 </h3>
 

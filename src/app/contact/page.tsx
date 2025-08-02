@@ -66,7 +66,8 @@ export default function Contact() {
                 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
               >
                 Let&apos;s{" "}
-                <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r bg-clip-text text-transparent"
+              style={{ color: "#7c3bed" }}>
                   Transform
                 </span>{" "}
                 Together
@@ -98,7 +99,7 @@ export default function Contact() {
                 <Card className="border-0 shadow-xl bg-white">
                   <CardContent className="p-8">
                     <div className="flex items-center mb-6">
-                      <Calendar className="w-6 h-6 text-purple-600 mr-3" />
+                      <Calendar className="w-6 h-6 text-[#7c3bed] mr-3" />
                       <h2 className="text-2xl font-bold text-gray-900">Book Your Free Strategy Session</h2>
                     </div>
 
@@ -118,7 +119,7 @@ export default function Contact() {
                           id="name"
                           name="name"
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7c3bed] focus:border-transparent"
                           placeholder="Enter your full name"
                         />
                       </div>
@@ -132,7 +133,7 @@ export default function Contact() {
                           id="email"
                           name="email"
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7c3bed] focus:border-transparent"
                           placeholder="Enter your email address"
                         />
                       </div>
@@ -190,7 +191,7 @@ export default function Contact() {
                       <Button
                         type="submit"
                         disabled={result === "Sending...."}
-                        className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 text-white py-3 px-6 rounded-lg font-medium transition-colors"
+                        className="w-full bg-[#7c3bed] hover:bg-[#7c3bed] disabled:bg-purple-400 text-white py-3 px-6 rounded-lg font-medium transition-colors"
                       >
                         {result === "Sending...." ? "Sending..." : "Send Message"}
                       </Button>
@@ -225,12 +226,12 @@ export default function Contact() {
                       viewport={{ once: true }}
                       className="flex items-start space-x-4"
                     >
-                      <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#7c3bed] to-[#7c3bed] rounded-lg flex items-center justify-center flex-shrink-0">
                         <info.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">{info.title}</h3>
-                        <p className="text-purple-600 font-medium mb-1">{info.details}</p>
+                        <p className="text-[#7c3bed] font-medium mb-1">{info.details}</p>
                         <p className="text-gray-600 text-sm">{info.description}</p>
                       </div>
                     </motion.div>

@@ -30,7 +30,7 @@ const caseStudies = [
       { icon: DollarSign, metric: "43%", label: "Reduction in customer acquisition cost" },
       { icon: Users, metric: "78%", label: "Improvement in customer lifetime value" }
     ],
-    gradient: "from-purple-500 to-purple-600"
+    gradient: "from-[#7c3bed] to-[#7c3bed]"
   },
   {
     company: "Iluvia",
@@ -57,7 +57,7 @@ const caseStudies = [
       { icon: Target, metric: "51%", label: "Reduction in customer acquisition costs" },
       { icon: BarChart3, metric: "92%", label: "Growth in repeat purchase rate" }
     ],
-    gradient: "from-purple-600 to-purple-700"
+    gradient: "from-[#7c3bed] to-[#7c3bed]"
   },
   {
     company: "vPersonalize",
@@ -78,13 +78,13 @@ const caseStudies = [
       { icon: DollarSign, metric: "41%", label: "Reduction in customer acquisition costs" },
       { icon: Target, metric: "47%", label: "Improvement in email engagement metrics" }
     ],
-    gradient: "from-purple-600 to-purple-700"
+    gradient: "from-[#7c3bed] to-[#7c3bed]"
   }
 ]
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="scroll-mt-40 py-24 bg-gradient-to-b from-white to-purple-50/30">
+<section id="case-studies" className="scroll-mt-40 py-24 bg-gradient-to-b from-white to-[#7c3bed]10">
       <Container>
         <div className="text-center mb-20">
           <motion.h2
@@ -95,7 +95,7 @@ export function CaseStudies() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
           >
             <span className="text-black">AI Success</span>{" "}
-            <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+<span className="bg-clip-text text-transparent" style={{ color : " #7c3bed" }}>
               Stories
             </span>
           </motion.h2>
@@ -138,7 +138,7 @@ export function CaseStudies() {
                         </div>
                         <div>
           <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">{study.company}</h3>
-          <p className="text-purple-600 font-semibold text-base sm:text-lg">{study.industry}</p>
+          <p className="text-[#7c3bed] font-semibold text-base sm:text-lg">{study.industry}</p>
                         </div>
                       </div>
 

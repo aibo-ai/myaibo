@@ -34,7 +34,7 @@ const features = [
 
 export function WhyChooseUs() {
   return (
-    <section id="services" className="pt-12 pb-24 bg-gradient-to-b from-white to-purple-50/30">
+    <section id="services" className="pt-12 pb-24 bg-gradient-to-b from-white to-[#7c3bed]10">
       <Container>
         <div className="text-center mb-20">
           <motion.h2
@@ -45,7 +45,7 @@ export function WhyChooseUs() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
           >
             Why Choose{" "}
-            <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+            <span className="bg-clip-text text-transparent" style={{ color : " #7c3bed" }}>
               MyAibo
             </span>
           </motion.h2>
@@ -65,15 +65,15 @@ export function WhyChooseUs() {
               <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white/90 backdrop-blur-sm group-hover:scale-105 group-hover:bg-white">
                 <CardContent className="p-8 text-center relative overflow-hidden">
                   {/* Background decoration */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-purple-100/50 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-[#7c3bed]10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <div className={`relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-r ${feature.gradient} mb-8 shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+                  <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-8 shadow-lg group-hover:shadow-xl transition-all duration-300" style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }}>
                     <feature.icon className="w-10 h-10 text-white" />
                     {/* Glow effect */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-30 blur-lg scale-110 transition-all duration-300`} />
+                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 blur-lg scale-110 transition-all duration-300" style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }} />
                   </div>
 
-                  <h3 className="text-xl font-bold mb-6 text-gray-900 group-hover:text-purple-700 transition-colors duration-300">
+                  <h3 className="text-xl font-bold mb-6 text-gray-900 group-hover:text-[#7c3bed] transition-colors duration-300">
                     {feature.title}
                   </h3>
 

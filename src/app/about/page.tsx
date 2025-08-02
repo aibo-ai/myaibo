@@ -13,7 +13,7 @@ const founders = [
     role: "Co-Founder",
     bio: "Sales leader with 15+ years at Flipkart and InMobi. Now making AI-driven solutions accessible.",
     avatar: "TB",
-    gradient: "from-purple-500 to-purple-600",
+    gradient: "from-[#7c3bed] to-[#7c3bed]",
     linkedinUrl: "https://www.linkedin.com/in/tathagatbagchi/"
   },
   {
@@ -21,7 +21,7 @@ const founders = [
     role: "Co-Founder",
     bio: "Marketing leader with 15+ years at Zomato and Leena.ai. Now combining product thinking with AI to create transformative solutions.",
     avatar: "VK",
-    gradient: "from-purple-600 to-purple-700",
+    gradient: "from-[#7c3bed] to-[#7c3bed]",
     linkedinUrl: "https://www.linkedin.com/in/vamsi-krishna-kaki-3a502229/"
   }
 ]
@@ -48,7 +48,7 @@ export default function About() {
               >
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   Our{" "}
-                  <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-[#7c3bed] to-[#7c3bed] bg-clip-text text-transparent">
                     Vision
                   </span>
                 </h2>
@@ -66,15 +66,15 @@ export default function About() {
               >
                 <div className="grid grid-cols-3 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
+                    <div className="text-3xl font-bold text-[#7c3bed] mb-2">50+</div>
                     <div className="text-sm text-gray-600">Projects Delivered</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-purple-600 mb-2">98%</div>
+                    <div className="text-3xl font-bold text-[#7c3bed] mb-2">98%</div>
                     <div className="text-sm text-gray-600">Client Satisfaction</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
+                    <div className="text-3xl font-bold text-[#7c3bed] mb-2">24/7</div>
                     <div className="text-sm text-gray-600">Support</div>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export default function About() {
                 viewport={{ once: true }}
                 className="text-3xl md:text-4xl font-bold mb-6"
               >
-                <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#7c3bed] to-[#7c3bed] bg-clip-text text-transparent">
                   Founders
                 </span>
               </motion.h2>
@@ -132,7 +132,7 @@ export default function About() {
                         href={founder.linkedinUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-10 h-10 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl"
+                        className="inline-flex items-center justify-center w-10 h-10 bg-[#7c3bed] hover:bg-[#7c3bed] text-white rounded-full transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl"
                         aria-label={`Connect with ${founder.name} on LinkedIn`}
                       >
                         <Linkedin className="w-5 h-5" />

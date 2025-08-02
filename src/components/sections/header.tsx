@@ -80,7 +80,8 @@ export function Header() {
 										handleNavClick(item.href)
 									}
 								}}
-								className="text-xl lg:text-2xl font-bold transition-colors text-purple-600 hover:text-purple-700"
+								className="text-xl lg:text-2xl font-bold transition-colors"
+								    style={{ color: "#7c3bed" }}
 							>
 								{item.name}
 							</Link>
@@ -89,7 +90,8 @@ export function Header() {
 
 					{/* Mobile menu button */}
 					<button
-						className="md:hidden p-3 transition-colors text-purple-600"
+						className="md:hidden p-3 transition-colors"
+						style={{ color: "#7c3bed" }}
 						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 						aria-label="Toggle menu"
 					>
@@ -118,7 +120,8 @@ export function Header() {
 										setIsMobileMenuOpen(false)
 									}
 								}}
-								className="block px-4 py-3 text-xl font-bold text-purple-600 hover:text-purple-700 hover:bg-purple-50 rounded-md transition-colors"
+								className="block px-4 py-3 text-xl font-bold hover:bg-purple-50 rounded-md transition-colors"
+								style={{ color: "#7c3bed" }}
 							>
 								{item.name}
 							</Link>

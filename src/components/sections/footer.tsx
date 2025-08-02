@@ -68,7 +68,7 @@ export function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
       {/* Enhanced Newsletter Section */}
-      <div className="bg-gradient-to-r from-purple-600 to-purple-700 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#7c3bed] to-[#7c3bed] relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl" />
@@ -93,7 +93,7 @@ export function Footer() {
                   </div>
                   <button
                     onClick={() => setSubmitStatus('idle')}
-                    className="text-purple-300 hover:text-white text-sm underline"
+                    className="text-[#7c3bed] hover:text-white text-sm underline"
                   >
                     Subscribe another email
                   </button>
@@ -107,12 +107,12 @@ export function Footer() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address"
                       required
-                      className="flex-1 px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                      className="flex-1 px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#7c3bed] focus:border-[#7c3bed]"
                     />
                     <button
                       type="submit"
                       disabled={isSubmitting || !email}
-                      className="px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap border border-gray-300"
+                      className="px-6 py-3 bg-white text-[#7c3bed] rounded-lg font-semibold hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap border border-gray-300"
                     >
                       {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                     </button>

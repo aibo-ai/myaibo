@@ -44,7 +44,8 @@ export function TransformationProcess() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
           >
             How We{" "}
-            <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-rs bg-clip-text text-transparent"
+            style={{ color: "#7c3bed" }}>
               Transform
             </span>{" "}
             Your Business with AI
@@ -64,12 +65,12 @@ export function TransformationProcess() {
 
         <div className="relative max-w-6xl mx-auto">
           {/* Enhanced connection line for desktop */}
-          <div className="hidden lg:block absolute top-32 left-16 right-16 h-1 bg-gradient-to-r from-purple-200 via-purple-400 to-purple-200 transform z-0 rounded-full shadow-sm" />
+          <div className="hidden lg:block absolute top-32 left-16 right-16 h-1 bg-gradient-to-r from-[#7c3bed]/20 via-[#7c3bed] to-[#7c3bed]/20 transform z-0 rounded-full shadow-sm" />
 
           {/* Progress dots */}
           <div className="hidden lg:flex absolute top-32 left-16 right-16 justify-between transform -translate-y-0.5 z-10">
             {steps.map((_, index) => (
-              <div key={index} className="w-3 h-3 bg-purple-400 rounded-full shadow-sm" />
+              <div key={index} className="w-3 h-3 rounded-full shadow-sm" style={{ background: "#7c3bed" }} />
             ))}
           </div>
 
@@ -84,17 +85,17 @@ export function TransformationProcess() {
                 className="relative"
               >
                 {/* Enhanced step card */}
-                <div className="bg-gradient-to-br from-white to-purple-50/30 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100/50 h-full">
+                <div className="bg-gradient-to-br from-white to-[#7c3bed]/10 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-[#7c3bed]/30 h-full">
                   {/* Step number with enhanced design */}
                   <div className="relative mb-8 flex justify-center">
-                    <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-purple-600 to-purple-700 text-white text-2xl font-bold shadow-xl">
+                    <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-[#7c3bed] to-[#7c3bed] text-white text-2xl font-bold shadow-xl">
                       {step.number}
                       {/* Glow effect */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-purple-700 opacity-20 blur-lg scale-110" />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#7c3bed] to-[#7c3bed] opacity-20 blur-lg scale-110" />
                     </div>
                     {/* Enhanced icon overlay */}
-                    <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-purple-100">
-                      <step.icon className="w-6 h-6 text-purple-600" />
+                    <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-[#7c3bed]/30">
+                      <step.icon className="w-6 h-6" style={{ color: "#7c3bed" }} />
                     </div>
                   </div>
 
@@ -113,8 +114,8 @@ export function TransformationProcess() {
                 {index < steps.length - 1 && (
                   <div className="lg:hidden flex justify-center mt-12 mb-12">
                     <div className="flex flex-col items-center">
-                      <div className="w-1 h-12 bg-gradient-to-b from-purple-400 to-purple-300 rounded-full" />
-                      <div className="w-3 h-3 bg-purple-400 rounded-full mt-2" />
+                      <div className="w-1 h-12 rounded-full" style={{ background: "linear-gradient(to bottom, #7c3bed, #7c3bed)" }} />
+      <div className="w-3 h-3 rounded-full mt-2" style={{ background: "#7c3bed" }} />
                     </div>
                   </div>
                 )}

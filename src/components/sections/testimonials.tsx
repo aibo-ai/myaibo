@@ -12,7 +12,7 @@ const testimonials = [
     company: "vPersonalize",
     logo: "vP",
     rating: 5,
-    gradient: "from-purple-500 to-purple-600"
+    gradient: "from-[#7c3bed] to-[#7c3bed]"
   },
   {
     quote: "The precision we've been searching for. After trying countless solutions, MyAibo finally cracked the code. Their AI doesn't just target customers—it finds the exact people who will love our brand and buy repeatedly.",
@@ -20,7 +20,7 @@ const testimonials = [
     company: "Iluvia",
     logo: "IL",
     rating: 5,
-    gradient: "from-purple-600 to-purple-700"
+    gradient: "from-[#7c3bed] to-[#7c3bed]"
   },
   {
     quote: "MyAibo allowed us to communicate our unique value proposition with clarity while personalizing customer experiences at scale. Higher conversions, lower acquisition costs, and customers who truly understand what makes Trudiance different.",
@@ -28,7 +28,7 @@ const testimonials = [
     company: "Trudiance",
     logo: "TB",
     rating: 5,
-    gradient: "from-purple-700 to-purple-800"
+    gradient: "from-[#7c3bed] to-[#7c3bed]"
   }
 ]
 
@@ -45,7 +45,7 @@ export function Testimonials() {
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             <span className="text-black">Client</span>{" "}
-            <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#7c3bed] to-[#7c3bed] bg-clip-text text-transparent">
               Testimonials
             </span>
           </h2>
@@ -65,7 +65,7 @@ export function Testimonials() {
                 <CardContent className="p-8 lg:p-10 h-full flex flex-col">
                   {/* Quote Icon */}
                   <div className="mb-6">
-                    <Quote className="w-12 h-12 text-purple-600 group-hover:text-purple-700 transition-colors duration-300" />
+                    <Quote className="w-12 h-12 text-[#7c3bed] group-hover:text-[#7c3bed] transition-colors duration-300" />
                   </div>
 
                   {/* Star Rating */}
@@ -86,10 +86,10 @@ export function Testimonials() {
                       {testimonial.logo}
                     </div>
                     <div>
-                      <div className="font-semibold text-gray-900 group-hover:text-purple-700 transition-colors duration-300">
+                      <div className="font-semibold text-gray-900 group-hover:text-[#7c3bed] transition-colors duration-300">
                         {testimonial.author}
                       </div>
-                      <div className="text-purple-600 font-medium">
+                      <div className="text-[#7c3bed] font-medium">
                         {testimonial.company}
                       </div>
                     </div>

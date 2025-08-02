@@ -52,7 +52,7 @@ const solutions = [
 
 export function Solutions() {
   return (
-    <section id="solutions" className="scroll-mt-40 py-24 bg-gradient-to-b from-purple-50/30 to-white">
+    <section id="solutions" className="scroll-mt-40 py-24 bg-gradient-to-b from-[#7c3bed]20 to-white">
       <Container>
         <div className="text-center mb-20">
           <motion.h2
@@ -62,7 +62,7 @@ export function Solutions() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
           >
-            <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+<span className="bg-clip-text text-transparent" style={{ color: "#7c3bed" }}>
               AI Solutions
             </span>{" "}
             That Drive Results
@@ -94,14 +94,14 @@ export function Solutions() {
                   <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-100/30 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="flex justify-center mb-8">
-                    <div className={`relative flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-r ${solution.gradient} shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+<div className={`relative flex items-center justify-center w-20 h-20 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300`} style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }}>
                       <solution.icon className="w-10 h-10 text-white" />
                       {/* Glow effect */}
-                      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${solution.gradient} opacity-0 group-hover:opacity-30 blur-lg scale-110 transition-all duration-300`} />
+  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 blur-lg scale-110 transition-all duration-300" style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }} />
                     </div>
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-6 text-purple-700 transition-colors duration-300 leading-tight text-center">
+<h3 className="text-2xl font-bold mb-6 transition-colors duration-300 leading-tight text-center" style={{ color: "#7c3bed" }}>
                     {solution.title}
                   </h3>
 
@@ -112,7 +112,7 @@ export function Solutions() {
                   <div className="space-y-3">
                     {solution.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-start text-sm text-black">
-                        <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mr-3 mt-2 flex-shrink-0" />
+<div className="w-2 h-2 rounded-full mr-3 mt-2 flex-shrink-0" style={{ background: "#7c3bed" }} />
                         <span className="text-justify">{feature}</span>
                       </div>
                     ))}
