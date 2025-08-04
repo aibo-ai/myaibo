@@ -14,14 +14,20 @@ export function Hero() {
       <div className="absolute top-0 left-0 right-0 h-32 lg:h-40 bg-white z-10" />
 
       {/* Video background starting below white header */}
-      <div className="absolute inset-0 top-32 lg:top-40 h-screen">
-        <Image
+      <div className="absolute inset-0 top-32 lg:top-40 h-screen"
+      style={{
+    backgroundImage: "url('/tech-background.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}>
+        {/* <Image
           src="/MyAibo-bg-Video.gif"
           alt="AI Network Animation"
           fill
           className="w-full h-full object-cover"
           priority
-        />
+        /> */}
       </div>
 
       {/* Content area positioned below navigation */}
