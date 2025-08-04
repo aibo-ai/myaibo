@@ -142,7 +142,7 @@ export function Footer() {
             {/* Logo */}
       <div className="flex flex-col items-center lg:items-start">
               <Link href="/" className="flex items-center space-x-2">
-                <Image src="/MyAibo_Logo.png" alt="MyAibo" width={600} height={200} className="h-30 w-auto" />
+                <Image src="/MyAibo-Logo-White.png" alt="MyAibo" width={600} height={200} className="h-30 w-auto" />
               </Link>
             </div>
 
