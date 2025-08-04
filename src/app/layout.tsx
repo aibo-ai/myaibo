@@ -52,12 +52,12 @@ export const metadata: Metadata = {
   // Icons and favicons
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+      { url: '/MyAibo-Thumbnail.png' },
+      { url: '/MyAibo-Thumbnail.png', sizes: '16x16', type: 'image/png' },
+      { url: '/MyAibo-Thumbnail.png', sizes: '32x32', type: 'image/png' }
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180' }
+      { url: '/MyAibo-Thumbnail.png', sizes: '180x180' }
     ]
   }
 };
@@ -93,7 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "@type": "Organization",
               "name": "MyAibo",
               "url": "https://www.myaibo.in",
-              "logo": "https://www.myaibo.in/logo.png",
+              "logo": "https://www.myaibo.in/MyAibo-Thumbnail.png",
               "description": "Leading AI development services company providing custom AI solutions, machine learning, and intelligent automation systems for businesses.",
               "sameAs": [
                 "https://www.linkedin.com/company/myaibo",
@@ -148,7 +148,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             })
           }}
         />
-                <link rel="icon" type="image/png" href="/My_Aibo_window_logo.png" />
+                <link rel="icon" type="image/png" href="/MyAibo-Thumbnail.png" />
 
       </head>
       <body className="antialiased">
