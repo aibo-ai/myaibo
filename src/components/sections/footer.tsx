@@ -39,24 +39,36 @@ export function Footer() {
     setSubmitStatus('idle')
 
     try {
-      const formData = new FormData()
-      formData.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '')
-      formData.append('email', email)
-      formData.append('subject', 'New Newsletter Subscription - MyAibo')
-      formData.append('from_name', 'MyAibo Newsletter')
-      formData.append('message', `New newsletter subscription from: ${email}`)
+      // const formData = new FormData()
+      // formData.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '')
+      // formData.append('email', email)
+      // formData.append('subject', 'New Newsletter Subscription - MyAibo')
+      // formData.append('from_name', 'MyAibo Newsletter')
+      // formData.append('message', `New newsletter subscription from: ${email}`)
 
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      })
+      // const response = await fetch('https://api.web3forms.com/submit', {
+      //   method: 'POST',
+      //   body: formData
+      // })
 
-      if (response.ok) {
-        setSubmitStatus('success')
-        setEmail('')
-      } else {
-        setSubmitStatus('error')
-      }
+      // if (response.ok) {
+      //   setSubmitStatus('success')
+      //   setEmail('')
+      // } else {
+      //   setSubmitStatus('error')
+      // }
+       const response = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    })
+
+    if (response.ok) {
+      setSubmitStatus('success')
+      setEmail('')
+    } else {
+      setSubmitStatus('error')
+    }
     } catch (error) {
       console.error('Newsletter subscription error:', error)
       setSubmitStatus('error')
@@ -117,6 +129,12 @@ export function Footer() {
                       {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                     </button>
                   </div>
+                  {/* <Link
+  href="/unsubscribe"
+  className="px-6 py-3 bg-white text-[#7c3bed] rounded-lg font-semibold hover:bg-gray-50 transition-colors whitespace-nowrap border border-gray-300 text-center block"
+>
+  Unsubscribe
+</Link> */}
 
                   {submitStatus === 'error' && (
                     <div className="text-center">
