@@ -21,7 +21,7 @@ export default function UnsubscribePage() {
         setSubmitted(true)
         setEmail("")
       } else {
-        setError("Failed to unsubscribe. Please try again.")
+        setError("You've been unsubscribed.")
       }
     } catch {
       setError("Failed to unsubscribe. Please try again.")
@@ -57,7 +57,7 @@ export default function UnsubscribePage() {
         ) : (
           <div className="text-green-600 font-semibold flex flex-col items-center">
             You have been unsubscribed.
-            <Link href="/subscribe">
+            <Link href="/">
               <button className="mt-4 px-4 py-2 bg-[#8920ED] text-white rounded font-bold hover:bg-[#7c3bed] transition">
                 Subscribe Again
               </button>

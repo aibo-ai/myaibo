@@ -31,12 +31,16 @@ const socialLinks = [
 export function Footer() {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMsg, setErrorMsg] = useState("")
+
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
+      setErrorMsg("")
+
 
     try {
       // const formData = new FormData()
@@ -67,10 +71,16 @@ export function Footer() {
       setSubmitStatus('success')
       setEmail('')
     } else {
+       const data = await response.json()
+      if (data?.error === "already_subscribed") {
+        setErrorMsg("This email address is already subscribed.")
+      } else {
+        setErrorMsg("Something went wrong. Please try again or contact us at info@myaibo.in")
+      }
       setSubmitStatus('error')
     }
     } catch (error) {
-      console.error('Newsletter subscription error:', error)
+      console.error('Newsletter subscription error: Please try again or contact us at info@myaibo.in', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -99,9 +109,9 @@ export function Footer() {
             <div className="max-w-lg mx-auto">
               {submitStatus === 'success' ? (
                 <div className="text-center py-8">
-                  <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-6 mb-4">
-                    <h4 className="text-green-400 font-semibold mb-2">Successfully Subscribed!</h4>
-                    <p className="text-green-300 text-sm">Thank you for subscribing to our newsletter. We&apos;ll keep you updated with the latest AI insights.</p>
+                  <div className="border border-white-500/30 rounded-lg p-6 mb-4">
+                    <h4 className="text-white-400 font-semibold mb-2">Successfully Subscribed!</h4>
+                    <p className="text-white-300 text-sm">Thank you for subscribing to our newsletter. We&apos;ll keep you updated with the latest AI insights.</p>
                   </div>
                   <button
                     onClick={() => setSubmitStatus('idle')}
@@ -136,7 +146,7 @@ export function Footer() {
   Unsubscribe
 </Link> */}
 
-                  {submitStatus === 'error' && (
+                  {/* {submitStatus === 'error' && (
                     <div className="text-center">
                       <p className="text-red-300 text-sm">
                         Something went wrong. Please try again or contact us at{' '}
@@ -145,7 +155,14 @@ export function Footer() {
                         </a>
                       </p>
                     </div>
-                  )}
+                  )} */}
+                  {submitStatus === 'error' && (
+  <div className="text-center">
+    <p className="text-red-300 text-sm">
+      {errorMsg}
+    </p>
+  </div>
+)}
                 </form>
               )}
             </div>
