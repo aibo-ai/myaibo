@@ -32,7 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     res.status(200).json({ success: true });
   } catch (err) {
-    console.error(err)
+    console.error("Error:",err)
     res.status(500).json({ error: "Failed to send email" });
   }
 }
