@@ -38,7 +38,7 @@ export function Hero() {
               initial={false}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0 }}
-  className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12 lg:p-16 shadow-2xl max-w-[95vw] sm:max-w-2xl lg:max-w-3xl ml-0"
+  className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12 lg:p-16 shadow-2xl max-w-[95vw] sm:max-w-3xl lg:max-w-4xl ml-0"
             >
               {/* Main headline - SEO optimized H1
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-6 text-left">
@@ -46,17 +46,16 @@ export function Hero() {
               </h1> */}
 
               {/* Brand tagline */}
-  <div className="text-xl sm:text-2xl md:text-3xl lg:text-6xl font-bold tracking-tight leading-tight mb-6 sm:mb-8 text-left">
-                <span className="text-black font-bold">Elegant</span>{" "}
-                <span className="text-[#7c3bed] font-bold">
-                  AI-Powered Solutions
-                </span>
-              </div>
+  <div className="text-xl sm:text-2xl md:text-3xl lg:text-[42px] font-bold tracking-tight leading-tight mb-6 sm:mb-8 text-left line-clamp-2">
+    <span className="text-black font-bold">Custom AI Agents & Automations</span>
+    <br />
+    <span className="text-[#7c3bed] font-bold">Cut Costs, Scale Faster</span>
+  </div>
 
-              {/* Description */}
-  <p className="text-base sm:text-lg lg:text-2xl text-gray-800 leading-relaxed mb-6 sm:mb-10 text-left font-bold">
-                We harness the power of AI to create innovative solutions that deliver impactful and measurable improvements
-              </p>
+  {/* Description */}
+<p className="text-base sm:text-lg lg:text-[22px] text-gray-800 leading-relaxed mb-6 sm:mb-10 text-left font-bold line-clamp-2">
+    From repetitive processes to strategic operations—a complete AI workforce deployed quickly. No hiring headaches. Just performance.
+  </p>
 
               {/* CTA Button */}
               <div className="flex justify-start"

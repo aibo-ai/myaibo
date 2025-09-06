@@ -10,8 +10,8 @@ import { Container } from "@/components/ui/container"
 import { cn } from "@/lib/utils"
 
 const navigation = [
-	{ name: "Solutions", href: "/#solutions" },
-	{ name: "Success Stories", href: "/#case-studies" },
+	{ name: "Solutions", href: "#solutions" },
+	{ name: "Case Studies", href: "/#case-studies" },
 	{ name: "About Us", href: "/about" },
 	{ name: "Contact Us", href: "/contact" },
 ]

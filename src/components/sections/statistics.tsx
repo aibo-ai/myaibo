@@ -8,19 +8,19 @@ const stats = [
   {
     icon: TrendingUp,
     value: "+47%",
-    label: "Uptick in conversions",
+    label: "Efficiency Improvement",
     gradient: "from-purple-500 to-purple-600"
   },
   {
     icon: DollarSign,
-    value: "32%",
-    label: "Cost reduction",
+    value: "-32%",
+    label: "Expense Reduction",
     gradient: "from-purple-600 to-purple-700"
   },
   {
     icon: Zap,
     value: "+56%",
-    label: "Performance Uptick",
+    label: "Productivity Increase",
     gradient: "from-purple-700 to-purple-800"
   },
   {
@@ -58,7 +58,7 @@ export function Statistics() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-lg text-[#7c3bed] max-w-4xl mx-auto text-justify leading-relaxed"
+            className="text-lg text-white max-w-4xl mx-auto text-justify leading-relaxed"
           >
             Real results from real clients. See the measurable impact our AI solutions have delivered across diverse industries and business models.
           </motion.p>
@@ -79,14 +79,14 @@ export function Statistics() {
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Enhanced Icon */}
-                <div className={`relative inline-flex items-center justify-center w-20 h-20 rounded-2xl`} style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }}>
-                  <stat.icon className="w-10 h-10 text-white" />
-                  {/* Icon glow */}
-                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 blur-lg scale-110 transition-all duration-300" style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }} />
-                </div>
+              <div className={`relative inline-flex items-center justify-center w-16 h-16 rounded-2xl`} style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }}>
+                <stat.icon className="w-8 h-8 text-white" />
+                {/* Icon glow */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 blur-lg scale-110 transition-all duration-300" style={{ background: "linear-gradient(to right, #7c3bed, #7c3bed)" }} />
+              </div>
 
                 {/* Enhanced Value */}
-                <div className="text-4xl md:text-5xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                <div className="text-4xl md:text-5xl font-bold mb-4 mt-4" style={{ color: "#7c3bed" }}>
                   {stat.value}
                 </div>
 
