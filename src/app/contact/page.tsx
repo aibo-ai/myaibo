@@ -23,32 +23,37 @@ export default function Contact() {
   const [result, setResult] = useState("")
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setResult("Sending....")
-    const formData = new FormData(event.target as HTMLFormElement)
+  event.preventDefault();
+  setResult("Sending....");
+  const formData = new FormData(event.target as HTMLFormElement);
 
-    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "")
+  const payload = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    company: formData.get("company"),
+    message: formData.get("message"),
+  };
 
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-      })
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
 
-      const data = await response.json()
+    const data = await response.json();
 
-      if (data.success) {
-        setResult("Thank you for your interest. We'll get back to you soon")
-        ;(event.target as HTMLFormElement).reset()
-      } else {
-        console.log("Error", data)
-        setResult(data.message)
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error)
-      setResult("An error occurred. Please try again.")
+    if (data.success) {
+      setResult("Thank you for your interest. We'll get back to you soon");
+      (event.target as HTMLFormElement).reset();
+    } else {
+      setResult(data.message || "An error occurred. Please try again.");
     }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    setResult("An error occurred. Please try again.");
   }
+};
 
   return (
     <div className="min-h-screen">
