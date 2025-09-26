@@ -54,7 +54,7 @@ export function Hero() {
 
   {/* Description */}
 <p className="text-base sm:text-lg lg:text-[22px] text-gray-800 leading-relaxed mb-6 sm:mb-10 text-left font-bold line-clamp-2">
-    From repetitive processes to strategic operations—a complete AI workforce deployed quickly. No hiring headaches. Just performance.
+    From repetitive processes to strategic solutions - a complete AI workforce. No hiring headaches. Just performance.
   </p>
 
               {/* CTA Button */}

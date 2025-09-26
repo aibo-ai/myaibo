@@ -48,7 +48,10 @@ export function TransformationProcess() {
             style={{ color: "#7c3bed" }}>
               Transform
             </span>{" "}
-            Your Business with AI
+            our{" "}<span className="bg-gradient-to-rs bg-clip-text text-transparent"
+            style={{ color: "#7c3bed" }}>
+              Services
+            </span>{" "}with AI
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -57,7 +60,6 @@ export function TransformationProcess() {
             viewport={{ once: true }}
             className="text-lg text-gray-600 max-w-4xl mx-auto text-center leading-relaxed"
           >
-            Our proven 4-step methodology ensures successful AI implementation from concept to deployment.
             Each phase is carefully designed to minimize risk while maximizing value, ensuring your business
             transformation is both strategic and sustainable.
           </motion.p>
