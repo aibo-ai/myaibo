@@ -123,32 +123,12 @@ export default function FullStackPage() {
                 <p className="text-gray-600 mb-4 text-sm">
                   Intelligent applications that leverage machine learning and natural language processing to deliver exceptional user experiences and business value.
                 </p>
-                <div className="space-y-3 flex-1">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Conversational AI</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Context-aware chatbots with multi-turn dialogue, sentiment analysis, and multilingual support
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Smart Search</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Semantic search engines with natural language queries, filters, and personalized rankings
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Recommendation Systems</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Real-time personalization for products, content, and user experiences
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Predictive Analytics</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Forecasting models for demand planning, customer behavior, and operational insights
-                    </p>
-                  </div>
-                </div>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>Conversational AI</strong></li>
+                  <li>• <strong>Smart Search</strong></li>
+                  <li>• <strong>Recommendation Systems</strong></li>
+                  <li>• <strong>Predictive Analytics</strong></li>
+                </ul>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
@@ -158,32 +138,12 @@ export default function FullStackPage() {
                 <p className="text-gray-600 mb-4 text-sm">
                   Scalable, resilient microservices architecture with embedded AI capabilities designed for high availability and rapid iteration.
                 </p>
-                <div className="space-y-3 flex-1">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Containerized AI Services</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Docker and Kubernetes orchestration for ML model deployment and scaling
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Event-Driven Architecture</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Real-time data processing with message queues and streaming pipelines
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">API Gateway Management</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Secure, rate-limited APIs with authentication and monitoring
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Serverless AI Functions</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Cost-effective, auto-scaling inference endpoints on AWS Lambda and Azure Functions
-                    </p>
-                  </div>
-                </div>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>Containerized AI Services</strong></li>
+                  <li>• <strong>Event-Driven Architecture</strong></li>
+                  <li>• <strong>API Gateway Management</strong></li>
+                  <li>• <strong>Serverless AI Functions</strong></li>
+                </ul>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
@@ -193,32 +153,12 @@ export default function FullStackPage() {
                 <p className="text-gray-600 mb-4 text-sm">
                   Seamless connectivity between AI systems and existing enterprise infrastructure for unified data flow and automation.
                 </p>
-                <div className="space-y-3 flex-1">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">CRM/ERP Connectors</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Bi-directional sync with Salesforce, SAP, Oracle, and Microsoft Dynamics
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Payment & Finance APIs</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Secure integration with Stripe, PayPal, and banking systems
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Data Warehouse Integration</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      ETL pipelines connecting to Snowflake, Redshift, and BigQuery
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Third-Party AI Services</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Orchestration of multiple AI providers for enhanced capabilities
-                    </p>
-                  </div>
-                </div>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>CRM/ERP Connectors</strong></li>
+                  <li>• <strong>Payment & Finance APIs</strong></li>
+                  <li>• <strong>Data Warehouse Integration</strong></li>
+                  <li>• <strong>Third-Party AI Services</strong></li>
+                </ul>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
@@ -228,32 +168,12 @@ export default function FullStackPage() {
                 <p className="text-gray-600 mb-4 text-sm">
                   Multi-tenant SaaS solutions with AI-driven personalization, analytics, and automated workflows tailored to your business model.
                 </p>
-                <div className="space-y-3 flex-1">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">AI-Personalized Dashboards</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Dynamic interfaces that adapt to user roles, preferences, and usage patterns
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Subscription Management</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Flexible billing, tiered pricing, and usage-based monetization
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Multi-Tenancy Architecture</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Secure data isolation with shared infrastructure for cost efficiency
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Admin & Analytics Portals</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Comprehensive tools for user management, reporting, and business intelligence
-                    </p>
-                  </div>
-                </div>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>AI-Personalized Dashboards</strong></li>
+                  <li>• <strong>Subscription Management</strong></li>
+                  <li>• <strong>Multi-Tenancy Architecture</strong></li>
+                  <li>• <strong>Admin & Analytics Portals</strong></li>
+                </ul>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
@@ -263,32 +183,12 @@ export default function FullStackPage() {
                 <p className="text-gray-600 mb-4 text-sm">
                   End-to-end automation for continuous integration, deployment, and model lifecycle management to accelerate delivery and maintain quality.
                 </p>
-                <div className="space-y-3 flex-1">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">CI/CD Pipelines</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Automated testing, building, and deployment with GitLab, Jenkins, and GitHub Actions
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Model Retraining Automation</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Scheduled and trigger-based model updates with performance monitoring
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Infrastructure as Code</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Terraform and CloudFormation for reproducible, version-controlled environments
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Monitoring & Alerting</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Real-time performance tracking with Prometheus, Grafana, and custom dashboards
-                    </p>
-                  </div>
-                </div>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>CI/CD Pipelines</strong></li>
+                  <li>• <strong>Model Retraining Automation</strong></li>
+                  <li>• <strong>Infrastructure as Code</strong></li>
+                  <li>• <strong>Monitoring & Alerting</strong></li>
+                </ul>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
@@ -298,32 +198,12 @@ export default function FullStackPage() {
                 <p className="text-gray-600 mb-4 text-sm">
                   Cross-platform applications with native-like experiences, offline capabilities, and integrated AI features for iOS, Android, and web.
                 </p>
-                <div className="space-y-3 flex-1">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">React Native & Flutter</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Single codebase for iOS and Android with native performance
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Progressive Web Apps</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      Fast, installable web apps with offline support and push notifications
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">On-Device AI</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      TensorFlow Lite and Core ML for privacy-preserving, low-latency inference
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1 text-sm">Real-Time Sync</h4>
-                    <p className="text-gray-600 text-xs leading-relaxed">
-                      WebSocket connections for instant updates and collaborative features
-                    </p>
-                  </div>
-                </div>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>React Native & Flutter</strong></li>
+                  <li>• <strong>Progressive Web Apps</strong></li>
+                  <li>• <strong>On-Device AI</strong></li>
+                  <li>• <strong>Real-Time Sync</strong></li>
+                </ul>
               </div>
             </div>
           </Container>

@@ -66,36 +66,88 @@ export default function AIMLPage() {
             </div>
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               <div className="bg-white p-8 rounded-lg shadow-lg border">
-                <h3 className="text-2xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Cost-Effective Automation
-                </h3>
-                <p className="text-gray-600">
-                  Reduce overhead with AI-powered process automation for support, operations, marketing, & more.
-                </p>
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0">
+                    <Image
+                      src="/cost-effective.png"
+                      alt="Cost Effective Automation Icon"
+                      width={48}
+                      height={48}
+                      className="rounded-lg"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                      Cost-Effective Automation
+                    </h3>
+                    <p className="text-gray-600">
+                      Reduce overhead with AI-powered process automation for support, operations, marketing, & more.
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
-                <h3 className="text-2xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Smarter Decisions
-                </h3>
-                <p className="text-gray-600">
-                  Predictive models provide actionable insights for demand planning, risk analysis, and personalized offers.
-                </p>
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0">
+                    <Image
+                      src="/smarter-decisions.png"
+                      alt="Smart Decisions Icon"
+                      width={48}
+                      height={48}
+                      className="rounded-lg"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                      Smarter Decisions
+                    </h3>
+                    <p className="text-gray-600">
+                      Predictive models provide actionable insights for demand planning, risk analysis, and personalized offers.
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
-                <h3 className="text-2xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Enhanced User Experience
-                </h3>
-                <p className="text-gray-600">
-                  Intelligent chatbots, recommendation engines, and NLP elevate digital engagement and retention.
-                </p>
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0">
+                    <Image
+                      src="/user-experience.png"
+                      alt="Enhanced User Experience Icon"
+                      width={48}
+                      height={48}
+                      className="rounded-lg"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                      Enhanced User Experience
+                    </h3>
+                    <p className="text-gray-600">
+                      Intelligent chatbots, recommendation engines, and NLP elevate digital engagement and retention.
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
-                <h3 className="text-2xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Competitive Edge
-                </h3>
-                <p className="text-gray-600">
-                  Custom machine learning lets you act faster, adapt instantly, and scale without manual limits.
-                </p>
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0">
+                    <Image
+                      src="/competetive-edge.png"
+                      alt="Competitive Edge Icon"
+                      width={48}
+                      height={48}
+                      className="rounded-lg"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                      Competitive Edge
+                    </h3>
+                    <p className="text-gray-600">
+                      Custom machine learning lets you act faster, adapt instantly, and scale without manual limits.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </Container>
