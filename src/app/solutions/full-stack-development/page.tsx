@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { Container } from "@/components/ui/container";
@@ -18,21 +19,38 @@ export default function FullStackPage() {
         {/* Hero Section */}
         <section className="py-16 lg:py-24 bg-gradient-to-br from-purple-50 to-blue-50">
           <Container>
-            <div className="text-center mb-16">
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                End-to-End Customized Full Stack Development, Tailored for Your Growth
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto mb-8">
-                Build web and mobile platforms with embedded AI features—automation, smart personalization, predictive analytics—plus future-ready functionality, speed, and scalability.
-              </p>
-              <div className="flex justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"
-                  asChild
-                >
-                  <a href="/contact">Get Started Today</a>
-                </Button>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Full Stack Illustration */}
+              <div className="order-2 lg:order-1">
+                <div className="relative">
+                  <Image
+                    src="/fullstack-hero-illustration.jpg"
+                    alt="Full Stack Development Illustration showing web and mobile development with AI integration"
+                    width={600}
+                    height={400}
+                    className="rounded-lg shadow-lg"
+                    priority
+                  />
+                </div>
+              </div>
+              
+              {/* Text Content */}
+              <div className="order-1 lg:order-2 text-center lg:text-left">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                  End-to-End Customized Full Stack Development, Tailored for Your Growth
+                </h1>
+                <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
+                  Build web and mobile platforms with embedded AI features—automation, smart personalization, predictive analytics—plus future-ready functionality, speed, and scalability.
+                </p>
+                <div className="flex justify-center lg:justify-start">
+                  <Button 
+                    size="lg" 
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"
+                    asChild
+                  >
+                    <a href="/contact">Get Started Today</a>
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>

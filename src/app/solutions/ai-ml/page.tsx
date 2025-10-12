@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { Container } from "@/components/ui/container";
@@ -18,21 +19,38 @@ export default function AIMLPage() {
         {/* Hero Section */}
         <section className="py-16 lg:py-24 bg-gradient-to-br from-purple-50 to-blue-50">
           <Container>
-            <div className="text-center mb-16">
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                Transform Your Business with AI and Machine Learning
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto mb-8">
-                Unlock automation, deep insights, and growth with enterprise-grade AI & ML solutions—built, deployed, and optimized by experts who understand your industry's challenges.
-              </p>
-              <div className="flex justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"
-                  asChild
-                >
-                  <a href="/contact">Book a Strategy Session</a>
-                </Button>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* AI Illustration */}
+              <div className="order-2 lg:order-1">
+                <div className="relative">
+                  <Image
+                    src="/ai-hero-illustration.jpg"
+                    alt="AI and Machine Learning Illustration showing neural networks, AI processing, and human interaction with technology"
+                    width={600}
+                    height={400}
+                    className="rounded-lg shadow-lg"
+                    priority
+                  />
+                </div>
+              </div>
+              
+              {/* Text Content */}
+              <div className="order-1 lg:order-2 text-center lg:text-left">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                  Transform Your Business with AI and Machine Learning
+                </h1>
+                <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
+                  Unlock automation, deep insights, and growth with enterprise-grade AI & ML solutions—built, deployed, and optimized by experts who understand your industry's challenges.
+                </p>
+                <div className="flex justify-center lg:justify-start">
+                  <Button 
+                    size="lg" 
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"
+                    asChild
+                  >
+                    <a href="/contact">Book a Strategy Session</a>
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>
@@ -80,21 +98,23 @@ export default function AIMLPage() {
                 </p>
               </div>
             </div>
-            
-            {/* Proof/Statistics Box */}
-            <div className="flex justify-center">
-              <div className="bg-white p-6 rounded-lg shadow-lg border">
-                <p className="text-lg font-semibold text-gray-800 text-center">
-                  <span className="text-purple-600 font-bold">25+ projects</span> delivered across financial, retail, and SaaS
-                </p>
-                <p className="text-gray-600 text-center">Partnered with leading AI platforms</p>
-              </div>
+          </Container>
+        </section>
+
+        {/* Proof/Statistics Section */}
+        <section className="py-16 lg:py-24 bg-gray-50">
+          <Container>
+            <div className="text-center">
+              <p className="text-6xl lg:text-8xl font-bold text-gray-800 leading-tight">
+                <span className="text-purple-600">25+ projects</span> delivered across financial, retail, and SaaS
+              </p>
+              <p className="text-2xl lg:text-3xl text-gray-600 mt-4">Partnered with leading AI platforms</p>
             </div>
           </Container>
         </section>
 
         {/* What We Deliver */}
-        <section className="py-16 lg:py-24 bg-gray-50">
+        <section className="py-16 lg:py-24">
           <Container>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
@@ -107,74 +127,37 @@ export default function AIMLPage() {
                   <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
                     Custom AI Solutions
                   </h3>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">AI-powered workflows</h4>
-                      <p className="text-gray-600 text-sm">
-                        Transform time-sensitive, repetitive tasks into streamlined automated processes that boost productivity and reduce operational costs
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Chatbots & virtual assistants</h4>
-                      <p className="text-gray-600 text-sm">
-                        Multilingual conversational AI with enterprise-level support, natural language understanding, and seamless customer engagement
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Recommendation engines</h4>
-                      <p className="text-gray-600 text-sm">
-                        Advanced personalization systems for upselling, cross-selling, and targeted content delivery that increase conversion rates
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Computer vision solutions</h4>
-                      <p className="text-gray-600 text-sm">
-                        Image recognition, object detection, and visual quality control systems for manufacturing and retail applications
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Predictive analytics</h4>
-                      <p className="text-gray-600 text-sm">
-                        Forecasting models for demand prediction, customer churn, maintenance scheduling, and business intelligence
-                      </p>
-                    </div>
-                  </div>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• <strong>AI-powered workflows</strong></li>
+                    <li>• <strong>Chatbots & virtual assistants</strong></li>
+                    <li>• <strong>Recommendation engines</strong></li>
+                    <li>• <strong>Computer vision solutions</strong></li>
+                    <li>• <strong>Predictive analytics</strong></li>
+                  </ul>
                 </div>
 
                 <div className="bg-white p-8 rounded-lg shadow-lg border">
-                  <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                    ML Model Development
-                  </h3>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Data preparation & feature engineering</h4>
-                      <p className="text-gray-600 text-sm">
-                        Comprehensive data cleaning, transformation, and feature extraction to build high-quality training datasets
-                      </p>
+                  <div className="grid lg:grid-cols-2 gap-8 items-center">
+                    <div className="order-2 lg:order-1">
+                      <Image
+                        src="/ML-Development.jpg"
+                        alt="ML Model Development Illustration"
+                        width={400}
+                        height={300}
+                        className="rounded-lg shadow-md"
+                      />
                     </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Supervised & unsupervised training</h4>
-                      <p className="text-gray-600 text-sm">
-                        Classification, regression, clustering, and anomaly detection models tailored to your specific use cases
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Scalable model deployment</h4>
-                      <p className="text-gray-600 text-sm">
-                        Production-ready deployment on AWS, Azure, and GCP with auto-scaling, load balancing, and high availability
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Performance monitoring & retraining</h4>
-                      <p className="text-gray-600 text-sm">
-                        Continuous model evaluation, drift detection, and automated retraining pipelines for sustained accuracy
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Model optimization & compression</h4>
-                      <p className="text-gray-600 text-sm">
-                        Quantization, pruning, and distillation techniques to reduce inference costs and improve response times
-                      </p>
+                    <div className="order-1 lg:order-2">
+                      <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                        ML Model Development
+                      </h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li>• <strong>Data preparation & feature engineering</strong></li>
+                        <li>• <strong>Supervised & unsupervised training</strong></li>
+                        <li>• <strong>Scalable model deployment</strong></li>
+                        <li>• <strong>Performance monitoring & retraining</strong></li>
+                        <li>• <strong>Model optimization & compression</strong></li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -182,39 +165,27 @@ export default function AIMLPage() {
 
               <div className="space-y-8">
                 <div className="bg-white p-8 rounded-lg shadow-lg border">
-                  <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                    AI Platform Integration
-                  </h3>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">CRM & ERP integration</h4>
-                      <p className="text-gray-600 text-sm">
-                        Connect AI capabilities with Salesforce, HubSpot, SAP, and other enterprise systems for unified workflows
-                      </p>
+                  <div className="grid lg:grid-cols-2 gap-8 items-center">
+                    <div className="order-2 lg:order-1">
+                      <Image
+                        src="/AI-platform-integration.jpg"
+                        alt="AI Platform Integration Illustration"
+                        width={400}
+                        height={300}
+                        className="rounded-lg shadow-md"
+                      />
                     </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Marketing platform connectivity</h4>
-                      <p className="text-gray-600 text-sm">
-                        Integrate with email marketing, social media management, and advertising platforms for AI-driven campaigns
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Third-party API orchestration</h4>
-                      <p className="text-gray-600 text-sm">
-                        Seamlessly connect multiple AI services, payment gateways, and data sources through robust API architecture
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Legacy system modernization</h4>
-                      <p className="text-gray-600 text-sm">
-                        Add AI capabilities to existing applications without complete system overhauls using microservices architecture
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Real-time data synchronization</h4>
-                      <p className="text-gray-600 text-sm">
-                        Bi-directional data flow between AI systems and business applications for up-to-date insights and actions
-                      </p>
+                    <div className="order-1 lg:order-2">
+                      <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                        AI Platform Integration
+                      </h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li>• <strong>CRM & ERP integration</strong></li>
+                        <li>• <strong>Marketing platform connectivity</strong></li>
+                        <li>• <strong>Third-party API orchestration</strong></li>
+                        <li>• <strong>Legacy system modernization</strong></li>
+                        <li>• <strong>Real-time data synchronization</strong></li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -223,38 +194,13 @@ export default function AIMLPage() {
                   <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
                     Consulting & Strategy
                   </h3>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Use case discovery & prioritization</h4>
-                      <p className="text-gray-600 text-sm">
-                        Identify high-impact AI opportunities aligned with your business objectives and technical capabilities
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">ROI calculation & feasibility analysis</h4>
-                      <p className="text-gray-600 text-sm">
-                        Data-driven business cases with cost-benefit analysis, implementation timelines, and expected returns
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">AI roadmap creation</h4>
-                      <p className="text-gray-600 text-sm">
-                        Strategic implementation plans with phased rollouts, resource allocation, and success metrics
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Technology stack assessment</h4>
-                      <p className="text-gray-600 text-sm">
-                        Evaluate your current infrastructure and recommend optimal tools, platforms, and architectures for AI adoption
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Team enablement & training</h4>
-                      <p className="text-gray-600 text-sm">
-                        Upskill your workforce with hands-on training, best practices, and knowledge transfer for AI solution maintenance
-                      </p>
-                    </div>
-                  </div>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• <strong>Use case discovery & prioritization</strong></li>
+                    <li>• <strong>ROI calculation & feasibility analysis</strong></li>
+                    <li>• <strong>AI roadmap creation</strong></li>
+                    <li>• <strong>Technology stack assessment</strong></li>
+                    <li>• <strong>Team enablement & training</strong></li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -336,10 +282,10 @@ export default function AIMLPage() {
                   Enterprise-grade cloud infrastructure for scalable AI deployment and hosting
                 </p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>OpenAI, Ollama</strong> - Advanced language models and AI APIs</li>
-                  <li>• <strong>Google Vertex AI</strong> - Unified ML platform for model training and deployment</li>
-                  <li>• <strong>Amazon SageMaker</strong> - End-to-end ML development and deployment</li>
-                  <li>• <strong>Azure Cognitive Services</strong> - Pre-built AI models and custom solutions</li>
+                  <li>• <strong>OpenAI, Ollama, Claude, Mistral</strong></li>
+                  <li>• <strong>Google Vertex AI</strong></li>
+                  <li>• <strong>Amazon SageMaker</strong></li>
+                  <li>• <strong>Azure Cognitive Services</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -350,10 +296,10 @@ export default function AIMLPage() {
                   Industry-leading frameworks for building and training machine learning models
                 </p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>TensorFlow, PyTorch</strong> - Deep learning and neural network development</li>
-                  <li>• <strong>Scikit-learn, Keras</strong> - Classical ML algorithms and rapid prototyping</li>
-                  <li>• <strong>XGBoost, LightGBM</strong> - Gradient boosting for structured data</li>
-                  <li>• <strong>Hugging Face Transformers</strong> - State-of-the-art NLP models</li>
+                  <li>• <strong>TensorFlow, PyTorch</strong></li>
+                  <li>• <strong>Scikit-learn, Keras</strong></li>
+                  <li>• <strong>XGBoost, LightGBM</strong></li>
+                  <li>• <strong>Hugging Face Transformers</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -364,10 +310,10 @@ export default function AIMLPage() {
                   Automated deployment pipelines and infrastructure management for ML systems
                 </p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>Docker, Kubernetes</strong> - Containerization and orchestration</li>
-                  <li>• <strong>MLflow, Jenkins</strong> - Model tracking and CI/CD automation</li>
-                  <li>• <strong>Terraform</strong> - Infrastructure as code for cloud resources</li>
-                  <li>• <strong>Prometheus, Grafana</strong> - Monitoring and performance tracking</li>
+                  <li>• <strong>Docker, Kubernetes</strong></li>
+                  <li>• <strong>MLflow, Jenkins</strong></li>
+                  <li>• <strong>Terraform</strong></li>
+                  <li>• <strong>Prometheus, Grafana</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -378,10 +324,10 @@ export default function AIMLPage() {
                   Versatile programming expertise for AI development and integration
                 </p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>Python</strong> - Primary language for ML/AI development and data science</li>
-                  <li>• <strong>Go</strong> - High-performance microservices and backend systems</li>
-                  <li>• <strong>Java</strong> - Enterprise applications and large-scale systems</li>
-                  <li>• <strong>JavaScript/TypeScript</strong> - Full-stack web applications and APIs</li>
+                  <li>• <strong>Python</strong></li>
+                  <li>• <strong>Go</strong></li>
+                  <li>• <strong>Java</strong></li>
+                  <li>• <strong>JavaScript/TypeScript</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -392,10 +338,10 @@ export default function AIMLPage() {
                   Robust data engineering solutions for processing and managing large-scale datasets
                 </p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>Apache Airflow</strong> - Workflow orchestration and task scheduling</li>
-                  <li>• <strong>AWS Glue</strong> - Serverless ETL and data catalog services</li>
-                  <li>• <strong>GCP Dataflow</strong> - Stream and batch data processing</li>
-                  <li>• <strong>Databricks</strong> - Unified analytics platform for big data</li>
+                  <li>• <strong>Apache Airflow</strong></li>
+                  <li>• <strong>AWS Glue</strong></li>
+                  <li>• <strong>GCP Dataflow</strong></li>
+                  <li>• <strong>Databricks</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -406,11 +352,11 @@ export default function AIMLPage() {
                   Specialized infrastructure components essential for production AI systems
                 </p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>Vector Databases</strong> - Pinecone, Weaviate, Qdrant for semantic search</li>
-                  <li>• <strong>Model Serving</strong> - TensorFlow Serving, TorchServe, NVIDIA Triton</li>
-                  <li>• <strong>Feature Stores</strong> - Feast, Tecton for ML feature management</li>
-                  <li>• <strong>Experiment Tracking</strong> - Weights & Biases, Neptune.ai</li>
-                  <li>• <strong>Data Labeling</strong> - Label Studio, Scale AI for training data</li>
+                  <li>• <strong>Vector Databases</strong></li>
+                  <li>• <strong>Model Serving</strong></li>
+                  <li>• <strong>Feature Stores</strong></li>
+                  <li>• <strong>Experiment Tracking</strong></li>
+                  <li>• <strong>Data Labeling</strong></li>
                 </ul>
               </div>
             </div>
