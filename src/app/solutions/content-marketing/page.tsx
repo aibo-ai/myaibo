@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { Container } from "@/components/ui/container";
@@ -18,24 +19,35 @@ export default function ContentMarketingPage() {
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-16 lg:py-24">
           <Container>
-            <div className="text-center mb-16">
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                Content Marketing That Actually Converts
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-                Build a content engine that generates qualified leads (B2B) or drives sales (D2C). Stop publishing into the void.
-              </p>
-              <div className="flex justify-center mb-8">
-                <div className="bg-white p-6 rounded-lg shadow-lg border">
-                  <p className="text-lg font-semibold text-gray-800">
-                    <span className="text-purple-600 font-bold">210% avg. engagement increase</span>
-                  </p>
-                </div>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/content.jpg"
+                  alt="Content Marketing Illustration"
+                  width={600}
+                  height={400}
+                  className="rounded-lg shadow-lg"
+                />
               </div>
-              <div className="flex justify-center">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold">
-                  Audit Your Content
-                </Button>
+              <div className="order-1 lg:order-2 text-center lg:text-left">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                  Content Marketing That Actually Converts
+                </h1>
+                <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed mb-8">
+                  Build a content engine that generates qualified leads (B2B) or drives sales (D2C). Stop publishing into the void.
+                </p>
+                <div className="flex justify-center lg:justify-start mb-8">
+                  <div className="bg-white p-6 rounded-lg shadow-lg border">
+                    <p className="text-lg font-semibold text-gray-800">
+                      <span className="text-purple-600 font-bold">210% avg. engagement increase</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-center lg:justify-start">
+                  <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold">
+                    Audit Your Content
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>

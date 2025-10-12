@@ -79,7 +79,16 @@ export default function FullStackPage() {
               </h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-lg shadow-lg border">
+              <div className="bg-white p-8 rounded-lg shadow-lg border text-center">
+                <div className="flex justify-center mb-6">
+                  <Image
+                    src="/strategy.png"
+                    alt="Discovery & Strategy Icon"
+                    width={64}
+                    height={64}
+                    className="rounded-lg"
+                  />
+                </div>
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   Discovery & Strategy
                 </h3>
@@ -87,7 +96,16 @@ export default function FullStackPage() {
                   Business and AI architecture mapping
                 </p>
               </div>
-              <div className="bg-white p-8 rounded-lg shadow-lg border">
+              <div className="bg-white p-8 rounded-lg shadow-lg border text-center">
+                <div className="flex justify-center mb-6">
+                  <Image
+                    src="/full-stack.png"
+                    alt="Full Stack & AI Engineering Icon"
+                    width={64}
+                    height={64}
+                    className="rounded-lg"
+                  />
+                </div>
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   Full Stack & AI Engineering
                 </h3>
@@ -95,7 +113,16 @@ export default function FullStackPage() {
                   Complete development with embedded AI features
                 </p>
               </div>
-              <div className="bg-white p-8 rounded-lg shadow-lg border">
+              <div className="bg-white p-8 rounded-lg shadow-lg border text-center">
+                <div className="flex justify-center mb-6">
+                  <Image
+                    src="/delivery.png"
+                    alt="Delivery & Optimization Icon"
+                    width={64}
+                    height={64}
+                    className="rounded-lg"
+                  />
+                </div>
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   Delivery & Optimization
                 </h3>

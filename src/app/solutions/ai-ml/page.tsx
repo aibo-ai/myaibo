@@ -176,16 +176,29 @@ export default function AIMLPage() {
             <div className="grid lg:grid-cols-2 gap-12">
               <div className="space-y-8">
                 <div className="bg-white p-8 rounded-lg shadow-lg border">
-                  <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                    Custom AI Solutions
-                  </h3>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• <strong>AI-powered workflows</strong></li>
-                    <li>• <strong>Chatbots & virtual assistants</strong></li>
-                    <li>• <strong>Recommendation engines</strong></li>
-                    <li>• <strong>Computer vision solutions</strong></li>
-                    <li>• <strong>Predictive analytics</strong></li>
-                  </ul>
+                  <div className="grid lg:grid-cols-2 gap-8 items-center">
+                    <div className="order-2 lg:order-1">
+                      <Image
+                        src="/Custom-AI.jpeg"
+                        alt="Custom AI Solutions Illustration"
+                        width={400}
+                        height={300}
+                        className="rounded-lg shadow-md"
+                      />
+                    </div>
+                    <div className="order-1 lg:order-2">
+                      <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                        Custom AI Solutions
+                      </h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li>• <strong>AI-powered workflows</strong></li>
+                        <li>• <strong>Chatbots & virtual assistants</strong></li>
+                        <li>• <strong>Recommendation engines</strong></li>
+                        <li>• <strong>Computer vision solutions</strong></li>
+                        <li>• <strong>Predictive analytics</strong></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -243,16 +256,29 @@ export default function AIMLPage() {
                 </div>
 
                 <div className="bg-white p-8 rounded-lg shadow-lg border">
-                  <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                    Consulting & Strategy
-                  </h3>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• <strong>Use case discovery & prioritization</strong></li>
-                    <li>• <strong>ROI calculation & feasibility analysis</strong></li>
-                    <li>• <strong>AI roadmap creation</strong></li>
-                    <li>• <strong>Technology stack assessment</strong></li>
-                    <li>• <strong>Team enablement & training</strong></li>
-                  </ul>
+                  <div className="grid lg:grid-cols-2 gap-8 items-center">
+                    <div className="order-2 lg:order-1">
+                      <Image
+                        src="/AI-Strategy.jpeg"
+                        alt="AI Consulting & Strategy Illustration"
+                        width={400}
+                        height={300}
+                        className="rounded-lg shadow-md"
+                      />
+                    </div>
+                    <div className="order-1 lg:order-2">
+                      <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                        Consulting & Strategy
+                      </h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li>• <strong>Use case discovery & prioritization</strong></li>
+                        <li>• <strong>ROI calculation & feasibility analysis</strong></li>
+                        <li>• <strong>AI roadmap creation</strong></li>
+                        <li>• <strong>Technology stack assessment</strong></li>
+                        <li>• <strong>Team enablement & training</strong></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
