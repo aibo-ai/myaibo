@@ -37,7 +37,7 @@ export default function FullStackPage() {
               {/* Text Content */}
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                  End-to-End Customized Full Stack Development, Tailored for Your Growth
+                  End-to-End Custom Full Stack Development for Your Growth
                 </h1>
                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
                   Build web and mobile platforms with embedded AI features—automation, smart personalization, predictive analytics—plus future-ready functionality, speed, and scalability.
@@ -48,7 +48,7 @@ export default function FullStackPage() {
                     className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"
                     asChild
                   >
-                    <a href="/contact">Get Started Today</a>
+                    <a href="https://outlook.office365.com/book/MyAiboConsultation@myaibo.in/?ismsaljsauthenabled=true">Book Strategy session</a>
                   </Button>
                 </div>
               </div>
@@ -70,8 +70,92 @@ export default function FullStackPage() {
           </Container>
         </section>
 
-        {/* Our Approach */}
+        {/* Solutions We Build */}
         <section className="py-16 lg:py-24 bg-gray-50">
+          <Container>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                Solutions We Build
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
+                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                  AI-Powered Applications
+                </h3>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>Conversational AI</strong></li>
+                  <li>• <strong>Smart Search</strong></li>
+                  <li>• <strong>Recommendation Systems</strong></li>
+                  <li>• <strong>Predictive Analytics</strong></li>
+                </ul>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
+                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                  Cloud-Native + AI Microservices
+                </h3>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>Containerized AI Services</strong></li>
+                  <li>• <strong>Event-Driven Architecture</strong></li>
+                  <li>• <strong>API Gateway Management</strong></li>
+                  <li>• <strong>Serverless AI Functions</strong></li>
+                </ul>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
+                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                  Enterprise API Integration
+                </h3>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>CRM/ERP Connectors</strong></li>
+                  <li>• <strong>Payment & Finance APIs</strong></li>
+                  <li>• <strong>Data Warehouse Integration</strong></li>
+                  <li>• <strong>Third-Party AI Services</strong></li>
+                </ul>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
+                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                  Custom SaaS Platforms
+                </h3>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>AI-Personalized Dashboards</strong></li>
+                  <li>• <strong>Subscription Management</strong></li>
+                  <li>• <strong>Multi-Tenancy Architecture</strong></li>
+                  <li>• <strong>Admin & Analytics Portals</strong></li>
+                </ul>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
+                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                  DevOps & AI Ops Automation
+                </h3>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>CI/CD Pipelines</strong></li>
+                  <li>• <strong>Model Retraining Automation</strong></li>
+                  <li>• <strong>Infrastructure as Code</strong></li>
+                  <li>• <strong>Monitoring & Alerting</strong></li>
+                </ul>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
+                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
+                  Progressive Web & Mobile Apps
+                </h3>
+                <ul className="space-y-2 text-gray-600 flex-1">
+                  <li>• <strong>React Native & Flutter</strong></li>
+                  <li>• <strong>Progressive Web Apps</strong></li>
+                  <li>• <strong>On-Device AI</strong></li>
+                  <li>• <strong>Real-Time Sync</strong></li>
+                </ul>
+              </div>
+            </div>
+          </Container>
+        </section>
+
+        {/* Our Approach */}
+        <section className="py-16 lg:py-24">
           <Container>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
@@ -134,108 +218,6 @@ export default function FullStackPage() {
           </Container>
         </section>
 
-        {/* Solutions We Build */}
-        <section className="py-16 lg:py-24">
-          <Container>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                Solutions We Build
-              </h2>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
-                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  AI-Powered Applications
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Intelligent applications that leverage machine learning and natural language processing to deliver exceptional user experiences and business value.
-                </p>
-                <ul className="space-y-2 text-gray-600 flex-1">
-                  <li>• <strong>Conversational AI</strong></li>
-                  <li>• <strong>Smart Search</strong></li>
-                  <li>• <strong>Recommendation Systems</strong></li>
-                  <li>• <strong>Predictive Analytics</strong></li>
-                </ul>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
-                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Cloud-Native + AI Microservices
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Scalable, resilient microservices architecture with embedded AI capabilities designed for high availability and rapid iteration.
-                </p>
-                <ul className="space-y-2 text-gray-600 flex-1">
-                  <li>• <strong>Containerized AI Services</strong></li>
-                  <li>• <strong>Event-Driven Architecture</strong></li>
-                  <li>• <strong>API Gateway Management</strong></li>
-                  <li>• <strong>Serverless AI Functions</strong></li>
-                </ul>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
-                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Enterprise API Integration
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Seamless connectivity between AI systems and existing enterprise infrastructure for unified data flow and automation.
-                </p>
-                <ul className="space-y-2 text-gray-600 flex-1">
-                  <li>• <strong>CRM/ERP Connectors</strong></li>
-                  <li>• <strong>Payment & Finance APIs</strong></li>
-                  <li>• <strong>Data Warehouse Integration</strong></li>
-                  <li>• <strong>Third-Party AI Services</strong></li>
-                </ul>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
-                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Custom SaaS Platforms
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Multi-tenant SaaS solutions with AI-driven personalization, analytics, and automated workflows tailored to your business model.
-                </p>
-                <ul className="space-y-2 text-gray-600 flex-1">
-                  <li>• <strong>AI-Personalized Dashboards</strong></li>
-                  <li>• <strong>Subscription Management</strong></li>
-                  <li>• <strong>Multi-Tenancy Architecture</strong></li>
-                  <li>• <strong>Admin & Analytics Portals</strong></li>
-                </ul>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
-                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  DevOps & AI Ops Automation
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  End-to-end automation for continuous integration, deployment, and model lifecycle management to accelerate delivery and maintain quality.
-                </p>
-                <ul className="space-y-2 text-gray-600 flex-1">
-                  <li>• <strong>CI/CD Pipelines</strong></li>
-                  <li>• <strong>Model Retraining Automation</strong></li>
-                  <li>• <strong>Infrastructure as Code</strong></li>
-                  <li>• <strong>Monitoring & Alerting</strong></li>
-                </ul>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-lg border h-full flex flex-col">
-                <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Progressive Web & Mobile Apps
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Cross-platform applications with native-like experiences, offline capabilities, and integrated AI features for iOS, Android, and web.
-                </p>
-                <ul className="space-y-2 text-gray-600 flex-1">
-                  <li>• <strong>React Native & Flutter</strong></li>
-                  <li>• <strong>Progressive Web Apps</strong></li>
-                  <li>• <strong>On-Device AI</strong></li>
-                  <li>• <strong>Real-Time Sync</strong></li>
-                </ul>
-              </div>
-            </div>
-          </Container>
-        </section>
-
         {/* Tech Stack Expertise */}
         <section className="py-16 lg:py-24 bg-gray-50">
           <Container>
@@ -251,11 +233,11 @@ export default function FullStackPage() {
                   Frontend
                 </h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• React.js, Next.js, Vue.js</li>
-                  <li>• HTML5, CSS3, Tailwind CSS</li>
-                  <li>• TypeScript, JavaScript (ES6+)</li>
-                  <li>• Redux, Zustand, Context API</li>
-                  <li>• Material-UI, Ant Design, Chakra UI</li>
+                  <li>• <strong>React.js, Next.js, Vue.js</strong></li>
+                  <li>• <strong>HTML5, CSS3, Tailwind CSS</strong></li>
+                  <li>• <strong>TypeScript, JavaScript (ES6+)</strong></li>
+                  <li>• <strong>Redux, Zustand, Context API</strong></li>
+                  <li>• <strong>Material-UI, Ant Design, Chakra UI</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -263,11 +245,11 @@ export default function FullStackPage() {
                   Backend
                 </h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• Node.js, Express.js, Fastify</li>
-                  <li>• Python, Django, FastAPI</li>
-                  <li>• Java, Spring Boot</li>
-                  <li>• Go for high-performance services</li>
-                  <li>• GraphQL, REST APIs, gRPC</li>
+                  <li>• <strong>Node.js, Express.js, Fastify</strong></li>
+                  <li>• <strong>Python, Django, FastAPI</strong></li>
+                  <li>• <strong>Java, Spring Boot</strong></li>
+                  <li>• <strong>Go for high-performance services</strong></li>
+                  <li>• <strong>GraphQL, REST APIs, gRPC</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -275,11 +257,11 @@ export default function FullStackPage() {
                   Cloud & DevOps
                 </h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• AWS (EC2, Lambda, S3, RDS)</li>
-                  <li>• Google Cloud Platform (GCP)</li>
-                  <li>• Microsoft Azure</li>
-                  <li>• Docker, Kubernetes, Helm</li>
-                  <li>• Terraform, Ansible, CloudFormation</li>
+                  <li>• <strong>AWS (EC2, Lambda, S3, RDS)</strong></li>
+                  <li>• <strong>Google Cloud Platform (GCP)</strong></li>
+                  <li>• <strong>Microsoft Azure</strong></li>
+                  <li>• <strong>Docker, Kubernetes, Helm</strong></li>
+                  <li>• <strong>Terraform, Ansible, CloudFormation</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -287,11 +269,11 @@ export default function FullStackPage() {
                   Integration
                 </h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• REST/GraphQL APIs</li>
-                  <li>• OAuth 2.0, JWT authentication</li>
-                  <li>• Webhooks & event streaming</li>
-                  <li>• Third-party SDKs & libraries</li>
-                  <li>• Message queues (RabbitMQ, Kafka)</li>
+                  <li>• <strong>REST/GraphQL APIs</strong></li>
+                  <li>• <strong>OAuth 2.0, JWT authentication</strong></li>
+                  <li>• <strong>Webhooks & event streaming</strong></li>
+                  <li>• <strong>Third-party SDKs & libraries</strong></li>
+                  <li>• <strong>Message queues (RabbitMQ, Kafka)</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -299,11 +281,11 @@ export default function FullStackPage() {
                   Database
                 </h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• PostgreSQL, MySQL</li>
-                  <li>• MongoDB, DynamoDB</li>
-                  <li>• Redis for caching</li>
-                  <li>• Elasticsearch for search</li>
-                  <li>• Vector DBs (Pinecone, Weaviate)</li>
+                  <li>• <strong>PostgreSQL, MySQL</strong></li>
+                  <li>• <strong>MongoDB, DynamoDB</strong></li>
+                  <li>• <strong>Redis for caching</strong></li>
+                  <li>• <strong>Elasticsearch for search</strong></li>
+                  <li>• <strong>Vector DBs (Pinecone, Weaviate)</strong></li>
                 </ul>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg border">
@@ -311,23 +293,23 @@ export default function FullStackPage() {
                   Data & Analytics
                 </h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• Apache Airflow, Dagster</li>
-                  <li>• Snowflake, BigQuery, Redshift</li>
-                  <li>• Pandas, NumPy, scikit-learn</li>
-                  <li>• Tableau, Looker, Power BI</li>
-                  <li>• ETL pipelines & data warehousing</li>
+                  <li>• <strong>Apache Airflow, Dagster</strong></li>
+                  <li>• <strong>Snowflake, BigQuery, Redshift</strong></li>
+                  <li>• <strong>Pandas, NumPy, scikit-learn</strong></li>
+                  <li>• <strong>Tableau, Looker, Power BI</strong></li>
+                  <li>• <strong>ETL pipelines & data warehousing</strong></li>
                 </ul>
               </div>
             </div>
           </Container>
         </section>
 
-        {/* Case Study */}
+        {/* Business Impact */}
         <section className="py-16 lg:py-24 bg-gray-50">
           <Container>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                Case Study
+                Business Impact
               </h2>
             </div>
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
@@ -374,7 +356,7 @@ export default function FullStackPage() {
                 className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"
                 asChild
               >
-                <a href="/contact">Start Your Project</a>
+                <a href="/contact">Book Strategy session</a>
               </Button>
             </div>
           </Container>

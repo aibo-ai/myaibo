@@ -43,15 +43,11 @@ export function TransformationProcess() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8"
           >
-            How We{" "}
+            Transforming businesses with{" "}
             <span className="bg-gradient-to-rs bg-clip-text text-transparent"
             style={{ color: "#7c3bed" }}>
-              Transform
-            </span>{" "}
-            our{" "}<span className="bg-gradient-to-rs bg-clip-text text-transparent"
-            style={{ color: "#7c3bed" }}>
-              Services
-            </span>{" "}with AI
+              AI
+            </span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}

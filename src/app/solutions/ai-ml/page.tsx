@@ -157,10 +157,10 @@ export default function AIMLPage() {
         <section className="py-16 lg:py-24 bg-gray-50">
           <Container>
             <div className="text-center">
-              <p className="text-6xl lg:text-8xl font-bold text-gray-800 leading-tight">
+              <p className="text-2xl lg:text-3xl font-bold text-gray-800 leading-tight">
                 <span className="text-purple-600">25+ projects</span> delivered across financial, retail, and SaaS
               </p>
-              <p className="text-2xl lg:text-3xl text-gray-600 mt-4">Partnered with leading AI platforms</p>
+              <p className="text-lg lg:text-xl text-gray-600 mt-4">Partnered with leading AI platforms</p>
             </div>
           </Container>
         </section>
@@ -173,111 +173,107 @@ export default function AIMLPage() {
                 What We Deliver
               </h2>
             </div>
-            <div className="grid lg:grid-cols-2 gap-12">
-              <div className="space-y-8">
-                <div className="bg-white p-8 rounded-lg shadow-lg border">
-                  <div className="grid lg:grid-cols-2 gap-8 items-center">
-                    <div className="order-2 lg:order-1">
-                      <Image
-                        src="/Custom-AI.jpeg"
-                        alt="Custom AI Solutions Illustration"
-                        width={400}
-                        height={300}
-                        className="rounded-lg shadow-md"
-                      />
-                    </div>
-                    <div className="order-1 lg:order-2">
-                      <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                        Custom AI Solutions
-                      </h3>
-                      <ul className="space-y-2 text-gray-600">
-                        <li>• <strong>AI-powered workflows</strong></li>
-                        <li>• <strong>Chatbots & virtual assistants</strong></li>
-                        <li>• <strong>Recommendation engines</strong></li>
-                        <li>• <strong>Computer vision solutions</strong></li>
-                        <li>• <strong>Predictive analytics</strong></li>
-                      </ul>
-                    </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white p-8 rounded-lg shadow-lg border h-full flex flex-col">
+                <div className="grid lg:grid-cols-2 gap-8 items-center flex-1">
+                  <div className="order-2 lg:order-1">
+                    <Image
+                      src="/Custom-AI.jpeg"
+                      alt="Custom AI Solutions Illustration"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-md"
+                    />
                   </div>
-                </div>
-
-                <div className="bg-white p-8 rounded-lg shadow-lg border">
-                  <div className="grid lg:grid-cols-2 gap-8 items-center">
-                    <div className="order-2 lg:order-1">
-                      <Image
-                        src="/ML-Development.jpg"
-                        alt="ML Model Development Illustration"
-                        width={400}
-                        height={300}
-                        className="rounded-lg shadow-md"
-                      />
-                    </div>
-                    <div className="order-1 lg:order-2">
-                      <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                        ML Model Development
-                      </h3>
-                      <ul className="space-y-2 text-gray-600">
-                        <li>• <strong>Data preparation & feature engineering</strong></li>
-                        <li>• <strong>Supervised & unsupervised training</strong></li>
-                        <li>• <strong>Scalable model deployment</strong></li>
-                        <li>• <strong>Performance monitoring & retraining</strong></li>
-                        <li>• <strong>Model optimization & compression</strong></li>
-                      </ul>
-                    </div>
+                  <div className="order-1 lg:order-2">
+                    <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                      Custom AI Solutions
+                    </h3>
+                    <ul className="space-y-2 text-gray-600">
+                      <li>• <strong>AI-powered workflows</strong></li>
+                      <li>• <strong>Chatbots & virtual assistants</strong></li>
+                      <li>• <strong>Recommendation engines</strong></li>
+                      <li>• <strong>Computer vision solutions</strong></li>
+                      <li>• <strong>Predictive analytics</strong></li>
+                    </ul>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="bg-white p-8 rounded-lg shadow-lg border">
-                  <div className="grid lg:grid-cols-2 gap-8 items-center">
-                    <div className="order-2 lg:order-1">
-                      <Image
-                        src="/AI-platform-integration.jpg"
-                        alt="AI Platform Integration Illustration"
-                        width={400}
-                        height={300}
-                        className="rounded-lg shadow-md"
-                      />
-                    </div>
-                    <div className="order-1 lg:order-2">
-                      <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                        AI Platform Integration
-                      </h3>
-                      <ul className="space-y-2 text-gray-600">
-                        <li>• <strong>CRM & ERP integration</strong></li>
-                        <li>• <strong>Marketing platform connectivity</strong></li>
-                        <li>• <strong>Third-party API orchestration</strong></li>
-                        <li>• <strong>Legacy system modernization</strong></li>
-                        <li>• <strong>Real-time data synchronization</strong></li>
-                      </ul>
-                    </div>
+              <div className="bg-white p-8 rounded-lg shadow-lg border h-full flex flex-col">
+                <div className="grid lg:grid-cols-2 gap-8 items-center flex-1">
+                  <div className="order-2 lg:order-1">
+                    <Image
+                      src="/AI-platform-integration.jpg"
+                      alt="AI Platform Integration Illustration"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-md"
+                    />
+                  </div>
+                  <div className="order-1 lg:order-2">
+                    <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                      AI Integration
+                    </h3>
+                    <ul className="space-y-2 text-gray-600">
+                      <li>• <strong>CRM integration</strong></li>
+                      <li>• <strong>Marketing connectivity</strong></li>
+                      <li>• <strong>API orchestration</strong></li>
+                      <li>• <strong>System modernization</strong></li>
+                      <li>• <strong>Data synchronization</strong></li>
+                    </ul>
                   </div>
                 </div>
+              </div>
 
-                <div className="bg-white p-8 rounded-lg shadow-lg border">
-                  <div className="grid lg:grid-cols-2 gap-8 items-center">
-                    <div className="order-2 lg:order-1">
-                      <Image
-                        src="/AI-Strategy.jpeg"
-                        alt="AI Consulting & Strategy Illustration"
-                        width={400}
-                        height={300}
-                        className="rounded-lg shadow-md"
-                      />
-                    </div>
-                    <div className="order-1 lg:order-2">
-                      <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                        Consulting & Strategy
-                      </h3>
-                      <ul className="space-y-2 text-gray-600">
-                        <li>• <strong>Use case discovery & prioritization</strong></li>
-                        <li>• <strong>ROI calculation & feasibility analysis</strong></li>
-                        <li>• <strong>AI roadmap creation</strong></li>
-                        <li>• <strong>Technology stack assessment</strong></li>
-                        <li>• <strong>Team enablement & training</strong></li>
-                      </ul>
-                    </div>
+              <div className="bg-white p-8 rounded-lg shadow-lg border h-full flex flex-col">
+                <div className="grid lg:grid-cols-2 gap-8 items-center flex-1">
+                  <div className="order-2 lg:order-1">
+                    <Image
+                      src="/ML-Development.jpg"
+                      alt="ML Model Development Illustration"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-md"
+                    />
+                  </div>
+                  <div className="order-1 lg:order-2">
+                    <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                      ML Development
+                    </h3>
+                    <ul className="space-y-2 text-gray-600">
+                      <li>• <strong>Data preparation</strong></li>
+                      <li>• <strong>Model training</strong></li>
+                      <li>• <strong>Scalable deployment</strong></li>
+                      <li>• <strong>Performance monitoring</strong></li>
+                      <li>• <strong>Model optimization</strong></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white p-8 rounded-lg shadow-lg border h-full flex flex-col">
+                <div className="grid lg:grid-cols-2 gap-8 items-center flex-1">
+                  <div className="order-2 lg:order-1">
+                    <Image
+                      src="/AI-Strategy.jpeg"
+                      alt="AI Consulting & Strategy Illustration"
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-md"
+                    />
+                  </div>
+                  <div className="order-1 lg:order-2">
+                    <h3 className="text-2xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                      Consulting & Strategy
+                    </h3>
+                    <ul className="space-y-2 text-gray-600">
+                      <li>• <strong>Use case discovery</strong></li>
+                      <li>• <strong>ROI analysis</strong></li>
+                      <li>• <strong>Roadmap creation</strong></li>
+                      <li>• <strong>Stack assessment</strong></li>
+                      <li>• <strong>Team enablement</strong></li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -299,7 +295,7 @@ export default function AIMLPage() {
                   1
                 </div>
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Discovery & Use Case Mapping
+                  Use Case mapping
                 </h3>
                 <p className="text-gray-600">
                   Identify key opportunities to automate or enhance your business with AI
@@ -321,10 +317,10 @@ export default function AIMLPage() {
                   3
                 </div>
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
-                  Production-Grade Engineering
+                  Production Engineering
                 </h3>
                 <p className="text-gray-600">
-                  Build scalable pipelines for data ingestion, model management, and cloud deployment
+                  Build scalable pipelines for data ingestion, model management, and deployment
                 </p>
               </div>
               <div className="text-center">
@@ -356,9 +352,6 @@ export default function AIMLPage() {
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   AI Cloud Providers
                 </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Enterprise-grade cloud infrastructure for scalable AI deployment and hosting
-                </p>
                 <ul className="space-y-2 text-gray-600">
                   <li>• <strong>OpenAI, Ollama, Claude, Mistral</strong></li>
                   <li>• <strong>Google Vertex AI</strong></li>
@@ -370,9 +363,6 @@ export default function AIMLPage() {
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   ML Frameworks
                 </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Industry-leading frameworks for building and training machine learning models
-                </p>
                 <ul className="space-y-2 text-gray-600">
                   <li>• <strong>TensorFlow, PyTorch</strong></li>
                   <li>• <strong>Scikit-learn, Keras</strong></li>
@@ -384,9 +374,6 @@ export default function AIMLPage() {
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   DevOps & MLOps
                 </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Automated deployment pipelines and infrastructure management for ML systems
-                </p>
                 <ul className="space-y-2 text-gray-600">
                   <li>• <strong>Docker, Kubernetes</strong></li>
                   <li>• <strong>MLflow, Jenkins</strong></li>
@@ -398,9 +385,6 @@ export default function AIMLPage() {
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   Programming Languages
                 </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Versatile programming expertise for AI development and integration
-                </p>
                 <ul className="space-y-2 text-gray-600">
                   <li>• <strong>Python</strong></li>
                   <li>• <strong>Go</strong></li>
@@ -412,9 +396,6 @@ export default function AIMLPage() {
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   Data Pipelines
                 </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Robust data engineering solutions for processing and managing large-scale datasets
-                </p>
                 <ul className="space-y-2 text-gray-600">
                   <li>• <strong>Apache Airflow</strong></li>
                   <li>• <strong>AWS Glue</strong></li>
@@ -426,14 +407,10 @@ export default function AIMLPage() {
                 <h3 className="text-xl font-bold mb-4" style={{ color: "#7c3bed" }}>
                   AI Infrastructure & Tools
                 </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Specialized infrastructure components essential for production AI systems
-                </p>
                 <ul className="space-y-2 text-gray-600">
                   <li>• <strong>Vector Databases</strong></li>
                   <li>• <strong>Model Serving</strong></li>
                   <li>• <strong>Feature Stores</strong></li>
-                  <li>• <strong>Experiment Tracking</strong></li>
                   <li>• <strong>Data Labeling</strong></li>
                 </ul>
               </div>
@@ -441,12 +418,12 @@ export default function AIMLPage() {
           </Container>
         </section>
 
-        {/* Case Study */}
+        {/* Business Impact */}
         <section className="py-16 lg:py-24">
           <Container>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                Case Study
+                Business Impact
               </h2>
             </div>
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
@@ -489,7 +466,7 @@ export default function AIMLPage() {
                 className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"
                 asChild
               >
-                <a href="/contact">Get Started Today</a>
+                <a href="https://outlook.office365.com/book/MyAiboConsultation@myaibo.in/?ismsaljsauthenabled=true">Book Strategy session</a>
               </Button>
             </div>
           </Container>

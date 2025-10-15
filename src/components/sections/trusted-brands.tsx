@@ -49,10 +49,10 @@ export function TrustedBrands() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
           >
-  <span className="bg-clip-text text-transparent" style={{ color: "#7c3bed" }}>
-              Trusted By
-            </span>{" "}
-            Leading Brands
+            Trusted By Leading{" "}
+            <span className="bg-clip-text text-transparent" style={{ color: "#7c3bed" }}>
+              Brands
+            </span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}

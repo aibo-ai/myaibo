@@ -1,44 +1,35 @@
 "use client";
 
+import Image from "next/image";
+
 const solutionsData = [
   {
-    title: "Strategy & Consulting",
+    title: "AI/ML Development",
     description:
-      "We don't just plan AI adoption—we architect transformation. Strategic roadmaps that turn AI buzzwords into bottom-line results and breakthrough opportunities.",
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-purple-700 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M7 7l10 10M7 17L17 7" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h18" />
-      </svg>
-    ),
+      "We build custom AI solutions—intelligent chatbots, recommendation engines, and predictive models—that automate processes, reduce costs, and unlock data-driven insights.",
+    image: "/home-aiml.jpg",
+    link: "/solutions/ai-ml",
   },
   {
-    title: "AI Agent Development",
+    title: "Custom Full Stack Development",
     description:
-      "Your new workforce never sleeps, never quits, and works at machine speed. Intelligent agents that handle customer interactions to complex decisions, freeing your team for what matters most.",
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-purple-700 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <rect x="3" y="7" width="18" height="14" rx="2" ry="2" />
-        <path d="M16 3h-8v4h8V3z" />
-        <path d="M9 14h6" />
-        <path d="M9 18h6" />
-        <path d="M12 14v4" />
-      </svg>
-    ),
+      "We create cloud-native platforms with embedded AI features that automate workflows, personalize experiences, and accelerate release cycles.",
+    image: "/home-fullstack.jpg",
+    link: "/solutions/full-stack-development",
   },
   {
-    title: "Gen AI Software Development",
+    title: "Search Engine Optimization",
     description:
-      "We build what wasn't possible yesterday. Custom AI applications that solve unsolvable problems, automate manual processes, and create new competitive advantages.",
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-purple-700 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
-        <path d="M8 6v12" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M16 6v12" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="12" cy="12" r="3" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
+      "We drive measurable revenue with strategic SEO that combines technical excellence and conversion-focused content to connect your business with actively searching buyers.",
+    image: "/home-seo.jpg",
+    link: "/solutions/seo",
+  },
+  {
+    title: "Content Marketing",
+    description:
+      "We generate qualified leads with strategic, multi-format content aligned to business outcomes that costs 62% less than paid ads while building lasting brand authority.",
+    image: "/home-content.jpg",
+    link: "/solutions/content-marketing",
   },
 ];
 
@@ -46,19 +37,33 @@ export function SolutionsCards() {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-[48px] font-extrabold text-gray-900 mb-12 text-center">
-          Solutions
+        <h2 className="text-[48px] font-extrabold mb-12 text-center">
+          <span className="text-gray-900">Solutions we</span> <span style={{ color: "#7c3bed" }}>build</span>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {solutionsData.map(({ title, description, icon }) => (
-            <div
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {solutionsData.map(({ title, description, image, link }) => (
+            <a
               key={title}
-              className="bg-white border border-gray-200 rounded-lg p-8 shadow hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center"
+              href={link}
+              className="block rounded-lg shadow-lg overflow-hidden h-full transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+              style={{ backgroundColor: "#7c3bed" }}
             >
-              {icon}
-              <h3 className="text-xl font-semibold text-purple-700 mb-2">{title}</h3>
-              <p className="text-gray-600">{description}</p>
-            </div>
+              <div className="grid lg:grid-cols-2 gap-0 h-full">
+                <div className="order-1 lg:order-1">
+                  <Image
+                    src={image}
+                    alt={title}
+                    width={300}
+                    height={250}
+                    className="w-full h-48 lg:h-full object-cover"
+                  />
+                </div>
+                <div className="order-2 lg:order-2 p-6 lg:p-8 flex flex-col justify-center">
+                  <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 leading-tight">{title}</h3>
+                  <p className="text-white text-sm lg:text-base leading-relaxed opacity-95">{description}</p>
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       </div>
