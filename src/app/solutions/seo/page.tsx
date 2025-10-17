@@ -7,9 +7,9 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "SEO Services | MyAibo - Search Engine Optimization Solutions",
-  description: "Boost your online visibility with our comprehensive SEO services. Technical SEO, content optimization, and digital marketing strategies.",
-  keywords: "SEO services, search engine optimization, digital marketing, technical SEO, content marketing, online visibility",
+  title: "Revenue-Driving SEO Services | B2B & D2C Strategies for Qualified Organic Traffic",
+  description: "Stop chasing rankings—get SEO that onboards customers. B2B & D2C expertise: technical audits, content scaling, link building. 50+ clients saw 340% traffic growth. Claim your free SEO audit now.",
+  keywords: "revenue driving SEO, B2B SEO strategy, D2C SEO optimization, organic traffic growth, technical SEO audit, link building services, e-commerce SEO, search intent SEO",
 };
 
 export default function SEOPage() {
@@ -35,7 +35,7 @@ export default function SEOPage() {
                   SEO That Drives Results
                 </h1>
                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                  Stop losing customers to competitors. We optimize your entire search presence to capture high-intent buyers at every stage of their journey.
+                  Stop losing customers to competitors. We optimize your entire search presence across search engines and LLMs to capture high-intent buyers at every stage of their journey.
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <Button 
@@ -70,10 +70,10 @@ export default function SEOPage() {
                 />
                 <div>
                   <h3 className="text-xl font-bold mb-2" style={{ color: "#7c3bed" }}>
-                    B2B: You're invisible when buyers research
+                    B2B: You&apos;re invisible when buyers research
                   </h3>
                   <p className="text-gray-600">
-                    Your prospects are searching for solutions, but they're finding your competitors instead. You need to be there when they're ready to buy.
+                    Your prospects are searching for solutions, but they&apos;re finding your competitors instead. You need to be there when they&apos;re ready to buy.
                   </p>
                 </div>
               </div>
@@ -90,7 +90,7 @@ export default function SEOPage() {
                     D2C: E-commerce giants outrank you
                   </h3>
                   <p className="text-gray-600">
-                    Paid ads are bleeding you dry. E-Commerce outranks you for your own products. You need sustainable customer acquisition.
+                    Paid ads are bleeding you dry. E-Commerce companies outrank you. You need sustainable customer acquisition.
                   </p>
                 </div>
               </div>
@@ -227,8 +227,8 @@ export default function SEOPage() {
                       Bottom-Funnel Dominance
                     </h3>
                     <ul className="space-y-2 flex-1">
-                      <li>• <strong>"X vs Y" comparison pages</strong></li>
-                      <li>• <strong>"Best [solution] for enterprise"</strong></li>
+                      <li>• <strong>&quot;X vs Y&auot; comparison pages</strong></li>
+                      <li>• <strong>&quot;Best [solution] for enterprise&quot;</strong></li>
                       <li>• <strong>Pricing page optimization</strong></li>
                       <li>• <strong>Alternative and competitor pages</strong></li>
                     </ul>
@@ -321,6 +321,12 @@ export default function SEOPage() {
               </div>
             </div>
 
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                Business Impact
+              </h2>
+            </div>
+
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
               <h3 className="text-2xl lg:text-3xl font-bold mb-6">
                 B2B SaaS Client Result
@@ -385,7 +391,7 @@ export default function SEOPage() {
                     <ul className="space-y-2 flex-1">
                       <li>• <strong>Buying guides that rank + convert</strong></li>
                       <li>• <strong>How-to content for purchase research</strong></li>
-                      <li>• <strong>Comparison content ("X vs Y")</strong></li>
+                      <li>• <strong>Comparison content (&quot;X vs Y&quot;)</strong></li>
                       <li>• <strong>Seasonal content calendars</strong></li>
                     </ul>
                   </div>
@@ -410,7 +416,7 @@ export default function SEOPage() {
                     <ul className="space-y-2 flex-1">
                       <li>• <strong>Local SEO for retail locations</strong></li>
                       <li>• <strong>Store locator optimization</strong></li>
-                      <li>• <strong>"Near me" search capture</strong></li>
+                      <li>• <strong>&quot;Near me&quot; search capture</strong></li>
                     </ul>
                   </div>
                   <div className="order-1 lg:order-2">
@@ -451,6 +457,12 @@ export default function SEOPage() {
               </div>
             </div>
 
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                Business Impact
+              </h2>
+            </div>
+
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
               <h3 className="text-2xl lg:text-3xl font-bold mb-6">
                 D2C Skincare Client Result
@@ -476,9 +488,6 @@ export default function SEOPage() {
               <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
                 Ready to Dominate Search?
               </h2>
-              <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Stop losing customers to competitors. Let's build your search presence that converts.
-              </p>
               <Button 
                 size="lg" 
                 className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"

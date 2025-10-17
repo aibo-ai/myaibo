@@ -101,7 +101,7 @@ export function Footer() {
               Stay Ahead with AI Insights
             </h3>
             <p className="text-lg text-purple-100 mb-10 max-w-3xl mx-auto text-justify leading-relaxed">
-              Get the latest AI trends, case studies, and exclusive insights delivered to your inbox monthly.
+              Get the latest AI trends, case studies, and exclusive insights delivered to your inbox.
             </p>
             {/* Newsletter Subscription Form */}
             <div className="max-w-lg mx-auto">

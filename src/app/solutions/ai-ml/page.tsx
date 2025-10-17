@@ -6,9 +6,9 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "AI & ML Solutions | MyAibo - Custom AI Development Services",
-  description: "Transform your business with cutting-edge AI and Machine Learning solutions. Custom AI development, ML models, and intelligent automation services.",
-  keywords: "AI development, machine learning, AI solutions, ML models, artificial intelligence, AI automation",
+  title: "Transform Your Business with Custom AI & Machine Learning Solutions | Enterprise-Grade Automation & Insights",
+  description: "Unlock growth with custom AI and ML: automation, predictive analytics, and personalized experiences built for your industry. Reduce costs, boost decisions, and scale seamlessly. Book a free strategy session today.",
+  keywords: "custom AI solutions, machine learning development, AI automation, predictive analytics, enterprise AI, ML model deployment, AI integration, business AI consulting",
 };
 
 export default function AIMLPage() {
@@ -40,7 +40,7 @@ export default function AIMLPage() {
                   Transform Your Business with AI and Machine Learning
                 </h1>
                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                  Unlock automation, deep insights, and growth with enterprise-grade AI & ML solutions—built, deployed, and optimized by experts who understand your industry's challenges.
+                  Unlock automation, deep insights, and growth with enterprise-grade AI & ML solutions—built, deployed, and optimized by experts who understand your industry&apos;s challenges.
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <Button 
@@ -458,9 +458,6 @@ export default function AIMLPage() {
               <h2 className="text-3xl lg:text-4xl font-bold mb-8" style={{ color: "#7c3bed" }}>
                 Ready to Transform Your Business with AI?
               </h2>
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                Let our AI experts help you identify opportunities and implement cutting-edge solutions that drive real business value.
-              </p>
               <Button 
                 size="lg" 
                 className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"

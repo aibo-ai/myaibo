@@ -6,9 +6,9 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Full Stack Development | MyAibo - Complete Web & App Solutions",
-  description: "End-to-end full stack development services. From frontend to backend, we build scalable, modern web applications and mobile apps.",
-  keywords: "full stack development, web development, app development, frontend, backend, React, Node.js, mobile apps",
+  title: "Custom Full Stack AI Development | Build Scalable Web & Mobile Apps with AI Integration",
+  description: "End-to-end full stack AI development: React, Node.js, OpenAI integrations for automation, personalization, and scalability. Tailored platforms that drive growth. Start your project with a free consultation.",
+  keywords: "full stack AI development, custom AI web apps, AI engineering, React AI integration, Node.js backend AI, cloud AI deployment, scalable AI platforms, DevOps AI automation",
 };
 
 export default function FullStackPage() {
@@ -37,7 +37,7 @@ export default function FullStackPage() {
               {/* Text Content */}
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                  End-to-End Custom Full Stack Development for Your Growth
+                  End-to-End Custom Full Stack Development
                 </h1>
                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
                   Build web and mobile platforms with embedded AI features—automation, smart personalization, predictive analytics—plus future-ready functionality, speed, and scalability.
@@ -348,9 +348,6 @@ export default function FullStackPage() {
               <h2 className="text-3xl lg:text-4xl font-bold mb-8" style={{ color: "#7c3bed" }}>
                 Ready to Build Your Next Project?
               </h2>
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                From concept to deployment, we handle every aspect of your application development with expertise and care.
-              </p>
               <Button 
                 size="lg" 
                 className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold"

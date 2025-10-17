@@ -6,9 +6,9 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Content Marketing That Actually Converts | MyAibo - Strategic Content Solutions",
-  description: "Build a content engine that generates qualified leads (B2B) or drives sales (D2C). Stop publishing into the void with our strategic content marketing.",
-  keywords: "content marketing, content strategy, B2B content, D2C content, content creation, digital marketing, lead generation",
+  title: "Content Marketing Strategies That Build Pipeline & Drive Sales | B2B & D2C Focus",
+  description: "Create content that converts: qualified leads for B2B, direct sales for D2C. Our framework boosts engagement 210% via research, creation, and ROI tracking. Audit your content strategy free.",
+  keywords: "content marketing strategies, B2B content pipeline, D2C content sales, topic clusters, content ROI measurement, demand generation content, UGC campaigns, brand storytelling content",
 };
 
 export default function ContentMarketingPage() {
@@ -159,7 +159,7 @@ export default function ContentMarketingPage() {
                 The Problem
               </h2>
               <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
-                Content marketing isn't about publishing more—it's about publishing smarter. The best content strategies align every piece of content with specific business outcomes
+                Content marketing isn&apos;t about publishing more—it&apos;s about publishing smarter. The best content strategies align every piece of content with specific outcomes
               </p>
             </div>
             
@@ -302,6 +302,11 @@ export default function ContentMarketingPage() {
               </div>
             </div>
 
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                Business Impact
+              </h2>
+            </div>
 
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
               <h3 className="text-2xl lg:text-3xl font-bold mb-6">
@@ -329,7 +334,7 @@ export default function ContentMarketingPage() {
                 D2C Content
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                The Opportunity: Content builds affinity that turns buyers into evangelists. It's relationship infrastructure.
+                The Opportunity: Content builds affinity that turns buyers into evangelists. It&apos;s relationship infrastructure.
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -421,14 +426,8 @@ export default function ContentMarketingPage() {
                       <li>• <strong>Customer features</strong></li>
                       <li>• <strong>Ambassador programs</strong></li>
                       <li>• <strong>Hashtag campaigns</strong></li>
-                      <li className="flex items-start">
-                        <span className="text-lg mr-2 mt-0.5" style={{ color: "#7C3BED" }}>•</span>
-                        <span className="text-gray-800 text-sm">Contests</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-lg mr-2 mt-0.5" style={{ color: "#7C3BED" }}>•</span>
-                        <span className="text-gray-800 text-sm">Co-creation</span>
-                      </li>
+                      <li>• <strong>Contests</strong></li>
+                      <li>• <strong>Co-creation</strong></li>
                     </ul>
                   </div>
                   <div className="order-1 lg:order-2">
@@ -476,6 +475,12 @@ export default function ContentMarketingPage() {
               </div>
             </div>
 
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
+                Business Impact
+              </h2>
+            </div>
+
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
               <h3 className="text-2xl lg:text-3xl font-bold mb-6">
                 D2C Apparel Brand Result
@@ -501,9 +506,6 @@ export default function ContentMarketingPage() {
               <h2 className="text-3xl lg:text-4xl font-bold mb-8" style={{ color: "#7c3bed" }}>
                 Ready to Build Your Content Engine?
               </h2>
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                Stop publishing into the void. Let's create content that actually converts and drives business results.
-              </p>
               <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl font-bold" asChild>
                 <a href="https://outlook.office365.com/book/MyAiboConsultation@myaibo.in/?ismsaljsauthenabled=true">Book Strategy session</a>
               </Button>
