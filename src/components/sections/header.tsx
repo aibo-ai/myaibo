@@ -21,7 +21,16 @@ const navigation = [
 			{ name: "Content Marketing", href: "/solutions/content-marketing" },
 		]
 	},
-	{ name: "Case Studies", href: "/#case-studies" },
+	{ 
+		name: "Resources", 
+		href: "/resources",
+		hasDropdown: true,
+		dropdownItems: [
+			{ name: "Blog", href: "/resources/blog" },
+			{ name: "Case Studies", href: "/resources/case-studies" },
+			{ name: "Whitepapers", href: "/resources/whitepapers" },
+		]
+	},
 	{ name: "About Us", href: "/about" },
 	{ name: "Contact Us", href: "/contact" },
 ]

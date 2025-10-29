@@ -1,0 +1,51 @@
+[
+  {
+    "title": "AI-Powered Customer Service Transformation",
+    "slug": "ai-customer-service-transformation",
+    "client_name": "TechCorp Inc.",
+    "client_logo": "",
+    "challenge": "High volume of support tickets causing delays and customer dissatisfaction.",
+    "solution": "Implemented AI-powered chatbot and automated ticket routing system.",
+    "results": [
+      {
+        "metric": "Support Tickets",
+        "value": "60",
+        "unit": "%",
+        "description": "Reduction in support tickets"
+      },
+      {
+        "metric": "Response Time",
+        "value": "40",
+        "unit": "%",
+        "description": "Faster response times"
+      }
+    ],
+    "content": "Full case study content here...",
+    "featured_image": "",
+    "author_id": "admin",
+    "status": "published",
+    "published_at": "2025-10-18T11:05:40.818Z",
+    "industries": [
+      "SaaS",
+      "Technology"
+    ],
+    "tags": [
+      "AI",
+      "Customer Service",
+      "Automation"
+    ],
+    "testimonial": {
+      "quote": "The AI implementation transformed our customer support operations.",
+      "author": "John Smith",
+      "position": "Head of Customer Success",
+      "company": "TechCorp Inc."
+    },
+    "meta_title": "AI Customer Service Case Study",
+    "meta_description": "Learn how AI automation reduced support tickets by 60%",
+    "canonical_url": "",
+    "view_count": 0,
+    "id": "1",
+    "created_at": "2025-10-18T11:05:40.826Z",
+    "updated_at": "2025-10-18T11:05:40.826Z"
+  }
+]
