@@ -25,9 +25,7 @@ const app = express();
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://www.myaibo.in', 'https://myaibo.in']
-    : ['http://localhost:3000', 'http://localhost:3001'],
+  origin: '*',
   credentials: true
 }));
 
