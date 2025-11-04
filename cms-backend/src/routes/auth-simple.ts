@@ -128,4 +128,4 @@ router.get('/me', async (req: any, res: any) => {
   }
 });
 
-export default router;
+module.exports = router;

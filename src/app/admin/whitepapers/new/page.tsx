@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { cmsApi } from '@/lib/api/cms';
+import { cmsApi } from '../../../../../cms-backend/src/lib/api/cms';
 
 interface WhitepaperFormData {
   title: string;

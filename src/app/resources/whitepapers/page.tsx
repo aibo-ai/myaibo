@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 // import Link from 'next/link';
 import Image from 'next/image';
-import { cmsApi, Whitepaper } from '@/lib/api/cms';
+import { cmsApi, Whitepaper } from '../../../../cms-backend/src/lib/api/cms';
 import { Header } from '@/components/sections/header';
 import { Footer } from '@/components/sections/footer';
 

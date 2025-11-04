@@ -112,13 +112,15 @@ class CMSApiClient {
 
   constructor() {
     this.baseURL = API_BASE_URL;
-    if (typeof window !== 'undefined') {
-      this.token = localStorage.getItem('cms_token') || this.getCookie('cms_token');
+    // Use safe access to globalThis to avoid DOM-only globals causing TS errors in backend project
+    if (typeof (globalThis as any).window !== 'undefined') {
+      this.token = (globalThis as any).localStorage?.getItem('cms_token') || this.getCookie('cms_token');
     }
   }
 
   private getCookie(name: string): string | null {
-    const value = `; ${document.cookie}`;
+    const cookieString = (globalThis as any).document?.cookie || '';
+    const value = `; ${cookieString}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
     return null;
@@ -126,16 +128,16 @@ class CMSApiClient {
 
   private async request<T>(
     endpoint: string,
-    options: RequestInit = {}
+    options: any = {}
   ): Promise<T> {
     const url = `${this.baseURL}${endpoint}`;
-    const headers: HeadersInit = {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
-      ...options.headers,
+      ...(options.headers || {}),
     };
 
     if (this.token) {
-      (headers as Record<string, string>).Authorization = `Bearer ${this.token}`;
+      headers.Authorization = `Bearer ${this.token}`;
     }
 
     const response = await fetch(url, {
@@ -144,26 +146,28 @@ class CMSApiClient {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      const errorData: any = await response.json().catch(() => ({}));
+      throw new Error((errorData && errorData.message) || `HTTP error! status: ${response.status}`);
     }
 
-    return response.json();
+    const data: any = await response.json().catch(() => ({}));
+    return data as T;
   }
 
   // Authentication
   async login(email: string, password: string): Promise<LoginResponse> {
+    console.log("in cms login method", email, password);
     const response = await this.request<LoginResponse>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
-
+    console.log("Response in cms login method", response);
     if (response.success && response.token) {
       this.token = response.token;
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('cms_token', response.token);
+      if (typeof (globalThis as any).window !== 'undefined') {
+        (globalThis as any).localStorage?.setItem('cms_token', response.token);
         // Also set cookie for middleware
-        document.cookie = `cms_token=${response.token}; path=/; max-age=${7 * 24 * 60 * 60}; secure; samesite=strict`;
+        (globalThis as any).document!.cookie = `cms_token=${response.token}; path=/; max-age=${7 * 24 * 60 * 60}; secure; samesite=strict`;
       }
     }
 
@@ -172,10 +176,10 @@ class CMSApiClient {
 
   async logout(): Promise<void> {
     this.token = null;
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('cms_token');
+    if (typeof (globalThis as any).window !== 'undefined') {
+      (globalThis as any).localStorage?.removeItem('cms_token');
       // Clear cookie
-      document.cookie = 'cms_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      (globalThis as any).document!.cookie = 'cms_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
     }
   }
 
@@ -328,24 +332,24 @@ class CMSApiClient {
   }
 
   // File upload
-  async uploadFile(file: File, type: 'image' | 'pdf'): Promise<{ url: string }> {
+  async uploadFile(file: any, type: 'image' | 'pdf'): Promise<{ url: string }> {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('type', type);
 
     const response = await fetch(`${this.baseURL}/upload`, {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
+      headers: this.token ? { Authorization: `Bearer ${this.token}` } : undefined,
       body: formData,
     });
+    console.log("response in login",response)
 
     if (!response.ok) {
       throw new Error(`Upload failed: ${response.status}`);
     }
 
-    return response.json();
+    const uploadData: any = await response.json().catch(() => ({}));
+    return uploadData as { url: string };
   }
 }
 

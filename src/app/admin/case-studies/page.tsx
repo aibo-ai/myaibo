@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 // import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { cmsApi, CaseStudy } from '@/lib/api/cms';
+import { cmsApi, CaseStudy } from '../../../../cms-backend/src/lib/api/cms';
 
 export default function CaseStudiesPage() {
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);

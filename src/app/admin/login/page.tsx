@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { cmsApi } from '@/lib/api/cms';
+import { cmsApi } from '../../../../cms-backend/src/lib/api/cms';
 import Image from 'next/image';
 
 export default function AdminLogin() {
@@ -11,14 +11,15 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
-
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log("is it clicking on submit?");
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
       const response = await cmsApi.login(email, password);
+      console.log("response in login page", response);
       if (response.success) {
         router.push('/admin/dashboard');
       } else {
@@ -105,13 +106,13 @@ export default function AdminLogin() {
           </form>
 
           {/* Demo Credentials */}
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+          {/* <div className="mt-6 p-4 bg-gray-50 rounded-lg">
             <h3 className="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</h3>
                 <div className="text-xs text-gray-600 space-y-1">
                   <p><strong>Admin:</strong> admin@myaibo.in / admin123</p>
                   <p><strong>Editor:</strong> editor@myaibo.in / admin123</p>
                 </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Footer */}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Blog, cmsApi } from '@/lib/api/cms';
+import { Blog, cmsApi } from '../../../cms-backend/src/lib/api/cms';
 import RichTextEditor from './RichTextEditor';
 
 interface BlogEditorProps {

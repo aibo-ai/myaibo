@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 // import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { cmsApi, Whitepaper } from '@/lib/api/cms';
+import { cmsApi, Whitepaper } from '../../../../cms-backend/src/lib/api/cms';
 
 export default function WhitepapersPage() {
   const [whitepapers, setWhitepapers] = useState<Whitepaper[]>([]);

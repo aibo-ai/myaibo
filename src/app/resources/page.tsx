@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { cmsApi, CaseStudy, Whitepaper } from '@/lib/api/cms';
+import { cmsApi, CaseStudy, Whitepaper } from '../../../cms-backend/src/lib/api/cms';
 
 interface DownloadFormData {
   fullName: string;

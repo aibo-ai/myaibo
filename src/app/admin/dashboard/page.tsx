@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { cmsApi, User, Blog, CaseStudy } from '@/lib/api/cms';
+import { cmsApi, User, Blog, CaseStudy } from '../../../../cms-backend/src/lib/api/cms';
 import Image from 'next/image';
 import Link from 'next/link';
 

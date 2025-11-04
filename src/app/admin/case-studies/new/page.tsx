@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { CaseStudy, cmsApi } from '@/lib/api/cms';
+import { CaseStudy, cmsApi } from '../../../../../cms-backend/src/lib/api/cms';
 
 interface CaseStudyFormData {
   title: string;

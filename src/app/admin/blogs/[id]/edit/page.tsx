@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
-import { cmsApi, Blog } from '@/lib/api/cms';
+import { cmsApi, Blog } from '../../../../../../cms-backend/src/lib/api/cms';
 import BlogEditor from '@/components/admin/BlogEditor';
 
 export default function EditBlogPage() {

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 // import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { cmsApi, Blog } from '@/lib/api/cms';
+import { cmsApi, Blog } from '../../../../cms-backend/src/lib/api/cms';
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
