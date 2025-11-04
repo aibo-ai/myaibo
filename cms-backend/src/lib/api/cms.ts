@@ -156,12 +156,10 @@ class CMSApiClient {
 
   // Authentication
   async login(email: string, password: string): Promise<LoginResponse> {
-    console.log("in cms login method", email, password);
     const response = await this.request<LoginResponse>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
-    console.log("Response in cms login method", response);
     if (response.success && response.token) {
       this.token = response.token;
       if (typeof (globalThis as any).window !== 'undefined') {

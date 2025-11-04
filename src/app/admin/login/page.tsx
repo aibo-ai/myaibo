@@ -12,14 +12,12 @@ export default function AdminLogin() {
   const [error, setError] = useState('');
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log("is it clicking on submit?");
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
       const response = await cmsApi.login(email, password);
-      console.log("response in login page", response);
       if (response.success) {
         router.push('/admin/dashboard');
       } else {
