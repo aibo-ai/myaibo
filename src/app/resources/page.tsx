@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { cmsApi, CaseStudy, Whitepaper } from '../../../cms-backend/src/lib/api/cms';
+import Image from 'next/image';
 
 interface DownloadFormData {
   fullName: string;
@@ -266,9 +267,11 @@ export default function ResourcesPage() {
                 <div key={caseStudy.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   {caseStudy.featured_image && (
                     <div className="h-48 bg-gray-200">
-                      <img
+                      <Image
                         src={caseStudy.featured_image}
                         alt={caseStudy.title}
+                        width={500}
+                        height={300}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -307,9 +310,11 @@ export default function ResourcesPage() {
                 <div key={whitepaper.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   {whitepaper.cover_image && (
                     <div className="h-48 bg-gray-200">
-                      <img
+                      <Image
                         src={whitepaper.cover_image}
                         alt={whitepaper.title}
+                        width={500}
+                        height={300}
                         className="w-full h-full object-cover"
                       />
                     </div>

@@ -3,9 +3,8 @@ import { Header } from '@/components/sections/header';
 import { Footer } from '@/components/sections/footer';
 import Image from 'next/image';
 
-// @ts-expect-error Next.js type mismatch workaround
-export default async function BlogDetailPage(props: { params: { slug: string } }) {
-  const { params } = props;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function BlogDetailPage({ params }: any) {
   let blog: Blog | null = null;
   try {
     blog = await cmsApi.getBlogBySlug(params.slug);

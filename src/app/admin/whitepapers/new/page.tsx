@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { cmsApi } from '../../../../../cms-backend/src/lib/api/cms';
+import Image from 'next/image';
 
 interface WhitepaperFormData {
   title: string;
@@ -286,9 +287,11 @@ export default function NewWhitepaperPage() {
                       Image Preview
                     </label>
                     <div className="relative inline-block">
-                      <img
+                      <Image
                         src={imagePreview}
                         alt="Preview"
+                        width={128}
+                        height={128}
                         className="w-32 h-32 object-cover rounded-lg border border-gray-300"
                       />
                       <button
