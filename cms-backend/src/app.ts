@@ -6,12 +6,12 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 // Import routes
-const authRoutes = require('./routes/auth-simple');
+import authRoutes from './routes/auth';
 import uploadRoutes from './routes/upload';
-import blogRoutes from './routes/blog-simple';
-import caseStudyRoutes from './routes/caseStudy-simple';
-import whitepaperRoutes from './routes/whitepaper-simple';
-// import userRoutes from './routes/user';
+import blogRoutes from './routes/blog';
+import caseStudyRoutes from './routes/caseStudy';
+import whitepaperRoutes from './routes/whitepaper';
+import userRoutes from './routes/user';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler';
@@ -67,7 +67,7 @@ console.log('Registering blog routes...');
 app.use('/api/blog', blogRoutes);
 console.log('Blog routes registered');
 
-// app.use('/api/users', userRoutes);
+app.use('/api/users', userRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
