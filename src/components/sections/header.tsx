@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 
 import { Container } from "@/components/ui/container"
@@ -40,6 +40,21 @@ export function Header() {
 
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 	const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+	const dropdownRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent) {
+			if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+				setActiveDropdown(null);
+			}
+		}
+		if (activeDropdown) {
+			document.addEventListener("mousedown", handleClickOutside);
+		}
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [activeDropdown]);
 
 	// useEffect(() => {
 	//   // const handleScroll = () => {
@@ -94,13 +109,13 @@ export function Header() {
 							<div
 								key={item.name}
 								className="relative"
-								onMouseEnter={() => item.hasDropdown && setActiveDropdown(item.name)}
-								onMouseLeave={() => setActiveDropdown(null)}
+								ref={item.hasDropdown && activeDropdown === item.name ? dropdownRef : undefined}
 							>
 								{item.hasDropdown ? (
 									<button
 										className="flex items-center space-x-1 text-xl lg:text-2xl font-bold transition-colors"
 										style={{ color: "#7c3bed" }}
+										onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
 									>
 										<span>{item.name}</span>
 										<ChevronDown className="h-5 w-5" />
@@ -129,6 +144,7 @@ export function Header() {
 												key={dropdownItem.name}
 												href={dropdownItem.href}
 												className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+												onClick={() => setActiveDropdown(null)}
 											>
 												{dropdownItem.name}
 											</Link>

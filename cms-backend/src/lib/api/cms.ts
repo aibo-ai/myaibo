@@ -240,6 +240,10 @@ class CMSApiClient {
     });
   }
 
+  async getBlogBySlug(slug: string): Promise<Blog> {
+    return this.request(`/blog/${slug}`);
+  }
+
   // Case Studies
   async getCaseStudies(params?: {
     page?: number;

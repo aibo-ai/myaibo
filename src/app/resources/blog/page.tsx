@@ -13,6 +13,7 @@ export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
+  const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -111,40 +112,48 @@ export default function BlogPage() {
           {filteredBlogs.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredBlogs.map((blog) => (
-                <article key={blog.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
-                  {blog.featured_image && (
-                    <div className="aspect-video relative">
-                      <Image
-                        src={blog.featured_image}
-                        alt={blog.title}
-                        fill
-                        className="object-cover"
-                      />
+                <a
+                  key={blog.id}
+                  href={`/blog/${blog.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <article className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+                    {blog.featured_image && (
+                      <div className="aspect-video relative">
+                        <Image
+                          src={blog.featured_image}
+                          alt={blog.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {blog.categories.map((category, idx) => (
+                          <span
+                            key={`${blog.id}-${category}-${idx}`}
+                            className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-purple-100 text-purple-800"
+                          >
+                            {category}
+                          </span>
+                        ))}
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
+                        {blog.title}
+                      </h3>
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {blog.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between text-sm text-gray-500">
+                        <span>{formatDate(blog.published_at || blog.created_at)}</span>
+                        <span>{blog.view_count} views</span>
+                      </div>
                     </div>
-                  )}
-                  <div className="p-6">
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {blog.categories.map((category, index) => (
-                        <span
-                          key={index}
-                          className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-purple-100 text-purple-800"
-                        >
-                          {category}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
-                      {blog.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">
-                      {blog.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                      <span>{formatDate(blog.published_at || blog.created_at)}</span>
-                      <span>{blog.view_count} views</span>
-                    </div>
-                  </div>
-                </article>
+                  </article>
+                </a>
               ))}
             </div>
           ) : (
@@ -163,7 +172,39 @@ export default function BlogPage() {
           )}
         </div>
       </section>
-
+      {/* Blog Modal */}
+      {selectedBlog && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-xl shadow-lg max-w-2xl w-full p-8 relative">
+            <button
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl"
+              onClick={() => setSelectedBlog(null)}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <h2 className="text-3xl font-bold mb-4" style={{ color: '#7C3BED' }}>{selectedBlog.title}</h2>
+            <div className="flex gap-2 mb-4">
+              {selectedBlog.categories.map((category, idx) => (
+                <span key={`${selectedBlog.id}-${category}-${idx}`} className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-purple-100 text-purple-800">
+                  {category}
+                </span>
+              ))}
+            </div>
+            {selectedBlog.featured_image && (
+              <div className="mb-6 relative aspect-video">
+                <Image src={selectedBlog.featured_image} alt={selectedBlog.title} fill className="object-cover rounded-lg" />
+              </div>
+            )}
+            <div className="text-gray-600 mb-6">{selectedBlog.excerpt}</div>
+            <div className="prose prose-lg max-w-none mb-8" dangerouslySetInnerHTML={{ __html: selectedBlog.content }} />
+            <div className="flex items-center justify-between text-sm text-gray-500">
+              <span>{selectedBlog.published_at ? new Date(selectedBlog.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}</span>
+              <span>{selectedBlog.view_count} views</span>
+            </div>
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );
