@@ -8,21 +8,21 @@ export interface BlogAttributes {
   slug: string;
   excerpt: string;
   content: string;
-  featuredImage?: string;
+  featured_image?: string;
   authorId: number;
   status: 'draft' | 'published' | 'archived';
-  publishedAt?: Date;
+  published_at?: Date;
   categories: string[];
   tags: string[];
-  metaTitle?: string;
-  metaDescription?: string;
+  meta_title?: string;
+  meta_description?: string;
   canonicalUrl?: string;
   viewCount: number;
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface BlogCreationAttributes extends Optional<BlogAttributes, 'id' | 'featuredImage' | 'publishedAt' | 'metaTitle' | 'metaDescription' | 'canonicalUrl' | 'viewCount' | 'createdAt' | 'updatedAt'> {}
+export interface BlogCreationAttributes extends Optional<BlogAttributes, 'id' | 'featured_image' | 'published_at' | 'meta_title' | 'meta_description' | 'canonicalUrl' | 'viewCount' | 'createdAt' | 'updatedAt'> {}
 
 class Blog extends Model<BlogAttributes, BlogCreationAttributes> implements BlogAttributes {
   public id!: number;
@@ -30,14 +30,14 @@ class Blog extends Model<BlogAttributes, BlogCreationAttributes> implements Blog
   public slug!: string;
   public excerpt!: string;
   public content!: string;
-  public featuredImage?: string;
+  public featured_image?: string;
   public authorId!: number;
   public status!: 'draft' | 'published' | 'archived';
-  public publishedAt?: Date;
+  public published_at?: Date;
   public categories!: string[];
   public tags!: string[];
-  public metaTitle?: string;
-  public metaDescription?: string;
+  public meta_title?: string;
+  public meta_description?: string;
   public canonicalUrl?: string;
   public viewCount!: number;
   public readonly createdAt!: Date;
@@ -53,7 +53,7 @@ class Blog extends Model<BlogAttributes, BlogCreationAttributes> implements Blog
   }
 
   public isPublished(): boolean {
-    return this.status === 'published' && this.publishedAt !== null;
+    return this.status === 'published' && this.published_at !== null;
   }
 
   public getReadingTime(): number {
@@ -110,7 +110,7 @@ Blog.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    featuredImage: {
+    featured_image: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -127,7 +127,7 @@ Blog.init(
       allowNull: false,
       defaultValue: 'draft',
     },
-    publishedAt: {
+    published_at: {
       type: DataTypes.DATE,
       allowNull: true,
     },
@@ -141,14 +141,14 @@ Blog.init(
       allowNull: false,
       defaultValue: [],
     },
-    metaTitle: {
+    meta_title: {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 60],
       },
     },
-    metaDescription: {
+    meta_description: {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
@@ -185,7 +185,7 @@ Blog.init(
         unique: true,
       },
       {
-        fields: ['status', 'publishedAt'],
+        fields: ['status', 'published_at'],
       },
       {
         fields: ['categories'],
