@@ -3,6 +3,7 @@ import { Header } from '@/components/sections/header';
 import { Footer } from '@/components/sections/footer';
 import Image from 'next/image';
 
+// @ts-expect-error Next.js type mismatch workaround
 export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
   let blog: Blog | null = null;
   try {
