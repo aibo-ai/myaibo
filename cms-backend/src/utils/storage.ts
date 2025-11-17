@@ -42,10 +42,11 @@ export class FileStorage {
   add(item: any): any {
     const data = this.read();
     const newItem = {
-      ...item,
       id: (data.length + 1).toString(),
       created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
+      ...item,
+      content: item.content || '',
     };
     data.push(newItem);
     this.write(data);
@@ -64,6 +65,7 @@ export class FileStorage {
     data[index] = {
       ...data[index],
       ...updates,
+      content: updates.content || data[index].content || '',
       updated_at: new Date().toISOString()
     };
     
