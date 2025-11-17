@@ -25,7 +25,7 @@ router.get('/', async (req, res, next) => {
     
     if (status === 'published') {
       whereClause.status = 'published';
-      whereClause.publishedAt = { [Op.not]: null };
+      whereClause.published_at = { [Op.not]: null };
     } else if (status) {
       whereClause.status = status;
     }
@@ -55,7 +55,7 @@ router.get('/', async (req, res, next) => {
           attributes: ['id', 'firstName', 'lastName', 'avatar']
         }
       ],
-      order: [['publishedAt', 'DESC']],
+      order: [['published_at', 'DESC']],
       limit,
       offset
     });
@@ -109,7 +109,7 @@ router.get('/:slug', async (req, res, next) => {
       where: {
         id: { [Op.ne]: blog.id },
         status: 'published',
-        publishedAt: { [Op.not]: null as unknown as WhereAttributeHashValue<Date | undefined> },
+        published_at: { [Op.not]: null as unknown as WhereAttributeHashValue<Date | undefined> },
         [Op.or]: [
           { categories: { [Op.overlap]: blog.categories } },
           { tags: { [Op.overlap]: blog.tags } }
@@ -122,7 +122,7 @@ router.get('/:slug', async (req, res, next) => {
           attributes: ['id', 'firstName', 'lastName']
         }
       ],
-      order: [['publishedAt', 'DESC']],
+      order: [['published_at', 'DESC']],
       limit: 3
     });
 
