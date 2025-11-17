@@ -42,7 +42,7 @@ export default async function BlogDetailPage({ params }: any) {
         </div>
         {blog.featured_image && (
           <div className="mb-6 relative aspect-video">
-            <Image src={blog.featured_image} alt={blog.title} fill className="object-cover rounded-lg" />
+            <Image src={`http://localhost:3001${blog.featured_image}`} alt={blog.title} fill className="object-cover rounded-lg" />
           </div>
         )}
         <div className="text-gray-600 mb-6">{blog.excerpt}</div>

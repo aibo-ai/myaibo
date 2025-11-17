@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import { cmsApi, Blog } from '../../../../cms-backend/src/lib/api/cms';
 import { Header } from '@/components/sections/header';
@@ -112,48 +112,44 @@ export default function BlogPage() {
           {filteredBlogs.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredBlogs.map((blog) => (
-                <a
-                  key={blog.id}
-                  href={`/blog/${blog.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <article className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
-                    {blog.featured_image && (
-                      <div className="aspect-video relative">
-                        <Image
-                          src={blog.featured_image}
-                          alt={blog.title}
-                          fill
-                          className="object-cover"
-                        />
+                <Link key={blog.id} href={`/blog/${blog.slug}`} passHref>
+                  <a className="block">
+                    <article className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+                      {blog.featured_image && (
+                        <div className="aspect-video relative">
+                          <Image
+                            src={`http://localhost:3001${blog.featured_image}`}
+                            alt={blog.title}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6">
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          {blog.categories.map((category, idx) => (
+                            <span
+                              key={`${blog.id}-${category}-${idx}`}
+                              className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-purple-100 text-purple-800"
+                            >
+                              {category}
+                            </span>
+                          ))}
+                        </div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
+                          {blog.title}
+                        </h3>
+                        <p className="text-gray-600 mb-4 line-clamp-3">
+                          {blog.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between text-sm text-gray-500">
+                          <span>{formatDate(blog.published_at || blog.created_at)}</span>
+                          <span>{blog.view_count} views</span>
+                        </div>
                       </div>
-                    )}
-                    <div className="p-6">
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {blog.categories.map((category, idx) => (
-                          <span
-                            key={`${blog.id}-${category}-${idx}`}
-                            className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-purple-100 text-purple-800"
-                          >
-                            {category}
-                          </span>
-                        ))}
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
-                        {blog.title}
-                      </h3>
-                      <p className="text-gray-600 mb-4 line-clamp-3">
-                        {blog.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between text-sm text-gray-500">
-                        <span>{formatDate(blog.published_at || blog.created_at)}</span>
-                        <span>{blog.view_count} views</span>
-                      </div>
-                    </div>
-                  </article>
-                </a>
+                    </article>
+                  </a>
+                </Link>
               ))}
             </div>
           ) : (
