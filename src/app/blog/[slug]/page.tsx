@@ -3,10 +3,16 @@ import { Header } from '@/components/sections/header';
 import { Footer } from '@/components/sections/footer';
 import Image from 'next/image';
 
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
 /**
  * @param {{ params: { slug: string } }}
  */
-export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
+export default async function BlogDetailPage({ params }: PageProps) {
   let blog: Blog | null = null;
   try {
     blog = await cmsApi.getBlogBySlug(params.slug);
