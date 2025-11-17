@@ -3,19 +3,18 @@ import { Header } from '@/components/sections/header';
 import { Footer } from '@/components/sections/footer';
 import Image from 'next/image';
 
-interface BlogDetailProps {
-  params: { slug: string };
-}
-
-export default async function BlogDetailPage({ params }: BlogDetailProps) {
+/**
+ * @param {{ params: { slug: string } }}
+ */
+export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
   let blog: Blog | null = null;
   try {
     blog = await cmsApi.getBlogBySlug(params.slug);
     console.log("blog", blog);
   } catch (error) {
+    console.error(error);
     blog = null;
   }
-console.log("blog in slug page", blog);
   if (!blog) {
     return (
       <>
