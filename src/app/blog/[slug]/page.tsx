@@ -4,7 +4,8 @@ import { Footer } from '@/components/sections/footer';
 import Image from 'next/image';
 
 // @ts-expect-error Next.js type mismatch workaround
-export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
+export default async function BlogDetailPage(props: { params: { slug: string } }) {
+  const { params } = props;
   let blog: Blog | null = null;
   try {
     blog = await cmsApi.getBlogBySlug(params.slug);
