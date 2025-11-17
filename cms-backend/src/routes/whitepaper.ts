@@ -20,7 +20,7 @@ router.get('/', async (req, res, next) => {
     
     if (status === 'published') {
       whereClause.status = 'published';
-      whereClause.publishedAt = { [Op.not]: null };
+      whereClause.published_at = { [Op.not]: null };
     } else if (status) {
       whereClause.status = status;
     }
@@ -45,7 +45,7 @@ router.get('/', async (req, res, next) => {
           attributes: ['id', 'firstName', 'lastName', 'avatar']
         }
       ],
-      order: [['publishedAt', 'DESC']]
+      order: [['published_at', 'DESC']]
     });
 
     res.json({
@@ -75,10 +75,11 @@ router.get('/:slug', async (req, res, next) => {
     });
 
     if (!whitepaper) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Whitepaper not found'
       });
+      return;
     }
 
     res.json({
@@ -105,17 +106,19 @@ router.post('/:slug/download', async (req, res, next) => {
     });
 
     if (!whitepaper) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Whitepaper not found'
       });
+      return;
     }
 
     if (!whitepaper.isPublished()) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Whitepaper not available'
       });
+      return;
     }
 
     // Increment download count
@@ -168,18 +171,20 @@ router.put('/:id', protect, authorize('admin', 'editor'), async (req: AuthReques
     const whitepaper = await Whitepaper.findByPk(req.params.id);
 
     if (!whitepaper) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Whitepaper not found'
       });
+      return;
     }
 
     // Check if user is author or admin
     if (whitepaper.authorId !== req.user.id && req.user.role !== 'admin') {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         message: 'Not authorized to update this whitepaper'
       });
+      return;
     }
 
     await whitepaper.update(req.body);
@@ -201,18 +206,20 @@ router.delete('/:id', protect, authorize('admin', 'editor'), async (req: AuthReq
     const whitepaper = await Whitepaper.findByPk(req.params.id);
 
     if (!whitepaper) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Whitepaper not found'
       });
+      return;
     }
 
     // Check if user is author or admin
     if (whitepaper.authorId !== req.user.id && req.user.role !== 'admin') {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         message: 'Not authorized to delete this whitepaper'
       });
+      return;
     }
 
     await whitepaper.destroy();

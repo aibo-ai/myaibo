@@ -33,7 +33,7 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-  ],
+, "src/app/contentseeding/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

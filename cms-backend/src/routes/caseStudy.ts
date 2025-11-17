@@ -94,10 +94,11 @@ router.get('/:slug', async (req, res, next) => {
     });
 
     if (!caseStudy) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Case study not found'
       });
+      return;
     }
 
     // Increment view count for published case studies
@@ -169,18 +170,20 @@ router.put('/:id', protect, authorize('admin', 'editor'), async (req: AuthReques
     const caseStudy = await CaseStudy.findByPk(req.params.id);
 
     if (!caseStudy) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Case study not found'
       });
+      return;
     }
 
     // Check if user is author or admin
     if (caseStudy.authorId !== req.user.id && req.user.role !== 'admin') {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         message: 'Not authorized to update this case study'
       });
+      return;
     }
 
     await caseStudy.update(req.body);
@@ -202,18 +205,20 @@ router.delete('/:id', protect, authorize('admin', 'editor'), async (req: AuthReq
     const caseStudy = await CaseStudy.findByPk(req.params.id);
 
     if (!caseStudy) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Case study not found'
       });
+      return;
     }
 
     // Check if user is author or admin
     if (caseStudy.authorId !== req.user.id && req.user.role !== 'admin') {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         message: 'Not authorized to delete this case study'
       });
+      return;
     }
 
     await caseStudy.destroy();

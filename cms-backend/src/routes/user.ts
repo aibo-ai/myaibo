@@ -34,10 +34,11 @@ router.get('/:id', protect, authorize('admin'), async (req, res, next) => {
     });
 
     if (!user) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'User not found'
       });
+      return;
     }
 
     res.json({
@@ -73,10 +74,11 @@ router.put('/:id', protect, authorize('admin'), async (req, res, next) => {
     const user = await User.findByPk(req.params.id);
 
     if (!user) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'User not found'
       });
+      return;
     }
 
     await user.update(req.body);
@@ -98,18 +100,20 @@ router.delete('/:id', protect, authorize('admin'), async (req: AuthRequest, res,
     const user = await User.findByPk(req.params.id);
 
     if (!user) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'User not found'
       });
+      return;
     }
 
     // Prevent admin from deleting themselves
     if (user.id === req.user.id) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Cannot delete your own account'
       });
+      return;
     }
 
     await user.destroy();
@@ -131,18 +135,20 @@ router.put('/:id/toggle-status', protect, authorize('admin'), async (req: AuthRe
     const user = await User.findByPk(req.params.id);
 
     if (!user) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'User not found'
       });
+      return;
     }
 
     // Prevent admin from deactivating themselves
     if (user.id === req.user.id) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Cannot deactivate your own account'
       });
+      return;
     }
 
     await user.update({ isActive: !user.isActive });

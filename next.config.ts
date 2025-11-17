@@ -12,10 +12,18 @@ const nextConfig: NextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '3001',
+        port: '3002',
         pathname: '/uploads/**',
       },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/contentseeding',
+        destination: '/contentseeding/index.html',
+      },
+    ]
   },
 };
 

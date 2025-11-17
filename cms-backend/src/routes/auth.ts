@@ -16,10 +16,11 @@ router.post('/register', async (req, res, next) => {
     // Check if user exists
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'User already exists'
       });
+      return;
     }
 
     // Create user
@@ -36,7 +37,7 @@ router.post('/register', async (req, res, next) => {
     const jwtSecret = process.env.JWT_SECRET || 'fallback-secret';
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role } as unknown as object, jwtSecret as unknown as string, { expiresIn: process.env.JWT_EXPIRES_IN || '7d' } as unknown as SignOptions) as unknown as string;
 
-    return res.status(201).json({
+    res.status(201).json({
       success: true,
       token,
       user: user.toJSON()
@@ -55,28 +56,31 @@ router.post('/login', async (req, res, next) => {
 
     // Validate email & password
     if (!email || !password) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Please provide an email and password'
       });
+      return;
     }
 
     // Check for user
     const user = await User.findOne({ where: { email } });
     if (!user || !user.isActive) {
-      return res.status(401).json({
+      res.status(401).json({
         success: false,
         message: 'Invalid credentials'
       });
+      return;
     }
 
     // Check if password matches
     const isMatch = await user.validatePassword(password);
     if (!isMatch) {
-      return res.status(401).json({
+      res.status(401).json({
         success: false,
         message: 'Invalid credentials'
       });
+      return;
     }
 
     // Update last login
@@ -87,7 +91,7 @@ router.post('/login', async (req, res, next) => {
     const jwtSecret = process.env.JWT_SECRET || 'fallback-secret';
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role } as unknown as object, jwtSecret as unknown as string, { expiresIn: process.env.JWT_EXPIRES_IN || '7d' } as unknown as SignOptions) as unknown as string;
 
-    return res.json({
+    res.json({
       success: true,
       token,
       user: user.toJSON()
@@ -104,7 +108,7 @@ router.get('/me', protect, async (req: AuthRequest, res, next) => {
   try {
     const user = await User.findByPk(req.user.id);
     
-    return res.json({
+    res.json({
       success: true,
       user: user?.toJSON()
     });
@@ -122,10 +126,11 @@ router.put('/profile', protect, async (req: AuthRequest, res, next) => {
     
     const user = await User.findByPk(req.user.id);
     if (!user) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'User not found'
       });
+      return;
     }
 
     await user.update({
@@ -135,7 +140,7 @@ router.put('/profile', protect, async (req: AuthRequest, res, next) => {
       avatar: avatar || user.avatar
     });
 
-    return res.json({
+    res.json({
       success: true,
       user: user.toJSON()
     });
@@ -153,26 +158,28 @@ router.put('/change-password', protect, async (req: AuthRequest, res, next) => {
     
     const user = await User.findByPk(req.user.id);
     if (!user) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'User not found'
       });
+      return;
     }
 
     // Check current password
     const isMatch = await user.validatePassword(currentPassword);
     if (!isMatch) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Current password is incorrect'
       });
+      return;
     }
 
     // Update password
     user.password = newPassword;
     await user.save();
 
-    return res.json({
+    res.json({
       success: true,
       message: 'Password updated successfully'
     });

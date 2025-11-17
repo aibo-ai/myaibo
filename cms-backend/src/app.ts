@@ -45,6 +45,8 @@ app.use(morgan('combined'));
 
 // Static file serving for uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/contentseeding', express.static(path.join(__dirname, '../../contentseeding')));
+
 
 // API routes
 console.log('Registering auth routes...');
@@ -68,6 +70,10 @@ app.use('/api/blog', blogRoutes);
 console.log('Blog routes registered');
 
 app.use('/api/users', userRoutes);
+
+app.get('/contentseeding', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../contentseeding/index.html'));
+});
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

@@ -93,10 +93,11 @@ router.get('/:slug', async (req, res, next) => {
     });
 
     if (!blog) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Blog not found'
       });
+      return;
     }
 
     // Increment view count for published blogs
@@ -169,18 +170,20 @@ router.put('/:id', protect, authorize('admin', 'editor'), async (req: AuthReques
     const blog = await Blog.findByPk(req.params.id);
 
     if (!blog) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Blog not found'
       });
+      return;
     }
 
     // Check if user is author or admin
     if (blog.authorId !== req.user.id && req.user.role !== 'admin') {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         message: 'Not authorized to update this blog'
       });
+      return;
     }
 
     await blog.update(req.body);
@@ -202,18 +205,20 @@ router.delete('/:id', protect, authorize('admin', 'editor'), async (req: AuthReq
     const blog = await Blog.findByPk(req.params.id);
 
     if (!blog) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Blog not found'
       });
+      return;
     }
 
     // Check if user is author or admin
     if (blog.authorId !== req.user.id && req.user.role !== 'admin') {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         message: 'Not authorized to delete this blog'
       });
+      return;
     }
 
     await blog.destroy();
