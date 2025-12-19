@@ -4,10 +4,14 @@ import { Footer } from '@/components/sections/footer';
 import Image from 'next/image';
 import { Metadata } from 'next';
 
+type BlogPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
 // Generate metadata for SEO
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     const blog = await cmsApi.getBlogBySlug(slug);
 
     const title = blog.meta_title || blog.title;
@@ -43,10 +47,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-type BlogPageProps = { params: { slug: string } };
-
-export default async function BlogDetailPage(props: BlogPageProps) {
-  const { slug } = props.params;
+export default async function BlogDetailPage({ params }: BlogPageProps) {
+  const { slug } = await params;
   let blog: Blog | null = null;
   try {
     blog = await cmsApi.getBlogBySlug(slug);

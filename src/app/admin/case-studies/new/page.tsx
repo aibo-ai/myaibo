@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { cmsApi } from '@/lib/api/cms';
+import { cmsApi, CaseStudy } from '@/lib/api/cms';
 import Image from 'next/image';
 
 interface CaseStudyFormData {
@@ -142,22 +142,7 @@ export default function NewCaseStudyPage() {
       }
 
       // Create case study payload in the shape the backend expects
-      const caseStudyPayload: {
-        title: string;
-        slug: string;
-        client_name: string;
-        challenge: string;
-        solution: string;
-        objectives: string;
-        results: string;
-        content: string;
-        featured_image: string;
-        status: string;
-        industries: string[];
-        tags: string[];
-        meta_title?: string;
-        meta_description?: string;
-      } = {
+      const caseStudyPayload: Partial<CaseStudy> = {
         title: formData.title,
         slug: formData.slug,
         // backend maps either clientName or client_name
