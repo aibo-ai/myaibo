@@ -7,10 +7,12 @@ import path from 'path';
 
 // Import routes
 import authRoutes from './routes/auth';
+import authSimpleRoutes from './routes/auth-simple';
 import uploadRoutes from './routes/upload';
 import blogRoutes from './routes/blog';
+// import caseStudyRoutes from './routes/caseStudy'; // Disabled for SQLite compatibility
 import caseStudyRoutes from './routes/caseStudy';
-import whitepaperRoutes from './routes/whitepaper';
+// import whitepaperRoutes from './routes/whitepaper'; // Disabled for SQLite compatibility
 import userRoutes from './routes/user';
 
 // Import middleware
@@ -24,16 +26,22 @@ const app = express();
 
 // Security middleware
 app.use(helmet());
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001','http://localhost:3002', 'https://www.myaibo.in']; // adjust as needed
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'http://localhost:3003', 'https://www.myaibo.in']; // adjust as needed
+
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+  origin(origin, callback) {
+    // Allow server-to-server and tools without an Origin header, and any whitelisted origin
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+  exposedHeaders: ['Authorization'],
+  optionsSuccessStatus: 204,
 }));
 
 // Body parsing middleware
@@ -53,6 +61,10 @@ console.log('Registering auth routes...');
 app.use('/api/auth', authRoutes);
 console.log('Auth routes registered');
 
+console.log('Registering auth-simple routes...');
+app.use('/api/auth-simple', authSimpleRoutes);
+console.log('Auth-simple routes registered');
+
 console.log('Registering upload routes...');
 app.use('/api/upload', uploadRoutes);
 console.log('Upload routes registered');
@@ -62,7 +74,7 @@ app.use('/api/case-studies', caseStudyRoutes);
 console.log('Case study routes registered');
 
 console.log('Registering whitepaper routes...');
-app.use('/api/whitepapers', whitepaperRoutes);
+// app.use('/api/whitepapers', whitepaperRoutes); // Disabled for SQLite compatibility
 console.log('Whitepaper routes registered');
 
 console.log('Registering blog routes...');

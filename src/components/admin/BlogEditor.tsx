@@ -1,7 +1,7 @@
-'use client';
+  'use client';
 
 import { useState, useEffect } from 'react';
-import { Blog, cmsApi } from '../../../cms-backend/src/lib/api/cms';
+import { Blog, cmsApi } from '@/lib/api/cms';
 import RichTextEditor from './RichTextEditor';
 import Image from 'next/image';
 
@@ -14,18 +14,18 @@ interface BlogEditorProps {
 
 export default function BlogEditor({ blog, onSave, onCancel, loading = false }: BlogEditorProps) {
   const [formData, setFormData] = useState({
-    title: blog?.title || '',
-    slug: blog?.slug || '',
-    excerpt: blog?.excerpt || '',
-    content: blog?.content || '',
-    status: blog?.status || 'draft',
-    categories: blog?.categories || [],
-    tags: blog?.tags || [],
-    meta_title: blog?.meta_title || '',
-    meta_description: blog?.meta_description || '',
-    canonical_url: blog?.canonical_url || '',
-    featured_image: blog?.featured_image || '',
-    featured_image_alt: blog?.featured_image_alt || '',
+    title: '',
+    slug: '',
+    excerpt: '',
+    content: '',
+    status: 'draft' as 'draft' | 'published' | 'archived',
+    categories: [] as string[],
+    tags: [] as string[],
+    meta_title: '',
+    meta_description: '',
+    canonical_url: '',
+    featured_image: '',
+    featured_image_alt: '',
   });
 
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -33,6 +33,27 @@ export default function BlogEditor({ blog, onSave, onCancel, loading = false }: 
 
   const [newCategory, setNewCategory] = useState('');
   const [newTag, setNewTag] = useState('');
+
+  // Update form data when blog prop changes
+  useEffect(() => {
+    if (blog) {
+      setFormData({
+        title: blog.title || '',
+        slug: blog.slug || '',
+        excerpt: blog.excerpt || '',
+        content: blog.content || '',
+        status: blog.status || 'draft',
+        categories: blog.categories || [],
+        tags: blog.tags || [],
+        meta_title: blog.meta_title || '',
+        meta_description: blog.meta_description || '',
+        canonical_url: blog.canonical_url || '',
+        featured_image: blog.featured_image || '',
+        featured_image_alt: blog.featured_image_alt || '',
+      });
+      setImagePreview(blog.featured_image || null);
+    }
+  }, [blog]);
 
   // Auto-generate slug from title
   useEffect(() => {
@@ -77,7 +98,9 @@ export default function BlogEditor({ blog, onSave, onCancel, loading = false }: 
     if (imageFile) {
       try {
         const uploadResponse = await cmsApi.uploadFile(imageFile, 'image');
-        finalFormData.featured_image = uploadResponse.url;
+        // Extract just the path part from the full URL
+        const url = new URL(uploadResponse.url);
+        finalFormData.featured_image = url.pathname;
       } catch (error) {
         console.error('Error uploading image:', error);
         alert('Failed to upload image. Please try again.');
@@ -167,12 +190,20 @@ export default function BlogEditor({ blog, onSave, onCancel, loading = false }: 
           <textarea
             id="excerpt"
             value={formData.excerpt}
-            onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value.length <= 500) {
+                setFormData(prev => ({ ...prev, excerpt: value }));
+              }
+            }}
             required
             rows={3}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
             placeholder="Brief description of the blog post"
           />
+          <p className="mt-1 text-sm text-gray-500">
+            {formData.excerpt.length}/500 characters
+          </p>
         </div>
 
         <div className="mt-6">
@@ -198,12 +229,12 @@ export default function BlogEditor({ blog, onSave, onCancel, loading = false }: 
         
         <div className="space-y-4">
           <div>
-            <label htmlFor="featured_image" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="featuredImage" className="block text-sm font-medium text-gray-700 mb-2">
               Upload Thumbnail Image
             </label>
             <input
               type="file"
-              id="featured_image"
+              id="featuredImage"
               accept="image/png,image/jpeg,image/jpg"
               onChange={handleImageChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
@@ -229,6 +260,9 @@ export default function BlogEditor({ blog, onSave, onCancel, loading = false }: 
                 <button
                   type="button"
                   onClick={() => {
+                    if (imagePreview && imagePreview.startsWith('blob:')) {
+                      URL.revokeObjectURL(imagePreview);
+                    }
                     setImageFile(null);
                     setImagePreview(null);
                     setFormData(prev => ({ ...prev, featured_image: '', featured_image_alt: '' }));
@@ -242,12 +276,12 @@ export default function BlogEditor({ blog, onSave, onCancel, loading = false }: 
           )}
 
           <div>
-            <label htmlFor="featured_image_alt" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="featuredImageAlt" className="block text-sm font-medium text-gray-700 mb-2">
               Image Alt Text
             </label>
             <input
               type="text"
-              id="featured_image_alt"
+              id="featuredImageAlt"
               value={formData.featured_image_alt}
               onChange={(e) => setFormData(prev => ({ ...prev, featured_image_alt: e.target.value }))}
               placeholder="Describe the image for accessibility and SEO"
@@ -380,12 +414,12 @@ export default function BlogEditor({ blog, onSave, onCancel, loading = false }: 
         
         <div className="space-y-4">
           <div>
-            <label htmlFor="meta_title" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="metaTitle" className="block text-sm font-medium text-gray-700 mb-2">
               Meta Title
             </label>
             <input
               type="text"
-              id="meta_title"
+              id="metaTitle"
               value={formData.meta_title}
               onChange={(e) => setFormData(prev => ({ ...prev, meta_title: e.target.value }))}
               maxLength={60}
@@ -398,11 +432,11 @@ export default function BlogEditor({ blog, onSave, onCancel, loading = false }: 
           </div>
 
           <div>
-            <label htmlFor="meta_description" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="metaDescription" className="block text-sm font-medium text-gray-700 mb-2">
               Meta Description
             </label>
             <textarea
-              id="meta_description"
+              id="metaDescription"
               value={formData.meta_description}
               onChange={(e) => setFormData(prev => ({ ...prev, meta_description: e.target.value }))}
               maxLength={160}
@@ -421,7 +455,7 @@ export default function BlogEditor({ blog, onSave, onCancel, loading = false }: 
             </label>
             <input
               type="url"
-              id="canonical_url"
+              id="canonicalUrl"
               value={formData.canonical_url}
               onChange={(e) => setFormData(prev => ({ ...prev, canonical_url: e.target.value }))}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"

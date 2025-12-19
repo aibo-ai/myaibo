@@ -76,6 +76,47 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// @desc    Get single blog by ID
+// @route   GET /api/blog/id/:id
+// @access  Private
+router.get('/id/:id', protect, authorize('admin', 'editor'), async (req: AuthRequest, res, next) => {
+  try {
+    const blog = await Blog.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          as: 'author',
+          attributes: ['id', 'firstName', 'lastName', 'avatar', 'bio']
+        }
+      ]
+    });
+
+    if (!blog) {
+      res.status(404).json({
+        success: false,
+        message: 'Blog not found'
+      });
+      return;
+    }
+
+    // Check if user is author or admin
+    if (blog.authorId !== req.user.id && req.user.role !== 'admin') {
+      res.status(403).json({
+        success: false,
+        message: 'Not authorized to view this blog'
+      });
+      return;
+    }
+
+    res.json({
+      success: true,
+      data: blog
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // @desc    Get single blog
 // @route   GET /api/blog/:slug
 // @access  Public
@@ -105,16 +146,12 @@ router.get('/:slug', async (req, res, next) => {
       await blog.incrementViewCount();
     }
 
-    // Get related blogs
+    // Get related blogs - simplified for SQLite compatibility
     const relatedBlogs = await Blog.findAll({
       where: {
         id: { [Op.ne]: blog.id },
         status: 'published',
-        published_at: { [Op.not]: null as unknown as WhereAttributeHashValue<Date | undefined> },
-        [Op.or]: [
-          { categories: { [Op.overlap]: blog.categories } },
-          { tags: { [Op.overlap]: blog.tags } }
-        ]
+        published_at: { [Op.not]: null as unknown as WhereAttributeHashValue<Date | undefined> }
       },
       include: [
         {
@@ -146,8 +183,21 @@ router.get('/:slug', async (req, res, next) => {
 // @access  Private
 router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest, res, next) => {
   try {
-    const blogData = {
-      ...req.body,
+    // Map camelCase fields to snake_case for Sequelize
+    const blogData: any = {
+      title: req.body.title,
+      slug: req.body.slug,
+      excerpt: req.body.excerpt,
+      content: req.body.content,
+      status: req.body.status,
+      categories: req.body.categories || [],
+      tags: req.body.tags || [],
+      featured_image: req.body.featuredImage,
+      featured_image_alt: req.body.featuredImageAlt,
+      meta_title: req.body.metaTitle,
+      meta_description: req.body.metaDescription,
+      canonical_url: req.body.canonicalUrl,
+      published_at: req.body.status === 'published' ? new Date() : null,
       authorId: req.user.id
     };
 
@@ -186,7 +236,14 @@ router.put('/:id', protect, authorize('admin', 'editor'), async (req: AuthReques
       return;
     }
 
-    await blog.update(req.body);
+    const updateData = { ...req.body };
+
+    // Set published_at when status changes to 'published'
+    if (updateData.status === 'published' && blog.status !== 'published') {
+      updateData.published_at = new Date();
+    }
+
+    await blog.update(updateData);
 
     res.json({
       success: true,

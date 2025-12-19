@@ -1,16 +1,16 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model, Optional, UUIDV4 } from 'sequelize';
 import sequelize from '../config/database';
 import User from './User';
 
 export interface WhitepaperAttributes {
-  id: number;
+  id: string;
   title: string;
   slug: string;
   abstract: string;
   keyTakeaways: string[];
   pdfUrl: string;
   coverImage?: string;
-  authorId: number;
+  authorId: string;
   status: 'draft' | 'published' | 'archived';
   publishedAt?: Date;
   topics: string[];
@@ -28,14 +28,14 @@ export interface WhitepaperAttributes {
 export interface WhitepaperCreationAttributes extends Optional<WhitepaperAttributes, 'id' | 'coverImage' | 'publishedAt' | 'downloadCount' | 'metaTitle' | 'metaDescription' | 'canonicalUrl' | 'fileSize' | 'createdAt' | 'updatedAt'> {}
 
 class Whitepaper extends Model<WhitepaperAttributes, WhitepaperCreationAttributes> implements WhitepaperAttributes {
-  public id!: number;
+  public id!: string;
   public title!: string;
   public slug!: string;
   public abstract!: string;
   public keyTakeaways!: string[];
   public pdfUrl!: string;
   public coverImage?: string;
-  public authorId!: number;
+  public authorId!: string;
   public status!: 'draft' | 'published' | 'archived';
   public publishedAt?: Date;
   public topics!: string[];
@@ -81,8 +81,8 @@ class Whitepaper extends Model<WhitepaperAttributes, WhitepaperCreationAttribute
 Whitepaper.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: UUIDV4,
       primaryKey: true,
     },
     title: {
@@ -122,7 +122,7 @@ Whitepaper.init(
       allowNull: true,
     },
     authorId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'users',
@@ -196,6 +196,7 @@ Whitepaper.init(
     sequelize,
     tableName: 'whitepapers',
     timestamps: true,
+    underscored: true,
     indexes: [
       {
         fields: ['slug'],

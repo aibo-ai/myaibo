@@ -1,5 +1,5 @@
 // CMS API Client
-const API_BASE_URL = process.env.NEXT_PUBLIC_CMS_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_CMS_API_URL || 'http://localhost:3002/api';
 
 export interface User {
   id: string;
@@ -33,6 +33,7 @@ export interface Blog {
   view_count: number;
   created_at: string;
   updated_at: string;
+  author?: User;
 }
 
 export interface CaseStudy {
@@ -43,6 +44,7 @@ export interface CaseStudy {
   client_logo?: string;
   challenge: string;
   solution: string;
+  objectives?: string;
   results: Array<{
     metric: string;
     value: string;
@@ -160,6 +162,7 @@ class CMSApiClient {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
+    console.log("why is it failing here");
     if (response.success && response.token) {
       this.token = response.token;
       if (typeof (globalThis as any).window !== 'undefined') {
@@ -213,11 +216,13 @@ class CMSApiClient {
   }
 
   async getBlog(slug: string): Promise<Blog> {
-    return this.request(`/blog/${slug}`);
+    const response = await this.request<{ success: boolean; data: Blog }>(`/blog/${slug}`);
+    return response.data;
   }
 
   async getBlogById(id: string): Promise<Blog> {
-    return this.request(`/blog/id/${id}`);
+    const response = await this.request<{ success: boolean; data: Blog }>(`/blog/id/${id}`);
+    return response.data;
   }
 
   async createBlog(blog: Partial<Blog>): Promise<Blog> {
@@ -241,7 +246,8 @@ class CMSApiClient {
   }
 
   async getBlogBySlug(slug: string): Promise<Blog> {
-    return this.request(`/blog/${slug}`);
+    const response = await this.request<{ success: boolean; data: Blog }>(`/blog/${slug}`);
+    return response.data;
   }
 
   // Case Studies
@@ -344,7 +350,6 @@ class CMSApiClient {
       headers: this.token ? { Authorization: `Bearer ${this.token}` } : undefined,
       body: formData,
     });
-    console.log("response in login",response)
 
     if (!response.ok) {
       throw new Error(`Upload failed: ${response.status}`);

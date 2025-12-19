@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { cmsApi, User, Blog, CaseStudy } from '../../../../cms-backend/src/lib/api/cms';
+import { cmsApi, User, Blog, CaseStudy } from '@/lib/api/cms';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,8 +11,6 @@ interface DashboardStats {
   publishedBlogs: number;
   totalCaseStudies: number;
   publishedCaseStudies: number;
-  totalWhitepapers: number;
-  publishedWhitepapers: number;
   totalViews: number;
 }
 
@@ -56,8 +54,6 @@ export default function AdminDashboard() {
           publishedBlogs: 0,
           totalCaseStudies: 0,
           publishedCaseStudies: 0,
-          totalWhitepapers: 0,
-          publishedWhitepapers: 0,
           totalViews: 0
         });
 
@@ -139,7 +135,7 @@ export default function AdminDashboard() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
             <div className="flex items-center">
               <div className="p-3 rounded-lg" style={{ backgroundColor: '#7C3BED20' }}>
@@ -168,19 +164,6 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <div className="flex items-center">
-              <div className="p-3 rounded-lg" style={{ backgroundColor: '#7C3BED20' }}>
-                <svg className="w-6 h-6" style={{ color: '#7C3BED' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Whitepapers</p>
-                <p className="text-2xl font-bold text-gray-900">{stats?.totalWhitepapers || 0}</p>
-              </div>
-            </div>
-          </div>
 
           <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
             <div className="flex items-center">
@@ -201,7 +184,7 @@ export default function AdminDashboard() {
         {/* Quick Actions */}
         <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 mb-8">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link
               href="/admin/blogs/new"
               className="flex items-center p-4 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 transition-all duration-200"
@@ -229,21 +212,6 @@ export default function AdminDashboard() {
               <div>
                 <h3 className="font-medium text-gray-900">New Case Study</h3>
                 <p className="text-sm text-gray-600">Add a client success story</p>
-              </div>
-            </Link>
-
-            <Link
-              href="/admin/whitepapers/new"
-              className="flex items-center p-4 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 transition-all duration-200"
-            >
-              <div className="p-2 rounded-lg mr-3" style={{ backgroundColor: '#7C3BED20' }}>
-                <svg className="w-5 h-5" style={{ color: '#7C3BED' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="font-medium text-gray-900">New Whitepaper</h3>
-                <p className="text-sm text-gray-600">Upload a research document</p>
               </div>
             </Link>
           </div>

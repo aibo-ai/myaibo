@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { CaseStudy, cmsApi } from '../../../../../cms-backend/src/lib/api/cms';
+import { cmsApi } from '@/lib/api/cms';
 import Image from 'next/image';
 
 interface CaseStudyFormData {
@@ -17,6 +17,7 @@ interface CaseStudyFormData {
   project_duration: string;
   technologies: string[];
   results: string;
+  objectives: string;
   status: 'draft' | 'published';
   meta_title: string;
   meta_description: string;
@@ -42,6 +43,7 @@ export default function NewCaseStudyPage() {
     project_duration: '',
     technologies: [],
     results: '',
+    objectives: '',
     status: 'draft',
     meta_title: '',
     meta_description: '',
@@ -51,10 +53,32 @@ export default function NewCaseStudyPage() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+
+    const slugify = (val: string) =>
+      val
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+    setFormData(prev => {
+      const updated: CaseStudyFormData = {
+        ...prev,
+        [name]: value,
+      };
+
+      if (name === 'title') {
+        const autoSlug = slugify(value);
+        const previousAutoSlug = slugify(prev.title || '');
+        const shouldUpdateSlug = !prev.slug || prev.slug === previousAutoSlug;
+
+        if (shouldUpdateSlug) {
+          updated.slug = autoSlug;
+        }
+      }
+
+      return updated;
+    });
   };
 
   const handleArrayChange = (name: keyof Pick<CaseStudyFormData, 'technologies' | 'tags'>, value: string) => {
@@ -102,13 +126,13 @@ export default function NewCaseStudyPage() {
     setError('');
 
     try {
-      let pdfUrl = formData.pdf_url;
+      // const pdfUrl = formData.pdf_url;
       let featuredImageUrl = formData.featured_image;
       
       // Upload PDF file if provided
       if (formData.pdf_file) {
-        const uploadResponse = await cmsApi.uploadFile(formData.pdf_file, 'pdf');
-        pdfUrl = uploadResponse.url;
+         await cmsApi.uploadFile(formData.pdf_file, 'pdf');
+        // pdfUrl = uploadResponse.url;
       }
 
       // Upload image file if provided
@@ -117,18 +141,56 @@ export default function NewCaseStudyPage() {
         featuredImageUrl = imageUploadResponse.url;
       }
 
-      // Create case study with PDF URL and featured image URL
-      const caseStudyData = {
-        ...formData,
-        pdf_url: pdfUrl,
+      // Create case study payload in the shape the backend expects
+      const caseStudyPayload: {
+        title: string;
+        slug: string;
+        client_name: string;
+        challenge: string;
+        solution: string;
+        objectives: string;
+        results: string;
+        content: string;
+        featured_image: string;
+        status: string;
+        industries: string[];
+        tags: string[];
+        meta_title?: string;
+        meta_description?: string;
+      } = {
+        title: formData.title,
+        slug: formData.slug,
+        // backend maps either clientName or client_name
+        client_name: formData.client_name || 'Unknown Client',
+        // map our fields into the narrative fields
+        challenge: formData.excerpt || formData.objectives || '',
+        solution: formData.objectives || formData.excerpt || '',
+        objectives: formData.objectives,
+        results: formData.results
+          ? [
+              {
+                metric: formData.results,
+                value: '',
+                unit: '',
+                description: ''
+              }
+            ]
+          : [],
+        content: formData.excerpt || formData.objectives || '',
         featured_image: featuredImageUrl,
-        pdf_file: undefined // Remove file object before sending
+        status: formData.status,
+        // backend stores industries/tags as JSON arrays in TEXT columns
+        industries: formData.industry ? [formData.industry] : [],
+        tags: formData.tags,
+        meta_title: formData.meta_title || undefined,
+        meta_description: formData.meta_description || undefined,
       };
       
-      await cmsApi.createCaseStudy(caseStudyData as unknown as Partial<CaseStudy>);
+      await cmsApi.createCaseStudy(caseStudyPayload);
       router.push('/admin/case-studies');
     } catch (err) {
-      setError('Failed to create case study');
+      const message = err instanceof Error ? err.message : 'Failed to create case study';
+      setError(message);
       console.error('Error creating case study:', err);
     } finally {
       setLoading(false);
@@ -313,6 +375,21 @@ export default function NewCaseStudyPage() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder="Describe the results, metrics, and impact achieved"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="objectives" className="block text-sm font-medium text-gray-700 mb-2">
+                Objectives
+              </label>
+              <textarea
+                id="objectives"
+                name="objectives"
+                rows={4}
+                value={formData.objectives}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Describe the main objectives of this case study (will be shown as a short summary)"
               />
             </div>
 

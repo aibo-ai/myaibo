@@ -26,7 +26,8 @@ router.get('/', async (req, res, next) => {
     if (status === 'published') {
       whereClause.status = 'published';
       whereClause.publishedAt = { [Op.not]: null };
-    } else if (status) {
+    } else if (status && status !== 'all') {
+      // For admin views we may explicitly request status="all" to get every case study
       whereClause.status = status;
     }
 
@@ -107,26 +108,33 @@ router.get('/:slug', async (req, res, next) => {
     }
 
     // Get related case studies
-    const relatedCaseStudies = await CaseStudy.findAll({
-      where: {
-        id: { [Op.ne]: caseStudy.id },
-        status: 'published',
-        publishedAt: { [Op.not]: null as unknown as WhereAttributeHashValue<Date | undefined> },
-        [Op.or]: [
-          { industries: { [Op.overlap]: caseStudy.industries } },
-          { tags: { [Op.overlap]: caseStudy.tags } }
-        ]
-      },
-      include: [
-        {
-          model: User,
-          as: 'author',
-          attributes: ['id', 'firstName', 'lastName']
-        }
-      ],
-      order: [['publishedAt', 'DESC']],
-      limit: 3
-    });
+    let relatedCaseStudies: CaseStudy[] = [];
+    try {
+      relatedCaseStudies = await CaseStudy.findAll({
+        where: {
+          id: { [Op.ne]: caseStudy.id },
+          status: 'published',
+          publishedAt: { [Op.not]: null as unknown as WhereAttributeHashValue<Date | undefined> },
+          // NOTE: Op.overlap generates the `&&` operator, which is not supported by SQLite.
+          // In SQLite mode this query will fail; we catch and fall back to an empty array.
+          [Op.or]: [
+            { industries: { [Op.overlap]: caseStudy.industries } },
+            { tags: { [Op.overlap]: caseStudy.tags } }
+          ]
+        },
+        include: [
+          {
+            model: User,
+            as: 'author',
+            attributes: ['id', 'firstName', 'lastName']
+          }
+        ],
+        order: [['publishedAt', 'DESC']],
+        limit: 3
+      });
+    } catch (err) {
+      console.warn('Failed to load related case studies (likely due to SQLite not supporting array overlap operators):', err);
+    }
 
     res.json({
       success: true,
@@ -146,16 +154,99 @@ router.get('/:slug', async (req, res, next) => {
 // @access  Private
 router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest, res, next) => {
   try {
-    const caseStudyData = {
-      ...req.body,
-      authorId: req.user.id
+    const body = req.body as any;
+
+    const slugify = (val: string) =>
+      (val || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+    const toJsonArrayString = (value: any): string => {
+      if (!value) return '[]';
+      if (typeof value === 'string') {
+        const trimmed = value.trim();
+        if (!trimmed) return '[]';
+        try {
+          const parsed = JSON.parse(trimmed);
+          if (Array.isArray(parsed)) return JSON.stringify(parsed);
+        } catch {
+          // fall through
+        }
+        return JSON.stringify([trimmed]);
+      }
+      if (Array.isArray(value)) {
+        return JSON.stringify(value);
+      }
+      return '[]';
+    };
+
+    const buildResults = (): string => {
+      if (Array.isArray(body.results)) {
+        return JSON.stringify(body.results);
+      }
+      if (typeof body.results === 'string' && body.results.trim()) {
+        return JSON.stringify([
+          {
+            metric: 'Summary',
+            value: '',
+            unit: '',
+            description: body.results.trim(),
+          },
+        ]);
+      }
+      return '[]';
+    };
+
+    const metaTitle = (body.metaTitle ?? body.meta_title ?? '').trim();
+    const metaDescription = (body.metaDescription ?? body.meta_description ?? '').trim();
+
+    const caseStudyData: any = {
+      // Required basics
+      title: body.title,
+      slug: slugify(body.slug || body.title || ''),
+
+      // Map client name/logo from either camelCase or snake_case
+      clientName: body.clientName || body.client_name || 'Unknown Client',
+      clientLogo: body.clientLogo || body.client_logo || null,
+
+      // Core narrative fields
+      challenge: body.challenge || body.excerpt || '',
+      solution: body.solution || body.objectives || '',
+      objectives: body.objectives,
+      results: buildResults(),
+      content: body.content || body.excerpt || body.objectives || '',
+
+      // Media & meta
+      featuredImage: body.featuredImage || body.featured_image || null,
+
+      // Ownership & status
+      authorId: req.user.id,
+      status: body.status || 'draft',
+      publishedAt: body.status === 'published' ? new Date() : null,
+
+      // Classification (stored as JSON strings in TEXT columns)
+      industries: toJsonArrayString(
+        body.industries || (body.industry ? [body.industry] : [])
+      ),
+      tags: toJsonArrayString(body.tags),
+
+      // Optional extras
+      testimonial:
+        body.testimonial && typeof body.testimonial !== 'string'
+          ? JSON.stringify(body.testimonial)
+          : body.testimonial || null,
+      metaTitle: metaTitle || null,
+      metaDescription: metaDescription || null,
+      canonicalUrl: body.canonicalUrl || body.canonical_url,
     };
 
     const caseStudy = await CaseStudy.create(caseStudyData);
 
     res.status(201).json({
       success: true,
-      data: caseStudy
+      data: caseStudy,
     });
   } catch (error) {
     next(error);

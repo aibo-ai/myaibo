@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Blog, cmsApi } from '../../../../../cms-backend/src/lib/api/cms';
+import { Blog, cmsApi } from '@/lib/api/cms';
 import BlogEditor from '@/components/admin/BlogEditor';
 
 export default function NewBlogPage() {

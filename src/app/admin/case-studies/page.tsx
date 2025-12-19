@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 // import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { cmsApi, CaseStudy } from '../../../../cms-backend/src/lib/api/cms';
+import { cmsApi, CaseStudy } from '@/lib/api/cms';
 
 export default function CaseStudiesPage() {
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
@@ -16,8 +16,29 @@ export default function CaseStudiesPage() {
   useEffect(() => {
     const fetchCaseStudies = async () => {
       try {
-        const response = await cmsApi.getCaseStudies();
-        setCaseStudies(response.data);
+        // In the admin dashboard, show ALL case studies regardless of status by default
+        const response = await cmsApi.getCaseStudies({ status: 'all' });
+        const normalizedCaseStudies = response.data.map((cs: Partial<CaseStudy>) => {
+          const industries = Array.isArray(cs.industries)
+            ? cs.industries
+            : typeof cs.industries === 'string'
+              ? (() => {
+                  try {
+                    const parsed = JSON.parse(cs.industries);
+                    return Array.isArray(parsed) ? parsed : [];
+                  } catch {
+                    return cs.industries ? [cs.industries] : [];
+                  }
+                })()
+              : [];
+
+          return {
+            ...cs,
+            industries,
+          } as CaseStudy;
+        });
+
+        setCaseStudies(normalizedCaseStudies);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load case studies');
       } finally {
@@ -156,7 +177,7 @@ export default function CaseStudiesPage() {
                         )}
                       </div>
                       
-                      {caseStudy.industries && caseStudy.industries.length > 0 && (
+                      {Array.isArray(caseStudy.industries) && caseStudy.industries.length > 0 && (
                         <div className="flex flex-wrap gap-2 mt-3">
                           {caseStudy.industries.map((industry, index) => (
                             <span
@@ -172,7 +193,7 @@ export default function CaseStudiesPage() {
                     
                     <div className="flex items-center space-x-2 ml-4">
                       <Link
-                        href={`/admin/case-studies/${caseStudy.id}/edit`}
+                        href={`/resources/case-studies/${caseStudy.slug}`}
                         className="p-2 text-gray-400 hover:text-purple-600 transition-colors"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

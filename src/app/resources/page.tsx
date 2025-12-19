@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { cmsApi, CaseStudy, Whitepaper } from '../../../cms-backend/src/lib/api/cms';
+import { cmsApi, CaseStudy } from '@/lib/api/cms';
 import Image from 'next/image';
 
 interface DownloadFormData {
@@ -16,7 +16,7 @@ interface DownloadModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  type: 'case-study' | 'whitepaper';
+  type: 'case-study';
   itemId: string;
 }
 
@@ -183,12 +183,11 @@ function DownloadModal({ isOpen, onClose, type, itemId }: DownloadModalProps) {
 
 export default function ResourcesPage() {
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
-  const [whitepapers, setWhitepapers] = useState<Whitepaper[]>([]);
   const [loading, setLoading] = useState(true);
   const [downloadModal, setDownloadModal] = useState<{
     isOpen: boolean;
     title: string;
-    type: 'case-study' | 'whitepaper';
+    type: 'case-study';
     itemId: string;
   }>({
     isOpen: false,
@@ -200,13 +199,8 @@ export default function ResourcesPage() {
   useEffect(() => {
     const fetchResources = async () => {
       try {
-        const [caseStudiesResponse, whitepapersResponse] = await Promise.all([
-          cmsApi.getCaseStudies({ status: 'published' }),
-          cmsApi.getWhitepapers({ status: 'published' })
-        ]);
-        
+        const caseStudiesResponse = await cmsApi.getCaseStudies({ status: 'published' });
         setCaseStudies(caseStudiesResponse.data);
-        setWhitepapers(whitepapersResponse.data);
       } catch (error) {
         console.error('Error fetching resources:', error);
       } finally {
@@ -217,11 +211,11 @@ export default function ResourcesPage() {
     fetchResources();
   }, []);
 
-  const openDownloadModal = (title: string, type: 'case-study' | 'whitepaper', itemId: string) => {
+  const openDownloadModal = (title: string, itemId: string) => {
     setDownloadModal({
       isOpen: true,
       title,
-      type,
+      type: 'case-study',
       itemId
     });
   };
@@ -283,55 +277,18 @@ export default function ResourcesPage() {
                     <p className="text-gray-600 mb-4 line-clamp-3">
                       {caseStudy.challenge}
                     </p>
+                    {caseStudy.objectives && (
+                      <p className="text-sm text-gray-700 mb-4 line-clamp-3">
+                        <span className="font-semibold">Objectives: </span>
+                        {caseStudy.objectives}
+                      </p>
+                    )}
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500">
                         {caseStudy.view_count} views
                       </span>
                       <button
-                        onClick={() => openDownloadModal(caseStudy.title, 'case-study', caseStudy.id)}
-                        className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
-                      >
-                        Download Now
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Whitepapers Section */}
-        {whitepapers.length > 0 && (
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Whitepapers</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {whitepapers.map((whitepaper) => (
-                <div key={whitepaper.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                  {whitepaper.cover_image && (
-                    <div className="h-48 bg-gray-200">
-                      <Image
-                        src={whitepaper.cover_image}
-                        alt={whitepaper.title}
-                        width={500}
-                        height={300}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
-                      {whitepaper.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">
-                      {whitepaper.abstract}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">
-                        {whitepaper.download_count} downloads
-                      </span>
-                      <button
-                        onClick={() => openDownloadModal(whitepaper.title, 'whitepaper', whitepaper.id)}
+                        onClick={() => openDownloadModal(caseStudy.title, caseStudy.id)}
                         className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
                       >
                         Download Now
@@ -345,12 +302,12 @@ export default function ResourcesPage() {
         )}
 
         {/* Empty State */}
-        {caseStudies.length === 0 && whitepapers.length === 0 && (
+        {caseStudies.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 text-6xl mb-4">📄</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No Resources Available</h3>
             <p className="text-gray-600">
-              Check back soon for case studies and whitepapers.
+              Check back soon for case studies.
             </p>
           </div>
         )}

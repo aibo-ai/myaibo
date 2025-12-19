@@ -1,44 +1,46 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model, Optional, UUIDV4 } from 'sequelize';
 import sequelize from '../config/database';
 import User from './User';
 
 export interface BlogAttributes {
-  id: number;
+  id: string;
   title: string;
   slug: string;
   excerpt: string;
   content: string;
   featured_image?: string;
-  authorId: number;
+  featured_image_alt?: string;
+  authorId: string;
   status: 'draft' | 'published' | 'archived';
   published_at?: Date;
   categories: string[];
   tags: string[];
   meta_title?: string;
   meta_description?: string;
-  canonicalUrl?: string;
+  canonical_url?: string;
   viewCount: number;
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface BlogCreationAttributes extends Optional<BlogAttributes, 'id' | 'featured_image' | 'published_at' | 'meta_title' | 'meta_description' | 'canonicalUrl' | 'viewCount' | 'createdAt' | 'updatedAt'> {}
+export interface BlogCreationAttributes extends Optional<BlogAttributes, 'id' | 'featured_image' | 'published_at' | 'meta_title' | 'meta_description' | 'canonical_url' | 'viewCount' | 'createdAt' | 'updatedAt'> {}
 
 class Blog extends Model<BlogAttributes, BlogCreationAttributes> implements BlogAttributes {
-  public id!: number;
+  public id!: string;
   public title!: string;
   public slug!: string;
   public excerpt!: string;
   public content!: string;
   public featured_image?: string;
-  public authorId!: number;
+  public featured_image_alt?: string;
+  public authorId!: string;
   public status!: 'draft' | 'published' | 'archived';
   public published_at?: Date;
   public categories!: string[];
   public tags!: string[];
   public meta_title?: string;
   public meta_description?: string;
-  public canonicalUrl?: string;
+  public canonical_url?: string;
   public viewCount!: number;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -79,8 +81,8 @@ class Blog extends Model<BlogAttributes, BlogCreationAttributes> implements Blog
 Blog.init(
   { 
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: UUIDV4,
       primaryKey: true,
     },
     title: {
@@ -103,7 +105,7 @@ Blog.init(
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        len: [50, 500],
+        len: [5, 500],
       },
     },
     content: {
@@ -115,7 +117,7 @@ Blog.init(
       allowNull: true,
     },
     authorId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'users',
@@ -132,30 +134,24 @@ Blog.init(
       allowNull: true,
     },
     categories: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.JSON,
       allowNull: false,
       defaultValue: [],
     },
     tags: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.JSON,
       allowNull: false,
       defaultValue: [],
     },
     meta_title: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        len: [1, 60],
-      },
     },
     meta_description: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        len: [1, 160],
-      },
     },
-    canonicalUrl: {
+    canonical_url: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -179,6 +175,7 @@ Blog.init(
     sequelize,
     tableName: 'blogs',
     timestamps: true,
+    underscored: true,
     indexes: [
       {
         fields: ['slug'],

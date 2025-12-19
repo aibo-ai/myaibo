@@ -28,7 +28,6 @@ const navigation = [
 		dropdownItems: [
 			{ name: "Blog", href: "/resources/blog" },
 			{ name: "Case Studies", href: "/resources/case-studies" },
-			{ name: "Whitepapers", href: "/resources/whitepapers" },
 		]
 	},
 	{ name: "About Us", href: "/about" },

@@ -1,15 +1,16 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model, Optional, UUIDV4 } from 'sequelize';
 import sequelize from '../config/database';
 import User from './User';
 
 export interface CaseStudyAttributes {
-  id: number;
+  id: string;
   title: string;
   slug: string;
   clientName: string;
   clientLogo?: string;
   challenge: string;
   solution: string;
+  objectives?: string;
   results: Array<{
     metric: string;
     value: string;
@@ -18,7 +19,7 @@ export interface CaseStudyAttributes {
   }>;
   content: string;
   featuredImage?: string;
-  authorId: number;
+  authorId: string;
   status: 'draft' | 'published' | 'archived';
   publishedAt?: Date;
   industries: string[];
@@ -40,13 +41,14 @@ export interface CaseStudyAttributes {
 export interface CaseStudyCreationAttributes extends Optional<CaseStudyAttributes, 'id' | 'clientLogo' | 'featuredImage' | 'publishedAt' | 'testimonial' | 'metaTitle' | 'metaDescription' | 'canonicalUrl' | 'viewCount' | 'createdAt' | 'updatedAt'> {}
 
 class CaseStudy extends Model<CaseStudyAttributes, CaseStudyCreationAttributes> implements CaseStudyAttributes {
-  public id!: number;
+  public id!: string;
   public title!: string;
   public slug!: string;
   public clientName!: string;
   public clientLogo?: string;
   public challenge!: string;
   public solution!: string;
+  public objectives?: string;
   public results!: Array<{
     metric: string;
     value: string;
@@ -55,7 +57,7 @@ class CaseStudy extends Model<CaseStudyAttributes, CaseStudyCreationAttributes> 
   }>;
   public content!: string;
   public featuredImage?: string;
-  public authorId!: number;
+  public authorId!: string;
   public status!: 'draft' | 'published' | 'archived';
   public publishedAt?: Date;
   public industries!: string[];
@@ -87,8 +89,27 @@ class CaseStudy extends Model<CaseStudyAttributes, CaseStudyCreationAttributes> 
   }
 
   public getKeyMetrics(): Array<{ metric: string; value: string; unit: string; description?: string }> {
-    return this.results.filter(result => result.metric.toLowerCase().includes('key') || 
-      ['conversion', 'revenue', 'efficiency', 'growth'].some(keyword => 
+    // In the database, `results` is stored as TEXT containing JSON. At runtime this
+    // may be a string (raw JSON) or an already-parsed array, depending on context.
+    const raw = this.results as unknown as any;
+
+    const resultsArray: Array<{ metric: string; value: string; unit: string; description?: string }> =
+      Array.isArray(raw)
+        ? raw
+        : typeof raw === 'string'
+          ? (() => {
+              try {
+                const parsed = JSON.parse(raw);
+                return Array.isArray(parsed) ? parsed : [];
+              } catch {
+                return [];
+              }
+            })()
+          : [];
+
+    return resultsArray.filter(result =>
+      result.metric.toLowerCase().includes('key') ||
+      ['conversion', 'revenue', 'efficiency', 'growth'].some(keyword =>
         result.metric.toLowerCase().includes(keyword)
       )
     );
@@ -98,8 +119,8 @@ class CaseStudy extends Model<CaseStudyAttributes, CaseStudyCreationAttributes> 
 CaseStudy.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: UUIDV4,
       primaryKey: true,
     },
     title: {
@@ -137,10 +158,14 @@ CaseStudy.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    objectives: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     results: {
-      type: DataTypes.JSONB,
+      type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: [],
+      defaultValue: '[]',
     },
     content: {
       type: DataTypes.TEXT,
@@ -151,7 +176,7 @@ CaseStudy.init(
       allowNull: true,
     },
     authorId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'users',
@@ -168,17 +193,17 @@ CaseStudy.init(
       allowNull: true,
     },
     industries: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: [],
+      defaultValue: '[]',
     },
     tags: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: [],
+      defaultValue: '[]',
     },
     testimonial: {
-      type: DataTypes.JSONB,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     metaTitle: {
@@ -219,13 +244,14 @@ CaseStudy.init(
     sequelize,
     tableName: 'case_studies',
     timestamps: true,
+    underscored: true,
     indexes: [
       {
         fields: ['slug'],
         unique: true,
       },
       {
-        fields: ['status', 'publishedAt'],
+        fields: ['status', 'published_at'],
       },
       {
         fields: ['industries'],
@@ -236,7 +262,7 @@ CaseStudy.init(
         using: 'gin',
       },
       {
-        fields: ['clientName'],
+        fields: ['client_name'],
       },
     ],
   }

@@ -1,12 +1,12 @@
 import app from './app';
 import { connectDatabase } from './config/database';
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 const startServer = async () => {
   try {
-    // Skip database connection since we're using Supabase
-    // await connectDatabase();
+    // Connect to database
+    await connectDatabase();
     
     // Start server
     app.listen(PORT, () => {

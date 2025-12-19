@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
-import { cmsApi, CaseStudy } from '../../../../cms-backend/src/lib/api/cms';
+import { cmsApi, CaseStudy } from '@/lib/api/cms';
 import { Header } from '@/components/sections/header';
 import { Footer } from '@/components/sections/footer';
 
@@ -18,11 +18,45 @@ export default function CaseStudiesPage() {
     const fetchCaseStudies = async () => {
       try {
         const response = await cmsApi.getCaseStudies({ status: 'published' });
-        setCaseStudies(response.data);
+        const normalizedCaseStudies = response.data.map((cs: Partial<CaseStudy>) => {
+          const industries = Array.isArray(cs.industries)
+            ? cs.industries
+            : typeof cs.industries === 'string'
+              ? (() => {
+                  try {
+                    const parsed = JSON.parse(cs.industries);
+                    return Array.isArray(parsed) ? parsed : [];
+                  } catch {
+                    return cs.industries ? [cs.industries] : [];
+                  }
+                })()
+              : [];
+
+          const results = Array.isArray(cs.results)
+            ? cs.results
+            : typeof cs.results === 'string'
+              ? (() => {
+                  try {
+                    const parsed = JSON.parse(cs.results);
+                    return Array.isArray(parsed) ? parsed : [];
+                  } catch {
+                    return [];
+                  }
+                })()
+              : [];
+
+          return {
+            ...cs,
+            industries,
+            results,
+          } as CaseStudy;
+        });
+
+        setCaseStudies(normalizedCaseStudies);
         
         // Extract unique industries
         const uniqueIndustries = Array.from(
-          new Set(response.data.flatMap(cs => cs.industries))
+          new Set(normalizedCaseStudies.flatMap(cs => cs.industries))
         );
         setIndustries(uniqueIndustries);
       } catch (error) {
@@ -37,9 +71,11 @@ export default function CaseStudiesPage() {
 
   const filteredCaseStudies = caseStudies.filter(caseStudy => {
     const matchesSearch = caseStudy.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         caseStudy.client_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         caseStudy.client_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          caseStudy.challenge.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesIndustry = selectedIndustry === 'all' || caseStudy.industries.includes(selectedIndustry);
+    const matchesIndustry =
+      selectedIndustry === 'all' ||
+      (Array.isArray(caseStudy.industries) && caseStudy.industries.includes(selectedIndustry));
     return matchesSearch && matchesIndustry;
   });
 
@@ -112,11 +148,15 @@ export default function CaseStudiesPage() {
           {filteredCaseStudies.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredCaseStudies.map((caseStudy) => (
-                <article key={caseStudy.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+                <Link
+                  href={`/resources/case-studies/${caseStudy.slug}`}
+                  key={caseStudy.id}
+                  className="block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+                >
                   {caseStudy.featured_image && (
                     <div className="aspect-video relative">
                       <Image
-                        src={caseStudy.featured_image}
+                        src={`http://localhost:3002${caseStudy.featured_image}`}
                         alt={caseStudy.title}
                         fill
                         className="object-cover"
@@ -125,7 +165,7 @@ export default function CaseStudiesPage() {
                   )}
                   <div className="p-6">
                     <div className="flex flex-wrap gap-2 mb-3">
-                      {caseStudy.industries.map((industry, index) => (
+                      {Array.isArray(caseStudy.industries) && caseStudy.industries.map((industry, index) => (
                         <span
                           key={index}
                           className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-purple-100 text-purple-800"
@@ -162,11 +202,11 @@ export default function CaseStudiesPage() {
                     )}
                     
                     <div className="flex items-center justify-between text-sm text-gray-500">
-                      <span>{formatDate(caseStudy.published_at || caseStudy.created_at)}</span>
+                      <span>{caseStudy.published_at ? formatDate(caseStudy.published_at) : 'Draft'}</span>
                       <span>{caseStudy.view_count} views</span>
                     </div>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           ) : (

@@ -43,7 +43,19 @@ export const errorHandler = (
 
   // Sequelize unique constraint error
   if (err.name === 'SequelizeUniqueConstraintError') {
-    const message = 'Duplicate field value entered';
+    const seqErr: any = err;
+    const fields = Array.isArray(seqErr?.errors)
+      ? seqErr.errors.map((e: any) => e?.path).filter(Boolean)
+      : [];
+
+    let message = 'Duplicate field value entered';
+
+    if (fields.includes('slug')) {
+      message = 'Slug already exists. Please choose a different slug.';
+    } else if (fields.includes('title')) {
+      message = 'Title already exists. Please choose a different title.';
+    }
+
     error = { ...error, message, statusCode: 400 };
   }
 

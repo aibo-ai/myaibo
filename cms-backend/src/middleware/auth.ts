@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import User from '../models/UserSupabase';
+import User from '../models/User';
 
 export interface AuthRequest extends Request {
   user?: any;
@@ -19,7 +19,7 @@ export const protect = async (req: AuthRequest, res: Response, next: NextFunctio
 
       // Get user from the token
       const user = await User.findByPk(decoded.id);
-      
+
       if (!user || !user.isActive) {
         res.status(401);
         throw new Error('Not authorized, user not found or inactive');
