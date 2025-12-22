@@ -26,14 +26,38 @@ const app = express();
 
 // Security middleware
 app.use(helmet());
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'http://localhost:3003', 'https://www.myaibo.in']; // adjust as needed
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001', 
+  'http://localhost:3002',
+  'http://localhost:3003',
+  'https://www.myaibo.in',
+  'https://myaibo.in',
+  /^https:\/\/.*\.vercel\.app$/ // Allow all Vercel preview deployments
+];
 
 app.use(cors({
   origin(origin, callback) {
-    // Allow server-to-server and tools without an Origin header, and any whitelisted origin
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow server-to-server and tools without an Origin header
+    if (!origin) {
+      callback(null, true);
+      return;
+    }
+    
+    // Check if origin matches any allowed pattern
+    const isAllowed = allowedOrigins.some(allowed => {
+      if (typeof allowed === 'string') {
+        return allowed === origin;
+      } else if (allowed instanceof RegExp) {
+        return allowed.test(origin);
+      }
+      return false;
+    });
+    
+    if (isAllowed) {
       callback(null, true);
     } else {
+      console.warn(`CORS blocked request from origin: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -41,6 +65,7 @@ app.use(cors({
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
   exposedHeaders: ['Authorization'],
+  preflightContinue: false,
   optionsSuccessStatus: 204,
 }));
 
