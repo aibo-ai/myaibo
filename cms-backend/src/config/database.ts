@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 import path from 'path';
+import dns from 'dns';
 
 dotenv.config();
 
@@ -40,7 +41,11 @@ if (useSQLite) {
         require: true,
         rejectUnauthorized: false, // Supabase requires this
       },
-    },
+      // Force IPv4 resolution to avoid ENETUNREACH on IPv6-only routes
+      lookup: (hostname: string, opts: any, cb: any) => {
+        dns.lookup(hostname, { family: 4, all: false }, cb);
+      },
+    } as any,
     logging: process.env.NODE_ENV === 'development' ? console.log : false,
     pool: {
       max: 5,
