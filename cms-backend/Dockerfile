@@ -16,9 +16,9 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Build TypeScript code
-RUN npm run build
-
+# Clear Docker cache by forcing no cache build and explicitly copy updated tsconfig.json
+COPY tsconfig.json ./tsconfig.json
+RUN npm run build -- --force
 # Create uploads directory
 RUN mkdir -p uploads/images uploads/pdfs
 

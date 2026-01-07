@@ -8,7 +8,6 @@ if (!fs.existsSync(logsDir)) {
   fs.mkdirSync(logsDir, { recursive: true });
 }
 
-// Sensitive data patterns - using replaceAll for complete sanitization
 const SENSITIVE_PATTERNS = [
   /\bpassword\s*[:=]\s*["']?([^"'\s]+)["']?/gi,
   /\btoken\s*[:=]\s*["']?([^"'\s]+)["']?/gi,
@@ -23,14 +22,7 @@ const SENSITIVE_KEYS = ['password', 'token', 'apikey', 'secret', 'authorization'
 const sanitizeMessage = (message: string): string => {
   let sanitized = message;
   SENSITIVE_PATTERNS.forEach(pattern => {
-    sanitized = sanitized.replaceAll(pattern, (match: string) => {
-      // Handle bearer tokens separately (no colon separator)
-      if (match.toLowerCase().includes('bearer')) {
-        return 'Authorization: Bearer [REDACTED]';
-      }
-      // For other patterns, redact the value
-      return match.replace(/["']?([^"'\s]+)["']?$/, '[REDACTED]');
-    });
+    sanitized = sanitized.split(pattern).join('');
   });
   return sanitized;
 };
