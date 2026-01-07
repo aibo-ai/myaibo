@@ -4,28 +4,24 @@ import path from 'path';
 
 dotenv.config();
 
-// Use environment variable to control database type, default to SQLite for development
-const useSQLite = process.env.USE_SQLITE === 'true';
+// Resolve database mode: prefer Supabase if SUPABASE_URL is set, otherwise fallback to SQLite
+const supabaseUrl = process.env.SUPABASE_URL;
+const useSQLite = process.env.USE_SQLITE === 'true' || !supabaseUrl;
 
 let sequelize: Sequelize;
 
 if (useSQLite) {
-  // Use SQLite for local development
+  // Use SQLite (local dev or fallback when SUPABASE_URL is missing)
   const dbPath = path.join(__dirname, '../../database.sqlite');
   sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: dbPath,
     logging: process.env.NODE_ENV === 'development' ? console.log : false,
   });
-  console.log('Using SQLite database for local development');
+  console.log('Using SQLite database (local dev or fallback). Set SUPABASE_URL or USE_SQLITE=false to use Postgres.');
 } else {
-  // Use Supabase for production
-  const supabaseUrl = process.env.SUPABASE_URL;
-  if (!supabaseUrl) {
-    throw new Error('SUPABASE_URL is not defined in the environment variables');
-  }
-
-  const dbUrl = new URL(supabaseUrl);
+  // Use Supabase (Postgres)
+  const dbUrl = new URL(supabaseUrl as string);
   const dbHost = dbUrl.hostname;
   const dbPort = parseInt(dbUrl.port || '5432');
   const dbName = dbUrl.pathname.split('/')[1];
