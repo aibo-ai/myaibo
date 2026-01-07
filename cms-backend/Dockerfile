@@ -18,7 +18,7 @@ COPY . .
 
 # Clear Docker cache by forcing no cache build and explicitly copy updated tsconfig.json
 COPY tsconfig.json ./tsconfig.json
-RUN npm run build -- --force
+RUN npm run build
 # Create uploads directory
 RUN mkdir -p uploads/images uploads/pdfs
 
