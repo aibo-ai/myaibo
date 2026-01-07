@@ -6,6 +6,7 @@ RUN apk add --no-cache curl
 
 # Set working directory
 WORKDIR /app
+ENV NODE_OPTIONS="--dns-result-order=ipv4first"
 
 # Copy package files
 COPY package*.json ./
