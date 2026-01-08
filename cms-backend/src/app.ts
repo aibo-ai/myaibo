@@ -31,6 +31,7 @@ const allowedOrigins = [
   'http://localhost:3001', 
   'http://localhost:3002',
   'http://localhost:3003',
+  'http://localhost:10000',
   'https://www.myaibo.in',
   'https://myaibo.in',
   /^https:\/\/.*\.vercel\.app$/ // Allow all Vercel preview deployments
