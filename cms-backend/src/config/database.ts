@@ -5,9 +5,9 @@ import dns from 'dns';
 
 dotenv.config();
 
-// Resolve database mode: prefer Supabase if SUPABASE_URL is set, otherwise fallback to SQLite
-const supabaseUrl = process.env.SUPABASE_URL;
-const useSQLite = process.env.USE_SQLITE === 'true' || !supabaseUrl;
+// Resolve database mode: prefer DATABASE_URL then SUPABASE_URL; fallback to SQLite if neither
+const databaseUrl = process.env.DATABASE_URL || process.env.SUPABASE_URL;
+const useSQLite = process.env.USE_SQLITE === 'true' || !databaseUrl;
 
 let sequelize: Sequelize;
 
@@ -22,15 +22,16 @@ if (useSQLite) {
   console.log('Using SQLite database (local dev or fallback). Set SUPABASE_URL or USE_SQLITE=false to use Postgres.');
 } else {
   // Use Supabase (Postgres)
-  const dbUrl = new URL(supabaseUrl as string);
+  const dbUrl = new URL(databaseUrl as string);
   const dbHost = dbUrl.hostname;
+  const overrideHost = process.env.SUPABASE_HOST_IPV4;
   const dbPort = parseInt(dbUrl.port || '5432');
   const dbName = dbUrl.pathname.split('/')[1];
   const dbUser = dbUrl.username;
   const dbPassword = dbUrl.password;
 
   sequelize = new Sequelize({
-    host: dbHost,
+    host: (overrideHost || dbHost),
     port: dbPort,
     database: dbName,
     username: dbUser,
