@@ -183,6 +183,17 @@ router.get('/:slug', async (req, res, next) => {
 // @access  Private
 router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest, res, next) => {
   try {
+     const tags = Array.isArray(req.body.tags)
+      ? req.body.tags
+      : typeof req.body.tags === 'string'
+        ? JSON.parse(req.body.tags)
+        : [];
+
+    const categories = Array.isArray(req.body.categories)
+      ? req.body.categories
+      : typeof req.body.categories === 'string'
+        ? JSON.parse(req.body.categories)
+        : [];
     // Map camelCase fields to snake_case for Sequelize
     const blogData: any = {
       title: req.body.title,
@@ -190,8 +201,8 @@ router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest,
       excerpt: req.body.excerpt,
       content: req.body.content,
       status: req.body.status,
-      categories: req.body.categories || [],
-      tags: req.body.tags || [],
+      categories,
+      tags,
       featured_image: req.body.featuredImage,
       featured_image_alt: req.body.featuredImageAlt,
       meta_title: req.body.metaTitle,
@@ -236,7 +247,19 @@ router.put('/:id', protect, authorize('admin', 'editor'), async (req: AuthReques
       return;
     }
 
-    const updateData = { ...req.body };
+    const tags = Array.isArray(req.body.tags)
+      ? req.body.tags
+      : typeof req.body.tags === 'string'
+        ? JSON.parse(req.body.tags)
+        : [];
+
+    const categories = Array.isArray(req.body.categories)
+      ? req.body.categories
+      : typeof req.body.categories === 'string'
+        ? JSON.parse(req.body.categories)
+        : [];
+
+    const updateData = { ...req.body, tags, categories };
 
     // Set published_at when status changes to 'published'
     if (updateData.status === 'published' && blog.status !== 'published') {
