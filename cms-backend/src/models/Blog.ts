@@ -143,6 +143,7 @@ Blog.init(
       allowNull: false,
       defaultValue: [],
     },
+
     meta_title: {
       type: DataTypes.STRING,
       allowNull: true,
