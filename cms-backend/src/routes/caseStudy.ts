@@ -199,8 +199,12 @@ router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest,
       return '[]';
     };
 
-    const metaTitle = (body.metaTitle ?? body.meta_title ?? '').trim();
-    const metaDescription = (body.metaDescription ?? body.meta_description ?? '').trim();
+    const metaTitleRaw = (body.metaTitle ?? body.meta_title ?? '').trim();
+    const metaDescriptionRaw = (body.metaDescription ?? body.meta_description ?? '').trim();
+
+    // Enforce maximum lengths to satisfy model validation (and avoid 400 errors)
+    const metaTitle = metaTitleRaw ? (metaTitleRaw.length > 60 ? metaTitleRaw.slice(0, 60) : metaTitleRaw) : '';
+    const metaDescription = metaDescriptionRaw ? (metaDescriptionRaw.length > 160 ? metaDescriptionRaw.slice(0, 160) : metaDescriptionRaw) : '';
 
     const caseStudyData: any = {
       // Required basics
