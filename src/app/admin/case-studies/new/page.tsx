@@ -133,10 +133,10 @@ export default function NewCaseStudyPage() {
       // let pdfUrl = formData.pdf_url;
 
       // Upload PDF file if provided
-      if (formData.pdf_file) {
-        const uploadResponse = await cmsApi.uploadFile(formData.pdf_file, 'pdf');
-        // pdfUrl = uploadResponse.url;
-      }
+      // if (formData.pdf_file) {
+      //   const uploadResponse = await cmsApi.uploadFile(formData.pdf_file, 'pdf');
+      //   // pdfUrl = uploadResponse.url;
+      // }
 
       // Upload image file if provided
       if (imageFile) {
