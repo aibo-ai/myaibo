@@ -78,7 +78,7 @@ export interface Whitepaper {
   slug: string;
   abstract: string;
   key_takeaways: string[];
-  pdf_url: string;
+  // pdf_url: string;
   cover_image?: string;
   author_id: string;
   status: 'draft' | 'published' | 'archived';
@@ -159,13 +159,89 @@ class CMSApiClient {
     return data as T;
   }
 
+
+  private parseStringArray(value: unknown): string[] {
+    if (Array.isArray(value)) {
+      return value
+        .map(v => (typeof v === 'string' ? v.trim() : String(v).trim()))
+        .filter(Boolean);
+    }
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+      if (!trimmed) return [];
+      // JSON array string?
+      if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+        try {
+          const parsed = JSON.parse(trimmed);
+          if (Array.isArray(parsed)) {
+            return parsed
+              .map(v => (typeof v === 'string' ? v.trim() : String(v).trim()))
+              .filter(Boolean);
+          }
+        } catch {
+          // fall through
+        }
+      }
+      // comma-separated?
+      if (trimmed.includes(',')) {
+        return trimmed
+          .split(',')
+          .map(s => s.trim())
+          .filter(Boolean);
+      }
+      return [trimmed];
+    }
+    return [];
+  }
+
+  private parseResults(value: unknown): CaseStudy['results'] {
+    if (Array.isArray(value)) return value as CaseStudy['results'];
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+      if (!trimmed) return [];
+      try {
+        const parsed = JSON.parse(trimmed);
+        return Array.isArray(parsed) ? (parsed as CaseStudy['results']) : [];
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  }
+
+  private normalizeCaseStudyRecord(input: any): CaseStudy {
+    const src = (input ?? {}) as Record<string, any>;
+    const pick = (snake: string, camel: string) => src[snake] ?? src[camel];
+
+    return {
+      ...(src as any),
+
+      // ensure expected snake_case fields exist
+      client_name: pick('client_name', 'clientName'),
+      client_logo: pick('client_logo', 'clientLogo'),
+      featured_image: pick('featured_image', 'featuredImage'),
+      author_id: pick('author_id', 'authorId'),
+      published_at: pick('published_at', 'publishedAt'),
+      meta_title: pick('meta_title', 'metaTitle'),
+      meta_description: pick('meta_description', 'metaDescription'),
+      canonical_url: pick('canonical_url', 'canonicalUrl'),
+      view_count: pick('view_count', 'viewCount'),
+      created_at: pick('created_at', 'createdAt'),
+      updated_at: pick('updated_at', 'updatedAt'),
+      // pdf_url: pick('pdf_url', 'pdfUrl'),
+
+      industries: this.parseStringArray(pick('industries', 'industries')),
+      tags: this.parseStringArray(pick('tags', 'tags')),
+      results: this.parseResults(pick('results', 'results')),
+    } as CaseStudy;
+  }
+
   // Authentication
   async login(email: string, password: string): Promise<LoginResponse> {
     const response = await this.request<LoginResponse>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
-    console.log("why is it failing here");
     if (response.success && response.token) {
       this.token = response.token;
       if (typeof window !== 'undefined') {
@@ -276,26 +352,30 @@ class CMSApiClient {
     }
     
     const queryString = searchParams.toString();
-    return this.request(`/case-studies${queryString ? `?${queryString}` : ''}`);
+    const response = await this.request<any>(`/case-studies${queryString ? `?${queryString}` : ''}`);
+    const data = Array.isArray(response?.data) ? response.data.map((cs: any) => this.normalizeCaseStudyRecord(cs)) : [];
+    return { ...response, data };
   }
 
   async getCaseStudy(slug: string): Promise<CaseStudy> {
-    const response = await this.request<{ success: boolean; data: CaseStudy }>(`/case-studies/${slug}`);
-    return response.data;
+    const response = await this.request<{ success: boolean; data: any }>(`/case-studies/${slug}`);
+    return this.normalizeCaseStudyRecord(response.data);
   }
 
   async createCaseStudy(caseStudy: Partial<CaseStudy>): Promise<CaseStudy> {
-    return this.request('/case-studies', {
+    const response = await this.request<any>('/case-studies', {
       method: 'POST',
       body: JSON.stringify(caseStudy),
     });
+    return this.normalizeCaseStudyRecord(response?.data ?? response);
   }
 
   async updateCaseStudy(id: string, caseStudy: Partial<CaseStudy>): Promise<CaseStudy> {
-    return this.request(`/case-studies/${id}`, {
+    const response = await this.request<any>(`/case-studies/${id}`, {
       method: 'PUT',
       body: JSON.stringify(caseStudy),
     });
+    return this.normalizeCaseStudyRecord(response?.data ?? response);
   }
 
   async deleteCaseStudy(id: string): Promise<void> {

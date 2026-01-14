@@ -1,13 +1,19 @@
 module.exports = {
   development: {
-    dialect: 'sqlite',
-    storage: process.env.DB_STORAGE || './data/local.db',
-    logging: process.env.NODE_ENV === 'development' ? console.log : false
+    dialect: 'postgres',
+    url: process.env.DATABASE_URL,
+    logging: process.env.NODE_ENV === 'development' ? console.log : false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
   },
   test: {
     dialect: 'sqlite',
     storage: ':memory:',
-    logging: false
+    logging: false,
   },
   production: {
     dialect: 'postgres',
@@ -33,5 +39,5 @@ module.exports = {
     retry: {
       max: 3,
     },
-  }
+  },
 };

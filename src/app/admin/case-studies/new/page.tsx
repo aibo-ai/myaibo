@@ -11,7 +11,7 @@ interface CaseStudyFormData {
   excerpt: string;
   featured_image: string;
   pdf_file: File | null;
-  pdf_url: string;
+  // pdf_url: string;
   client_name: string;
   industry: string;
   project_duration: string;
@@ -37,14 +37,14 @@ export default function NewCaseStudyPage() {
     excerpt: '',
     featured_image: '',
     pdf_file: null,
-    pdf_url: '',
+    // pdf_url: '',
     client_name: '',
     industry: '',
     project_duration: '',
     technologies: [],
     results: '',
     objectives: '',
-    status: 'draft',
+    status: 'published',
     meta_title: '',
     meta_description: '',
     tags: [],
@@ -129,9 +129,12 @@ export default function NewCaseStudyPage() {
       // const pdfUrl = formData.pdf_url;
       let featuredImageUrl = formData.featured_image;
       
+      // Resolve PDF URL (prefer uploaded file, fallback to manual URL)
+      // let pdfUrl = formData.pdf_url;
+
       // Upload PDF file if provided
       if (formData.pdf_file) {
-         await cmsApi.uploadFile(formData.pdf_file, 'pdf');
+        const uploadResponse = await cmsApi.uploadFile(formData.pdf_file, 'pdf');
         // pdfUrl = uploadResponse.url;
       }
 
@@ -141,6 +144,15 @@ export default function NewCaseStudyPage() {
         featuredImageUrl = imageUploadResponse.url;
       }
 
+      // Truncate meta fields to avoid validation errors
+      const MAX_META_TITLE = 60;
+      const MAX_META_DESCRIPTION = 160;
+      
+      const truncateToLength = (str: string, maxLength: number): string => {
+        if (!str) return '';
+        return str.length > maxLength ? str.substring(0, maxLength) : str;
+      };
+      
       // Create case study payload in the shape the backend expects
       const caseStudyPayload: Partial<CaseStudy> = {
         title: formData.title,
@@ -163,13 +175,19 @@ export default function NewCaseStudyPage() {
           : [],
         content: formData.excerpt || formData.objectives || '',
         featured_image: featuredImageUrl,
+        // pdf_url: pdfUrl || undefined,
         status: formData.status,
         // backend stores industries/tags as JSON arrays in TEXT columns
         industries: formData.industry ? [formData.industry] : [],
         tags: formData.tags,
-        meta_title: formData.meta_title || undefined,
-        meta_description: formData.meta_description || undefined,
+        // Truncate meta fields to prevent validation errors
+        meta_title: truncateToLength(formData.meta_title, MAX_META_TITLE) || undefined,
+        meta_description: truncateToLength(formData.meta_description, MAX_META_DESCRIPTION) || undefined,
       };
+      
+      // Log for debugging
+      console.log('DEBUG frontend meta_title length:', (formData.meta_title || '').length);
+      console.log('DEBUG frontend meta_description length:', (formData.meta_description || '').length);
       
       await cmsApi.createCaseStudy(caseStudyPayload);
       router.push('/admin/case-studies');
@@ -267,7 +285,7 @@ export default function NewCaseStudyPage() {
               </p>
             </div>
 
-            <div>
+            {/* <div>
               <label htmlFor="pdf_url" className="block text-sm font-medium text-gray-700 mb-2">
                 Or PDF URL
               </label>
@@ -283,7 +301,7 @@ export default function NewCaseStudyPage() {
               <p className="mt-1 text-sm text-gray-500">
                 Alternative: Provide a direct URL to the PDF file instead of uploading.
               </p>
-            </div>
+            </div> */}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -433,9 +451,19 @@ export default function NewCaseStudyPage() {
                   name="meta_title"
                   value={formData.meta_title}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  maxLength={60}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
+                    formData.meta_title.length > 60 ? 'border-red-500' : 'border-gray-300'
+                  }`}
                   placeholder="SEO title for search engines"
                 />
+                <p className={`mt-1 text-sm ${
+                  formData.meta_title.length > 60 ? 'text-red-500' : 
+                  formData.meta_title.length > 55 ? 'text-yellow-600' : 'text-gray-500'
+                }`}>
+                  {formData.meta_title.length}/60 characters
+                  {formData.meta_title.length > 60 && ' (will be truncated)'}
+                </p>
               </div>
 
               <div>
@@ -465,9 +493,19 @@ export default function NewCaseStudyPage() {
                 rows={3}
                 value={formData.meta_description}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                maxLength={160}
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
+                  formData.meta_description.length > 160 ? 'border-red-500' : 'border-gray-300'
+                }`}
                 placeholder="Brief description for search engines"
               />
+              <p className={`mt-1 text-sm ${
+                formData.meta_description.length > 160 ? 'text-red-500' : 
+                formData.meta_description.length > 150 ? 'text-yellow-600' : 'text-gray-500'
+              }`}>
+                {formData.meta_description.length}/160 characters
+                {formData.meta_description.length > 160 && ' (will be truncated)'}
+              </p>
             </div>
 
             <div>

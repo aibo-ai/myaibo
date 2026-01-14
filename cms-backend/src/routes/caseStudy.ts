@@ -5,6 +5,49 @@ import User from '../models/User';
 import { protect, authorize, AuthRequest } from '../middleware/auth';
 
 const router = express.Router();
+/**
+ * Normalize a value into a string[] for Sequelize ARRAY columns.
+ * Accepts: string[], JSON-stringified arrays, comma-separated strings, single strings.
+ */
+const normalizeStringArray = (value: any): string[] => {
+  if (value == null) return [];
+
+  if (Array.isArray(value)) {
+    return value
+      .map(v => (typeof v === 'string' ? v.trim() : String(v).trim()))
+      .filter(Boolean);
+  }
+
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (!trimmed) return [];
+
+    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (Array.isArray(parsed)) {
+          return parsed
+            .map(v => (typeof v === 'string' ? v.trim() : String(v).trim()))
+            .filter(Boolean);
+        }
+      } catch {
+        // fall through
+      }
+    }
+
+    if (trimmed.includes(',')) {
+      return trimmed
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
+    }
+
+    return [trimmed];
+  }
+
+  return [];
+};
+
 
 // @desc    Get all case studies (public)
 // @route   GET /api/case-studies
@@ -162,26 +205,6 @@ router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest,
         .trim()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '');
-
-    const toJsonArrayString = (value: any): string => {
-      if (!value) return '[]';
-      if (typeof value === 'string') {
-        const trimmed = value.trim();
-        if (!trimmed) return '[]';
-        try {
-          const parsed = JSON.parse(trimmed);
-          if (Array.isArray(parsed)) return JSON.stringify(parsed);
-        } catch {
-          // fall through
-        }
-        return JSON.stringify([trimmed]);
-      }
-      if (Array.isArray(value)) {
-        return JSON.stringify(value);
-      }
-      return '[]';
-    };
-
     const buildResults = (): string => {
       if (Array.isArray(body.results)) {
         return JSON.stringify(body.results);
@@ -199,12 +222,28 @@ router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest,
       return '[]';
     };
 
+    // Extract meta fields from both camelCase and snake_case, with robust handling
     const metaTitleRaw = (body.metaTitle ?? body.meta_title ?? '').trim();
     const metaDescriptionRaw = (body.metaDescription ?? body.meta_description ?? '').trim();
 
+    // Debug logging to track meta field lengths
+    console.log('DEBUG caseStudy incoming metaTitle:', metaTitleRaw.length, 'chars:', metaTitleRaw.substring(0, 50) + '...');
+    console.log('DEBUG caseStudy incoming metaDescription:', metaDescriptionRaw.length, 'chars:', metaDescriptionRaw.substring(0, 50) + '...');
+
     // Enforce maximum lengths to satisfy model validation (and avoid 400 errors)
-    const metaTitle = metaTitleRaw ? (metaTitleRaw.length > 60 ? metaTitleRaw.slice(0, 60) : metaTitleRaw) : '';
-    const metaDescription = metaDescriptionRaw ? (metaDescriptionRaw.length > 160 ? metaDescriptionRaw.slice(0, 160) : metaDescriptionRaw) : '';
+    // Use slice to ensure we stay within limits
+    const MAX_META_TITLE = 60;
+    const MAX_META_DESCRIPTION = 160;
+
+    // Truncate to maximum lengths, handling edge cases
+    const metaTitle = metaTitleRaw.length > MAX_META_TITLE 
+      ? metaTitleRaw.substring(0, MAX_META_TITLE) 
+      : metaTitleRaw;
+    const metaDescription = metaDescriptionRaw.length > MAX_META_DESCRIPTION 
+      ? metaDescriptionRaw.substring(0, MAX_META_DESCRIPTION) 
+      : metaDescriptionRaw;
+
+    console.log('DEBUG caseStudy truncated metaTitle:', metaTitle.length, 'metaDescription:', metaDescription.length);
 
     const caseStudyData: any = {
       // Required basics
@@ -227,14 +266,13 @@ router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest,
 
       // Ownership & status
       authorId: req.user.id,
-      status: body.status || 'draft',
+      // status: body.status || 'draft',
+      status: body.status,
       publishedAt: body.status === 'published' ? new Date() : null,
 
-      // Classification (stored as JSON strings in TEXT columns)
-      industries: toJsonArrayString(
-        body.industries || (body.industry ? [body.industry] : [])
-      ),
-      tags: toJsonArrayString(body.tags),
+      // Classification (ARRAY columns)
+      industries: normalizeStringArray(body.industries ?? (body.industry ? [body.industry] : [])),
+      tags: normalizeStringArray(body.tags),
 
       // Optional extras
       testimonial:
@@ -245,6 +283,10 @@ router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest,
       metaDescription: metaDescription || null,
       canonicalUrl: body.canonicalUrl || body.canonical_url,
     };
+
+    // Log meta lengths to help debug validation failures
+    console.log('DEBUG caseStudy metaTitle length:', (metaTitle || '').length, 'metaTitle:', metaTitle);
+    console.log('DEBUG caseStudy metaDescription length:', (metaDescription || '').length, 'metaDescription:', metaDescription);
 
     const caseStudy = await CaseStudy.create(caseStudyData);
 
@@ -281,7 +323,57 @@ router.put('/:id', protect, authorize('admin', 'editor'), async (req: AuthReques
       return;
     }
 
-    await caseStudy.update(req.body);
+    const body = req.body as any;
+
+    // Accept both snake_case and camelCase meta fields, and truncate to model limits.
+    const metaTitleRaw = (body.metaTitle ?? body.meta_title ?? '').trim();
+    const metaDescriptionRaw = (body.metaDescription ?? body.meta_description ?? '').trim();
+
+    const metaTitle = metaTitleRaw
+      ? metaTitleRaw.length > 60
+        ? metaTitleRaw.slice(0, 60)
+        : metaTitleRaw
+      : null;
+    const metaDescription = metaDescriptionRaw
+      ? metaDescriptionRaw.length > 160
+        ? metaDescriptionRaw.slice(0, 160)
+        : metaDescriptionRaw
+      : null;
+
+    // Build update data and map common snake_case fields to model's camelCase.
+    const updateData: any = {
+      ...body,
+      // normalize to model field names
+      clientName: body.clientName ?? body.client_name,
+      clientLogo: body.clientLogo ?? body.client_logo,
+      featuredImage: body.featuredImage ?? body.featured_image,
+      canonicalUrl: body.canonicalUrl ?? body.canonical_url,
+      metaTitle,
+      metaDescription,
+    };
+
+    // Remove snake_case keys so they don't get treated as unknown attributes
+    delete updateData.client_name;
+    delete updateData.client_logo;
+    delete updateData.featured_image;
+    delete updateData.canonical_url;
+    delete updateData.meta_title;
+    delete updateData.meta_description;
+
+    // Normalize classification arrays if provided
+    if (Object.prototype.hasOwnProperty.call(body, 'industries') || Object.prototype.hasOwnProperty.call(body, 'industry')) {
+      updateData.industries = normalizeStringArray(body.industries ?? (body.industry ? [body.industry] : []));
+    }
+    if (Object.prototype.hasOwnProperty.call(body, 'tags')) {
+      updateData.tags = normalizeStringArray(body.tags);
+    }
+
+    // Ensure publishedAt is set when status transitions to published
+    if (updateData.status === 'published' && caseStudy.status !== 'published') {
+      updateData.publishedAt = new Date();
+    }
+
+    await caseStudy.update(updateData);
 
     res.json({
       success: true,

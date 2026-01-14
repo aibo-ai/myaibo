@@ -11,7 +11,6 @@ export interface CaseStudyAttributes {
   challenge: string;
   solution: string;
   objectives?: string;
-  // pdfUrl?: string;
   results: Array<{
     metric: string;
     value: string;
@@ -50,7 +49,6 @@ class CaseStudy extends Model<CaseStudyAttributes, CaseStudyCreationAttributes> 
   public challenge!: string;
   public solution!: string;
   public objectives?: string;
-  // public pdfUrl?: string;
   public results!: Array<{
     metric: string;
     value: string;
@@ -164,10 +162,6 @@ CaseStudy.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    // pdfUrl: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    // },
     results: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -194,21 +188,8 @@ CaseStudy.init(
       allowNull: false,
       defaultValue: 'draft',
     },
-    publishedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    industries: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false,
-      defaultValue: [],
-    },
-    tags: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false,
-      defaultValue: [],
-    },
-    testimonial: {
+publishedAt: {
+      type
       type: DataTypes.TEXT,
       allowNull: true,
     },
