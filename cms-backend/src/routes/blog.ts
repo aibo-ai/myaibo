@@ -194,6 +194,9 @@ router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest,
       : typeof req.body.categories === 'string'
         ? JSON.parse(req.body.categories)
         : [];
+    // Accept both camelCase and snake_case for featured_image fields
+    const featured_image = req.body.featured_image || req.body.featuredImage;
+    const featured_image_alt = req.body.featured_image_alt || req.body.featuredImageAlt;
     // Map camelCase fields to snake_case for Sequelize
     const blogData: any = {
       title: req.body.title,
@@ -203,14 +206,14 @@ router.post('/', protect, authorize('admin', 'editor'), async (req: AuthRequest,
       status: req.body.status,
       categories,
       tags,
-      featured_image: req.body.featuredImage,
-      featured_image_alt: req.body.featuredImageAlt,
       meta_title: req.body.metaTitle,
       meta_description: req.body.metaDescription,
       canonical_url: req.body.canonicalUrl,
       published_at: req.body.status === 'published' ? new Date() : null,
       authorId: req.user.id
     };
+    if (featured_image) blogData.featured_image = featured_image;
+    if (featured_image_alt) blogData.featured_image_alt = featured_image_alt;
 
     const blog = await Blog.create(blogData);
 
@@ -259,7 +262,12 @@ router.put('/:id', protect, authorize('admin', 'editor'), async (req: AuthReques
         ? JSON.parse(req.body.categories)
         : [];
 
-    const updateData = { ...req.body, tags, categories };
+    // Accept both camelCase and snake_case for featured_image fields
+    const featured_image = req.body.featured_image || req.body.featuredImage;
+    const featured_image_alt = req.body.featured_image_alt || req.body.featuredImageAlt;
+    const updateData: any = { ...req.body, tags, categories };
+    if (featured_image) updateData.featured_image = featured_image;
+    if (featured_image_alt) updateData.featured_image_alt = featured_image_alt;
 
     // Set published_at when status changes to 'published'
     if (updateData.status === 'published' && blog.status !== 'published') {

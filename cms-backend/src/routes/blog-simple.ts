@@ -116,10 +116,13 @@ router.get('/:slug', async (req: Request, res: Response) => {
 // @access  Private (Admin)
 router.post('/', protect, async (req: AuthRequest, res: Response) => {
   try {
-    const blogData = req.body;
-    
+    // Accept both camelCase and snake_case for featured_image fields
+    const blogData = {
+      ...req.body,
+      featured_image: req.body.featured_image || req.body.featuredImage || '',
+      featured_image_alt: req.body.featured_image_alt || req.body.featuredImageAlt || '',
+    };
     const newBlog = blogStorage.add(blogData);
-    
     return res.status(201).json({
       success: true,
       data: newBlog
@@ -139,17 +142,19 @@ router.post('/', protect, async (req: AuthRequest, res: Response) => {
 router.put('/:id', protect, async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
-    const updateData = req.body;
-    
+    // Accept both camelCase and snake_case for featured_image fields
+    const updateData = {
+      ...req.body,
+      featured_image: req.body.featured_image || req.body.featuredImage || '',
+      featured_image_alt: req.body.featured_image_alt || req.body.featuredImageAlt || '',
+    };
     const updatedBlog = blogStorage.update(id, updateData);
-    
     if (!updatedBlog) {
       return res.status(404).json({
         success: false,
         error: 'Blog not found'
       });
     }
-    
     return res.json({
       success: true,
       data: updatedBlog

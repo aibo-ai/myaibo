@@ -66,7 +66,7 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      
+      <main className="pt-24">
       {/* Hero Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-purple-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,7 +75,7 @@ export default function BlogPage() {
               Blog
             </h1>
             <p className="text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Insights, trends, and best practices in AI, technology, and business transformation.
+              Insights, trends, and best practices in AI, technology, and business.
             </p>
           </div>
 
@@ -113,11 +113,15 @@ export default function BlogPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredBlogs.map((blog) => (
                 <Link key={blog.id} href={`/blog/${blog.slug}`} className="block">
-                  <article className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+                  <article className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow h-[20rem]">
                     {blog.featured_image && (
                       <div className="aspect-video relative">
                         <Image
-                          src={`http://localhost:3002${blog.featured_image}`}
+                          src={
+                            blog.featured_image.startsWith('http')
+                              ? blog.featured_image
+                              : `${process.env.NEXT_PUBLIC_CMS_API_URL?.replace(/\/api$/, '') || ''}${blog.featured_image}`
+                          }
                           alt={blog.title}
                           fill
                           className="object-cover"
@@ -199,6 +203,7 @@ export default function BlogPage() {
           </div>
         </div>
       )}
+      </main>
       <Footer />
     </>
   );

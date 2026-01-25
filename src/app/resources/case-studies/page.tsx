@@ -102,7 +102,7 @@ export default function CaseStudiesPage() {
   return (
     <>
       <Header />
-      
+      <main className="pt-24">
       {/* Hero Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-purple-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -151,7 +151,7 @@ export default function CaseStudiesPage() {
                 <Link
                   href={`/resources/case-studies/${caseStudy.slug}`}
                   key={caseStudy.id}
-                  className="block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+                  className="block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow h-[20rem]"
                 >
                   {caseStudy.featured_image && (
                     <div className="aspect-video relative">
@@ -225,7 +225,7 @@ export default function CaseStudiesPage() {
           )}
         </div>
       </section>
-
+</main>
       <Footer />
     </>
   );

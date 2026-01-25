@@ -75,7 +75,7 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
   return (
     <>
       <Header />
-      <main className="max-w-5xl mx-auto px-4 py-12">
+      <main className="max-w-5xl mx-auto px-4 py-12 pt-42">
         <h1 className="text-4xl font-bold mb-4" style={{ color: '#7C3BED' }}>{blog.title}</h1>
         <div className="flex gap-2 mb-4">
           {blog.categories.map((category, idx) => (
