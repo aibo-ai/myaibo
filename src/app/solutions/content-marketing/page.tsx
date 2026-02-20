@@ -159,7 +159,7 @@ export default function ContentMarketingPage() {
                 The Problem
               </h2>
               <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
-                Content marketing isn&apos;t about publishing more—it&apos;s about publishing smarter. The best content strategies align every piece of content with specific outcomes
+                Content marketing isn&apos;t about publishing more, it&apos;s about publishing smarter. The best content strategies align every piece of content with specific outcomes.
               </p>
             </div>
             
@@ -309,7 +309,7 @@ export default function ContentMarketingPage() {
             </div>
 
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">
                 B2B Productivity Platform Result
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
@@ -482,7 +482,7 @@ export default function ContentMarketingPage() {
             </div>
 
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">
                 D2C Apparel Brand Result
               </h3>
               <div className="grid md:grid-cols-2 gap-6">

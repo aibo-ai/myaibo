@@ -17,7 +17,7 @@ const navigation = [
 		dropdownItems: [
 			{ name: "AI & ML", href: "/solutions/ai-ml" },
 			{ name: "Full Stack Development", href: "/solutions/full-stack-development" },
-			{ name: "Search Engine Optimization", href: "/solutions/seo" },
+			{ name: "SEO & GEO Services", href: "/solutions/seo" },
 			{ name: "Content Marketing", href: "/solutions/content-marketing" },
 		]
 	},

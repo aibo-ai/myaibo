@@ -111,7 +111,7 @@ export default function CaseStudiesPage() {
               Case Studies
             </h1>
             <p className="text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Real success stories from our clients. See how we&apos;ve helped businesses transform with AI and technology.
+              Real success stories from our clients.
             </p>
           </div>
 

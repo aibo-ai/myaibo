@@ -7,8 +7,8 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Revenue-Driving SEO Services | B2B & D2C Strategies for Qualified Organic Traffic",
-  description: "Stop chasing rankings—get SEO that onboards customers. B2B & D2C expertise: technical audits, content scaling, link building. 50+ clients saw 340% traffic growth. Claim your free SEO audit now.",
+  title: "Revenue-Driving SEO & GEO Services | B2B & D2C Strategies for Qualified Organic Traffic",
+  description: "SEO & GEO that onboards customers. Technical audits, content scaling, link building & AI search optimization. 50+ clients, 340% traffic growth.",
   keywords: "revenue driving SEO, B2B SEO strategy, D2C SEO optimization, organic traffic growth, technical SEO audit, link building services, e-commerce SEO, search intent SEO",
 };
 
@@ -32,7 +32,7 @@ export default function SEOPage() {
               </div>
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                  SEO That Drives Results
+                  SEO & GEO Services That Drives Results
                 </h1>
                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
                   Stop losing customers to competitors. We optimize your entire search presence across search engines and LLMs to capture high-intent buyers at every stage of their journey.
@@ -213,10 +213,10 @@ export default function SEOPage() {
           <Container>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                B2B SEO
+                B2B SEO & GEO
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                The Reality: Buyers conduct 12+ searches before engaging with sales. Your SEO strategy must address every stage of their research journey to capture and convert them.
+                The Reality: Buyers conduct 12+ searches—and consult AI tools—before engaging with sales. Your SEO & GEO strategy must address every stage of their research journey, across search engines and AI-generated answers, to capture and convert them.
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -227,7 +227,7 @@ export default function SEOPage() {
                       Bottom-Funnel Dominance
                     </h3>
                     <ul className="space-y-2 flex-1">
-                      <li>• <strong>&quot;X vs Y&auot; comparison pages</strong></li>
+                      <li>• <strong>&quot;X vs Y&quot; comparison pages</strong></li>
                       <li>• <strong>&quot;Best [solution] for enterprise&quot;</strong></li>
                       <li>• <strong>Pricing page optimization</strong></li>
                       <li>• <strong>Alternative and competitor pages</strong></li>
@@ -252,7 +252,7 @@ export default function SEOPage() {
                       Mid-Funnel Authority
                     </h3>
                     <ul className="space-y-2 flex-1">
-                      <li>• <strong>Technical documentation SEO</strong></li>
+                      <li>• <strong>Technical documentation SEO & GEO</strong></li>
                       <li>• <strong>Problem-solution content hubs</strong></li>
                       <li>• <strong>Integration/compatibility pages</strong></li>
                       <li>• <strong>Use case pages by vertical</strong></li>
@@ -328,7 +328,7 @@ export default function SEOPage() {
             </div>
 
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">
                 B2B SaaS Client Result
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
@@ -350,10 +350,10 @@ export default function SEOPage() {
           <Container>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                D2C SEO
+                D2C SEO & GEO
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                The Opportunity: With CAC rising across paid channels, organic search offers sustainable customer acquisition at scale for long-term growth.
+                Paid ads are bleeding you dry. E-commerce companies outrank you on search—and AI tools aren&apos;t recommending you. You need sustainable customer acquisition through SEO & GEO.
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -414,7 +414,7 @@ export default function SEOPage() {
                       Omnichannel
                     </h3>
                     <ul className="space-y-2 flex-1">
-                      <li>• <strong>Local SEO for retail locations</strong></li>
+                      <li>• <strong>Local SEO & GEO for retail locations</strong></li>
                       <li>• <strong>Store locator optimization</strong></li>
                       <li>• <strong>&quot;Near me&quot; search capture</strong></li>
                     </ul>
@@ -464,7 +464,7 @@ export default function SEOPage() {
             </div>
 
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">
                 D2C Skincare Client Result
               </h3>
               <div className="grid md:grid-cols-2 gap-6">

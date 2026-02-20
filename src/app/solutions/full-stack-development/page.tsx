@@ -39,9 +39,7 @@ export default function FullStackPage() {
                 <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: "#7c3bed" }}>
                   End-to-End Custom Full Stack Development
                 </h1>
-                <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                  Build web and mobile platforms with embedded AI features—automation, smart personalization, predictive analytics—plus future-ready functionality, speed, and scalability.
-                </p>
+                <p>Develop web and mobile platforms with builtin AI that power automation, intelligent personalization and predictive analytics. Engineered for future-ready features, high performance and seamless scalability.</p>
                 <div className="flex justify-center lg:justify-start">
                   <Button 
                     size="lg" 
@@ -211,7 +209,7 @@ export default function FullStackPage() {
                   Delivery & Optimization
                 </h3>
                 <p className="text-gray-600">
-                  Analytics, post-launch AI fine-tuning, performance & SEO
+                  Analytics followed by post-launch AI fine-tuning
                 </p>
               </div>
             </div>
@@ -223,7 +221,7 @@ export default function FullStackPage() {
           <Container>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: "#7c3bed" }}>
-                Tech Stack Expertise
+                Tech Stack Expertise (Not Limited To)
               </h2>
               <p className="text-xl text-gray-600">(not limited to)</p>
             </div>
@@ -313,10 +311,10 @@ export default function FullStackPage() {
               </h2>
             </div>
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">
                 AI-enabled SaaS rollout
               </h3>
-              <p className="text-lg lg:text-xl mb-8 opacity-90">
+              <p className="text-lg lg:text-xl mb-8 opacity-90 text-center mx-[105px]">
                 Migrated legacy systems to cloud-native & AI architecture, added smart recommendations and automated 40% of manual queries.
               </p>
               <div className="grid md:grid-cols-4 gap-6">
@@ -326,14 +324,14 @@ export default function FullStackPage() {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold mb-2">$1.5M</div>
-                  <p className="opacity-90">Savings achieved</p>
+                  <p className="opacity-90">Savings</p>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold mb-2">Higher</div>
                   <p className="opacity-90">User engagement</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">99.99%</div>
+                  <div className="text-3xl font-bold mb-2">99%</div>
                   <p className="opacity-90">Uptime achieved</p>
                 </div>
               </div>

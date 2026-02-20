@@ -84,8 +84,7 @@ export default function Contact() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-lg md:text-xl text-gray-600 leading-relaxed"
               >
-                Ready to revolutionize your business with AI? Book your free strategy session 
-                and discover how we can drive measurable results for your organization.
+                Ready to revolutionize your business with AI? Book your free strategy session.
               </motion.p>
             </div>
           </Container>

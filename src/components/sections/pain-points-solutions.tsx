@@ -29,7 +29,7 @@ export function PainPointsSolutions() {
             <ul className="list-none space-y-4 text-xl p-8">
               <li>🤖 Process Automation → eliminate bottlenecks</li>
               <li>💡 Data Intelligence → connect scattered information</li>
-              <li>🎯 Performance AI → amplify results without added costs</li>
+              <li>🎯 AI powered marketing solutions → amplify results, not costs</li>
             </ul>
           </div>
         </div>

@@ -40,7 +40,7 @@ export default function AIMLPage() {
                   Transform Your Business with AI and Machine Learning
                 </h1>
                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                  Unlock automation, deep insights, and growth with enterprise-grade AI & ML solutions—built, deployed, and optimized by experts who understand your industry&apos;s challenges.
+                  Unlock automation, deep insights, and growth with enterprise-grade AI & ML solutions. Built, deployed, and optimized by experts who understand your industry&apos;s challenges.
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <Button 
@@ -427,10 +427,10 @@ export default function AIMLPage() {
               </h2>
             </div>
             <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 lg:p-12 rounded-lg text-white">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">
                 Automated Customer Support for BFSI
               </h3>
-              <p className="text-lg lg:text-xl mb-8 opacity-90">
+              <p className="text-lg lg:text-xl mb-8 opacity-90 text-center mx-[105px]">
                 Launched NLP-based virtual assistants and auto-tagging using LLMs, driving 60% reduction in support turnaround, improved NPS by 30%, and enabled real-time compliance checks.
               </p>
               <div className="grid md:grid-cols-3 gap-6">

@@ -53,7 +53,7 @@ export default function About() {
                   </span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  To democratize AI automation and making sophisticated solutions accessible.
+                  To democratize AI automation and make sophisticated solutions accessible.
                 </p>
               </motion.div>
               

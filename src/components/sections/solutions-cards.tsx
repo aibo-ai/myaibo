@@ -18,16 +18,16 @@ const solutionsData = [
     link: "/solutions/full-stack-development",
   },
   {
-    title: "Search Engine Optimization",
+    title: "SEO & GEO Services",
     description:
-      "We drive measurable revenue with strategic SEO that combines technical excellence and conversion-focused content to connect your business with actively searching buyers.",
+      "We drive measurable improvements with strategic SEO & GEO that combines technical excellence and conversion-focused content. Now rank higher on regular and LLM queries.",
     image: "/home-seo.jpg",
     link: "/solutions/seo",
   },
   {
     title: "Content Marketing",
     description:
-      "We generate qualified leads with strategic, multi-format content aligned to business outcomes that costs 62% less than paid ads while building lasting brand authority.",
+      "We generate qualified leads with tactical, multi-format content aligned to business outcomes that costs much less than paid ads while building lasting brand authority.",
     image: "/home-content.jpg",
     link: "/solutions/content-marketing",
   },

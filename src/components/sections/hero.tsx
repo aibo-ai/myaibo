@@ -46,15 +46,15 @@ export function Hero() {
               </h1> */}
 
               {/* Brand tagline */}
-  <div className="text-xl sm:text-2xl md:text-3xl lg:text-[42px] font-bold tracking-tight leading-tight mb-6 sm:mb-8 text-left line-clamp-2">
-    <span className="text-black font-bold">Custom AI Agents & Automations</span>
+  <div className="text-xl sm:text-2xl md:text-3xl lg:text-[38px] font-bold tracking-tight leading-tight mb-6 sm:mb-8 text-left line-clamp-2">
+    <span className="text-black font-bold">Custom AI Agents & Marketing Solutions</span>
     <br />
     <span className="text-[#7c3bed] font-bold">Cut Costs, Scale Faster</span>
   </div>
 
   {/* Description */}
 <p className="text-base sm:text-lg lg:text-[22px] text-gray-800 leading-relaxed mb-6 sm:mb-10 text-left font-bold line-clamp-2">
-    From repetitive processes to strategic solutions - a complete AI workforce. No hiring headaches. Just performance.
+    We provide AI powered marketing solutions and build full stack agentic workforces. No additional overheads, just outcomes.
   </p>
 
               {/* CTA Button */}

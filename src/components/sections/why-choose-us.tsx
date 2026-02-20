@@ -9,7 +9,7 @@ const features = [
   {
     icon: Users,
     title: "Built for You",
-    description: "Tailored custom AI solutions that adapts to your unique world, not the other way around",
+    description: "Tailored custom AI powered solutions that adapt to your unique world, not the other way around.",
     gradient: "from-purple-500 to-purple-600"
   },
   {

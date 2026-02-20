@@ -15,19 +15,19 @@ const steps = [
     number: "02",
     icon: FileText,
     title: "Blueprint: Smart Architecture",
-    description: "Our engineers design a bulletproof technical framework that scales with your growth"
+    description: "We design a class leading, bulletproof framework that scales with your growth"
   },
   {
     number: "03",
     icon: Code,
     title: "Build: Agile Development",
-    description: "Development sprints with constant feedback loops ensure we're building what you need"
+    description: "Development with constant feedback loops ensure we're building what you need"
   },
   {
     number: "04",
     icon: Rocket,
     title: "Launch: Seamless Integration",
-    description: "Rigorous testing followed by smooth deployment gets your team up and running immediately"
+    description: "Rigorous testing followed by smooth deployment ensures near zero downtime"
   }
 ]
 
